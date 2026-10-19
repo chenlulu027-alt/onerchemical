@@ -1,0 +1,61 @@
+/* .prose-blog — scoped article typography.
+   Deliberately NOT @tailwindcss/typography — we want precise control over
+   serif H2/H3 cadence, footnote formatting, and tight paragraph rhythm. */
+
+.prose-blog {
+  @apply text-[17px] leading-[1.75] text-ink-900;
+}
+.prose-blog > * + * {
+  margin-top: 1.1em;
+}
+.prose-blog h2 {
+  @apply mt-14 mb-4 font-serif text-[28px] font-normal leading-tight tracking-tight text-ink-900;
+}
+.prose-blog h3 {
+  @apply mt-10 mb-3 font-serif text-[21px] font-normal leading-snug text-ink-900;
+}
+.prose-blog h4 {
+  @apply mt-8 mb-2 text-base font-medium text-ink-900;
+}
+.prose-blog p {
+  @apply text-[17px] leading-[1.75];
+}
+.prose-blog a {
+  @apply border-b border-brand-400 text-brand-800 hover:bg-brand-50;
+}
+.prose-blog strong {
+  @apply font-medium text-ink-900;
+}
+.prose-blog ul {
+  @apply my-5 list-disc space-y-2 pl-6;
+}
+.prose-blog ol {
+  @apply my-5 list-decimal space-y-2 pl-6;
+}
+.prose-blog li::marker {
+  @apply text-ink-300;
+}
+.prose-blog blockquote {
+  @apply my-6 border-l-[3px] border-ink-300 pl-5 font-serif text-[18px] italic leading-relaxed text-ink-700;
+}
+.prose-blog code {
+  @apply rounded bg-ink-100 px-1.5 py-0.5 font-mono text-[0.9em];
+}
+.prose-blog pre {
+  @apply my-6 overflow-x-auto rounded-lg bg-ink-900 p-4 font-mono text-sm text-ink-100;
+}
+.prose-blog pre code {
+  @apply bg-transparent p-0 text-ink-100;
+}
+.prose-blog hr {
+  @apply my-10 border-ink-100;
+}
+.prose-blog figure {
+  @apply my-8;
+}
+.prose-blog figcaption {
+  @apply mt-2 text-xs italic text-ink-500;
+}
+.prose-blog .footnotes {
+  @apply mt-16 border-t border-ink-100 pt-8 text-sm text-ink-500;
+}
