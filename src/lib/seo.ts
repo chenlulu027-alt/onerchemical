@@ -25,8 +25,6 @@ export const AUTHOR = {
   name: 'Yang Ruosong',
   slug: 'yang-ruosong',
   jobTitle: 'Head of Technical Content',
-  // Author profile is canonically hosted on the main site — Phase 0 deliberately
-  // points JSON-LD author URL to the main site to consolidate E-E-A-T.
   profileUrl: 'https://onerchemical.com/yang-ruosong/',
 } as const;
 
