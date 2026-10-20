@@ -135,7 +135,7 @@ export default function Page() {
 
       <BlogArticleLayout
         slug={SLUG}
-        cluster="preservatives"
+        cluster="preservative-chemistry"
         title="Why Your Phenoxyethanol System Fails: A 7-Layer Breakdown from a Preservation Specialist"
         deck="Mechanism gaps the SDS does not tell you, COA red flags we see every quarter, a pairing matrix by product type, 5-market regulation reality, and a real 100kg sourcing path for independent brands."
         author={{ name: "Yang Ruosong", role: "Preservation Sourcing Specialist", url: "/yang-ruosong/" }}
