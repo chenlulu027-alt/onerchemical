@@ -15,7 +15,6 @@ export function organizationSchema() {
     name: ORG.tradingName,
     legalName: ORG.legalName,
     url: SITE.url,
-    sameAs: [ORG.mainSite],
     foundingDate: ORG.foundingDate,
     address: {
       '@type': 'PostalAddress',
