@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import BlogArticleLayout from "@/components/blog/BlogArticleLayout";
-import JsonLd from "@/components/JsonLd";
+import { BlogArticleLayout } from "@/components/blog/BlogArticleLayout";
+import { JsonLd } from "@/components/JsonLd";
 import { TLDRBox } from "@/components/blog/blocks/TLDRBox";
 import { LeadMagnetCTA } from "@/components/blog/blocks/LeadMagnetCTA";
 import { FAQ } from "@/components/blog/blocks/FAQ";
