@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   applicationName: SITE.name,
-  authors: [{ name: 'Yang Ruosong', url: 'https://onerchem.com/yang-ruosong/' }],
+  authors: [{ name: 'Yang Ruosong', url: 'https://onerchemical.com/yang-ruosong/' }],
   icons: {
     icon: '/favicon.ico',
   },

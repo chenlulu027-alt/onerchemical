@@ -13,7 +13,7 @@ export const SITE = {
 } as const;
 
 export const ORG = {
-  legalName: 'Wuhan Oule Chemical Co., Ltd.',
+  legalName: 'Wuhan Oner Chemical Co., Ltd.',
   tradingName: 'Onerchemical',
   mainSite: 'https://onerchem.com',
   foundingDate: '2012',
@@ -28,7 +28,7 @@ export const AUTHOR = {
   jobTitle: 'Head of Technical Content',
   // Author profile is canonically hosted on the main site — Phase 0 deliberately
   // points JSON-LD author URL to the main site to consolidate E-E-A-T.
-  profileUrl: 'https://onerchem.com/yang-ruosong/',
+  profileUrl: 'https://onerchemical.com/yang-ruosong/',
 } as const;
 
 type BuildMetaInput = {

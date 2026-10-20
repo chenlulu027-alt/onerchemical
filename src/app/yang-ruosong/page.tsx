@@ -21,33 +21,7 @@ export default function AuthorPage() {
       <article className="mx-auto max-w-3xl px-6 py-16">
         <div className="mb-10 border-b border-ink-100 pb-10">
           <h1 className="mb-2 font-serif text-4xl font-normal text-ink-900">{AUTHOR.name}</h1>
-          <p className="text-lg text-ink-500">{AUTHOR.jobTitle} · {ORG.tradingName}</p>
-        </div>
-
-        <div className="prose-blog">
-          <p>
-            Yang Ruosong leads technical content at {ORG.tradingName}, writing on cosmetic
-            preservation chemistry, challenge-test methodology, and preservative regulation across
-            EU 1223/2009, US FDA, China NMPA, and ASEAN markets.
-          </p>
-
-          <h2>Topics covered</h2>
-          <ul>
-            <li>Preservative selection by product form, pH, and distribution channel</li>
-            <li>Challenge testing — ISO 11930, USP 51 methodology and failure diagnosis</li>
-            <li>Regulatory compliance across major cosmetic markets</li>
-            <li>Preservative-booster interactions and chelator-boosted systems</li>
-          </ul>
-
-          <h2>Primary profile</h2>
-          <p>
-            Full biographical profile is maintained on the main site:{' '}
-            <a href={AUTHOR.profileUrl} target="_blank" rel="noopener author">
-              onerchem.com/yang-ruosong
-            </a>
-            .
-          </p>
-        </div>
+          </div>
 
         {articles.length > 0 && (
           <section className="mt-12 border-t border-ink-100 pt-10">
