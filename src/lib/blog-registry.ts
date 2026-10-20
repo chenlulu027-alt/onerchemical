@@ -80,8 +80,40 @@ export const ARTICLES: BlogArticle[] = [
       { id: 'faq', text: 'Frequently asked questions', level: 2 },
     ],
   },
+  {
+    slug: 'phenoxyethanol-technical-guide',
+    title: 'Why your phenoxyethanol system fails: a 7-layer breakdown from a preservation specialist',
+    excerpt:
+      'Mechanism blind spots, COA red flags, pairing matrix by formula type, 5-market regulations, and a real 100kg sourcing path for independent cosmetic brands.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'phenoxyethanol',
+      'phenoxyethanol preservative',
+      'phenoxyethanol concentration',
+      'phenoxyethanol COA',
+      'phenoxyethanol EU Annex V',
+      'phenoxyethanol pairing',
+      'phenoxyethanol MOQ',
+      'phenoxyethanol supplier',
+      'preservative for indie beauty',
+      'small batch phenoxyethanol',
+    ],
+    datePublished: '2026-10-20',
+    dateModified: '2026-10-20',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/phenoxyethanol-tg/hero.jpg',
+    toc: [
+      { id: 'three-failures', text: 'Three real failure scenarios', level: 2 },
+      { id: 'mechanism-gaps', text: 'Mechanism blind spots', level: 2 },
+      { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+      { id: 'pairing-matrix', text: 'Pairing matrix by formula type', level: 2 },
+      { id: 'regulations', text: 'Global regulation matrix', level: 2 },
+      { id: 'sourcing-100kg', text: '100kg sourcing path', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
 ];
-
 export function getArticle(slug: string): BlogArticle | undefined {
   return ARTICLES.find((a) => a.slug === slug && !a.draft);
 }
