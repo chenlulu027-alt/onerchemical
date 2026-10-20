@@ -15,7 +15,6 @@ export const SITE = {
 export const ORG = {
   legalName: 'Wuhan Oner Chemical Co., Ltd.',
   tradingName: 'Onerchemical',
-  mainSite: 'https://onerchem.com',
   foundingDate: '2012',
   city: 'Wuhan',
   region: 'Hubei',

@@ -39,7 +39,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li><LocalizedLink href="/about" className="text-ink-700 hover:text-brand-800">About</LocalizedLink></li>
             <li>
-              <a href={ORG.mainSite} target="_blank" rel="noopener" className="text-ink-700 hover:text-brand-800">
+              <a href="#" target="_blank" rel="noopener" className="text-ink-700 hover:text-brand-800">
                 Main site ↗
               </a>
             </li>

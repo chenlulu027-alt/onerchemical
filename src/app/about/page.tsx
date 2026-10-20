@@ -14,16 +14,6 @@ export default function AboutPage() {
       <h1 className="mb-6 font-serif text-4xl font-normal text-ink-900">About Onerchemical</h1>
 
       <div className="prose-blog">
-        <p>
-          <strong>Onerchemical</strong> is a technical publication operated by{' '}
-          <strong>{ORG.legalName}</strong>, a cosmetic-ingredient supplier based in {ORG.city},{' '}
-          {ORG.region}. Our main supply operation is at{' '}
-          <a href={ORG.mainSite} target="_blank" rel="noopener">
-            onerchem.com
-          </a>
-          ; this site is a dedicated resource on cosmetic preservation science.
-        </p>
-
         <h2>Why a separate site</h2>
         <p>
           Preservation sits at the intersection of microbiology, physical chemistry, and regulation
