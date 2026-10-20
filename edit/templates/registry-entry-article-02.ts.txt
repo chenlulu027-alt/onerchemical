@@ -1,0 +1,31 @@
+/**
+ * Append this entry into src/lib/blog-registry.ts within the
+ * exported `articles` array. Order newest-first.
+ *
+ * TypeScript interface already enforces cluster + searchKeywords presence.
+ */
+{
+  slug: "phenoxyethanol-technical-guide",
+  title: "Why Your Phenoxyethanol System Fails: A 7-Layer Breakdown from a Preservation Specialist",
+  excerpt:
+    "Mechanism gaps, COA red flags, pairing matrix, 5-market regulations, and a 100kg procurement path for independent cosmetic brands.",
+  publishedISO: "2026-10-20",
+  modifiedISO: "2026-10-20",
+  readMinutes: 14,
+  cluster: "preservatives",
+  type: "TG",
+  author: "Yang Ruosong",
+  heroImage: "/images/blog/phenoxyethanol-tg/hero.jpg",
+  searchKeywords: [
+    "phenoxyethanol",
+    "phenoxyethanol preservative",
+    "phenoxyethanol concentration",
+    "phenoxyethanol COA",
+    "phenoxyethanol EU Annex V",
+    "phenoxyethanol pairing",
+    "phenoxyethanol MOQ",
+    "phenoxyethanol supplier",
+    "preservative for indie beauty",
+    "small batch phenoxyethanol",
+  ],
+},
