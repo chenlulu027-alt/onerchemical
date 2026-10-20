@@ -38,12 +38,7 @@ export function Footer() {
           <h3 className="mb-3 text-xs uppercase tracking-wider text-ink-500">Company</h3>
           <ul className="space-y-2 text-sm">
             <li><LocalizedLink href="/about" className="text-ink-700 hover:text-brand-800">About</LocalizedLink></li>
-            <li>
-              <a href="#" target="_blank" rel="noopener" className="text-ink-700 hover:text-brand-800">
-                Main site ↗
-              </a>
-            </li>
-          </ul>
+            </ul>
         </div>
       </div>
 
