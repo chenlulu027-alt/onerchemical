@@ -1,0 +1,28 @@
+// INCREMENTAL PATCH — append to src/lib/blog-registry.ts BLOG_POSTS array
+// (deploy script will insert; do not paste manually unless registry structure matches)
+
+{
+  slug: '1-2-hexanediol-technical-guide',
+  title: "1,2-Hexanediol in Cosmetics — When It Actually Works as a Preservative, and When It Doesn't",
+  description:
+    'As of 2026-10, 1,2-Hexanediol sits in CosIng but outside EU Annex V. Pairing matrix, Challenge Test rates, COA red flags, 5-market rules for indie formulators.',
+  cluster: 'preservatives',
+  type: 'TG',
+  publishedDate: '2026-10-21',
+  modifiedDate: '2026-10-21',
+  author: 'Yang Ruosong',
+  readingTime: '12 min read',
+  searchKeywords: [
+    '1,2-hexanediol',
+    '1,2-hexanediol cosmetic',
+    '1,2-hexanediol preservative',
+    '1,2-hexanediol vs phenoxyethanol',
+    'hexanediol usage rate',
+    '1,2-hexanediol INCI',
+    '1,2-hexanediol EU Annex V',
+    '1,2-hexanediol challenge test',
+    '1,2-hexanediol COA',
+    'cas 6920-22-5',
+  ],
+  heroImage: '/images/hero-1-2-hexanediol.webp',
+},
