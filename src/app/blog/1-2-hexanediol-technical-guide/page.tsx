@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import BlogArticleLayout from '@/components/blog/BlogArticleLayout';
-import TLDRBox from '@/components/blog/blocks/TLDRBox';
-import FAQ from '@/components/blog/blocks/FAQ';
-import LeadMagnetCTA from '@/components/blog/blocks/LeadMagnetCTA';
-import JsonLd from '@/components/JsonLd';
+import { BlogArticleLayout } from '@/components/blog/BlogArticleLayout';
+import { TLDRBox } from '@/components/blog/blocks/TLDRBox';
+import { FAQ } from '@/components/blog/blocks/FAQ';
+import { LeadMagnetCTA } from '@/components/blog/blocks/LeadMagnetCTA';
+import { JsonLd } from '@/components/JsonLd';
 import CompatibilityMatrix from '@/components/blog/article-03/CompatibilityMatrix';
 import ChallengeTestMatrix from '@/components/blog/article-03/ChallengeTestMatrix';
-
 const SLUG = '1-2-hexanediol-technical-guide';
 const SITE = 'https://onerchemical.com';
 const PUB_DATE = '2026-10-21';
@@ -116,8 +115,8 @@ const breadcrumbSchema = {
     {
       '@type': 'ListItem',
       position: 3,
-      name: 'Preservatives',
-      item: `${SITE}/blog?cluster=preservatives`,
+      name: 'Preservative Chemistry',
+      item: `${SITE}/blog?cluster=preservative-chemistry`,
     },
     {
       '@type': 'ListItem',
@@ -136,24 +135,20 @@ export default function Page() {
       <JsonLd data={breadcrumbSchema} />
 
       <BlogArticleLayout
-        title="1,2-Hexanediol in Cosmetics — When It Actually Works as a Preservative, and When It Doesn't"
-        author="Yang Ruosong"
-        authorRole="Preservation Sourcing Specialist, Onerchemical"
-        authorUrl="/yang-ruosong/"
-        publishedDate={PUB_DATE}
-        modifiedDate={MOD_DATE}
-        cluster="Preservatives"
-        clusterHref="/blog?cluster=preservatives"
-        readingTime="12 min read"
+        cluster="preservative-chemistry"
+        title="1,2-Hexanediol in Cosmetics \u2014 When It Actually Works as a Preservative, and When It Doesn't"
+        excerpt="As of 2026-10, 1,2-Hexanediol sits in EU CosIng but outside Annex V. Pairing matrix, Challenge Test usage rates, COA red flags, and 5-market regulatory status for independent cosmetic brands."
+        datePublished={PUB_DATE}
+        readingMinutes={12}
         toc={[
-          { id: 'why-indie-reaches', label: 'Why indie formulators reach for 1,2-HD' },
-          { id: 'actually-preservative', label: 'Is it actually a preservative?' },
-          { id: 'pairing-matrix', label: 'Compatibility matrix' },
-          { id: 'challenge-test-rates', label: 'Usage rates that pass Challenge Test' },
-          { id: 'coa-red-flags', label: 'COA red flags' },
-          { id: 'regulations', label: '5-market regulations' },
-          { id: 'sourcing', label: 'Sample vs 100 kg order' },
-          { id: 'faq', label: 'FAQ' },
+          { id: 'why-indie-reaches', text: 'Why indie formulators reach for 1,2-HD', level: 2 },
+          { id: 'actually-preservative', text: 'Is it actually a preservative?', level: 2 },
+          { id: 'pairing-matrix', text: 'Compatibility matrix', level: 2 },
+          { id: 'challenge-test-rates', text: 'Usage rates that pass Challenge Test', level: 2 },
+          { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+          { id: 'regulations', text: '5-market regulations', level: 2 },
+          { id: 'sourcing', text: 'Sample vs 100 kg order', level: 2 },
+          { id: 'faq', text: 'FAQ', level: 2 },
         ]}
       >
         {/* HERO */}
@@ -182,7 +177,7 @@ export default function Page() {
           In August 2026, an independent moisturizer brand reached out to Onerchemical after a third consecutive Challenge Test failure. The formulator had replaced phenoxyethanol with 2% 1,2-Hexanediol (INCI: 1,2-Hexanediol; CAS 6920-22-5) based on a &ldquo;clean-beauty swap chart&rdquo; from social media. The lotion looked clean. The microbiology lab did not agree.
         </p>
         <p>
-          That swap error is the single most common mistake Onerchemical sees from indie brands moving away from traditional preservatives. 1,2-Hexanediol is not a 1:1 phenoxyethanol substitute. The real question is how to use the molecule correctly — and whether EU CosIng, SCCS, and USP 51 agree with how the label describes it.
+          That swap error is the single most common mistake Onerchemical sees from indie brands moving away from traditional preservative-chemistry. 1,2-Hexanediol is not a 1:1 phenoxyethanol substitute. The real question is how to use the molecule correctly — and whether EU CosIng, SCCS, and USP 51 agree with how the label describes it.
         </p>
 
         {/* H2-1 */}
@@ -211,7 +206,7 @@ export default function Page() {
           The antimicrobial mechanism is real but limited. 1,2-Hexanediol is a medium-chain terminal diol that disrupts microbial membrane lipid bilayers, giving measurable Gram-positive and Gram-negative inhibition. Yeast and mold coverage from the molecule alone is markedly weaker, which is why single-molecule use in high-water-activity O/W emulsions rarely clears USP 51 or ISO 11930 Criterion A.
         </p>
         <p>
-          Supplier framing diverges and causes most of the formulator confusion. INOLEX markets Lexgard&reg; H as a &ldquo;bacteriostatic booster&rdquo; and a &ldquo;building block for a Hurdle Technology system.&rdquo; SOHO ANECO describes the molecule as able to &ldquo;protect formulations in the absence of conventional preservatives.&rdquo; Both supplier claims can be true in narrow contexts. Neither claim is a general-case guarantee that 1,2-Hexanediol alone will pass a challenge in a specific formula.
+          Supplier framing diverges and causes most of the formulator confusion. INOLEX markets Lexgard&reg; H as a &ldquo;bacteriostatic booster&rdquo; and a &ldquo;building block for a Hurdle Technology system.&rdquo; SOHO ANECO describes the molecule as able to &ldquo;protect formulations in the absence of conventional preservative-chemistry.&rdquo; Both supplier claims can be true in narrow contexts. Neither claim is a general-case guarantee that 1,2-Hexanediol alone will pass a challenge in a specific formula.
         </p>
         <p>
           Onerchemical&rsquo;s working position: treat 1,2-Hexanediol as a hurdle-system component — a booster that upgrades a partner preservative, or a limited standalone option in low-water-activity anhydrous and balm systems where water availability already constrains microbial growth.
@@ -331,8 +326,8 @@ export default function Page() {
         <LeadMagnetCTA
           title="Request a 1 kg Sample"
           body="Free COA, SDS, and allergen declaration included. 7–10 day lead time from Shanghai FOB."
-          ctaLabel="Request Sample"
-          href="/sample-request/"
+          cta="Request Sample"
+          topic="1,2-hexanediol"
         />
 
         {/* FAQ */}
