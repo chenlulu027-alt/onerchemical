@@ -56,6 +56,41 @@ export interface BlogArticle {
 
 export const ARTICLES: BlogArticle[] = [
   {
+    slug: '1-2-hexanediol-technical-guide',
+    title:
+      "1,2-Hexanediol in Cosmetics — When It Actually Works as a Preservative, and When It Doesn't",
+    excerpt:
+      'As of 2026-10, 1,2-Hexanediol sits in EU CosIng but outside Annex V. Pairing matrix, Challenge Test usage rates, COA red flags, and 5-market regulatory status for independent cosmetic brands.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      '1,2-hexanediol',
+      '1,2-hexanediol cosmetic',
+      '1,2-hexanediol preservative',
+      '1,2-hexanediol vs phenoxyethanol',
+      'hexanediol usage rate',
+      '1,2-hexanediol INCI',
+      '1,2-hexanediol EU Annex V',
+      '1,2-hexanediol challenge test',
+      '1,2-hexanediol COA',
+      'cas 6920-22-5',
+    ],
+    datePublished: '2026-10-21',
+    dateModified: '2026-10-21',
+    author: 'Yang Ruosong',
+    readingMinutes: 12,
+    heroImage: '/images/hero-1-2-hexanediol.webp',
+    toc: [
+      { id: 'why-indie-reaches', text: 'Why indie formulators reach for 1,2-HD', level: 2 },
+      { id: 'actually-preservative', text: 'Is it actually a preservative?', level: 2 },
+      { id: 'pairing-matrix', text: 'Compatibility matrix', level: 2 },
+      { id: 'challenge-test-rates', text: 'Usage rates that pass Challenge Test', level: 2 },
+      { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+      { id: 'regulations', text: '5-market regulations', level: 2 },
+      { id: 'sourcing', text: 'Sample vs 100 kg order', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+  {
     slug: 'phenoxyethanol-ethylhexylglycerin-combination',
     title: 'Phenoxyethanol vs. ethylhexylglycerin: when to combine them',
     excerpt:
