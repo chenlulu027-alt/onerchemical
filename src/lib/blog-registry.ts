@@ -55,6 +55,44 @@ export interface BlogArticle {
 }
 
 export const ARTICLES: BlogArticle[] = [
+    {
+    slug: 'caprylhydroxamic-acid-technical-guide',
+    title: 'Caprylhydroxamic Acid in Cosmetic Preservation: Decoding the Chelator That Clean Beauty Keeps Buying',
+    excerpt:
+      'As of 2026-10, caprylhydroxamic acid (CAS 7377-03-9) anchors most phenoxyethanol-free preservation systems on the market — yet most indie brands buy it inside a Spectrastat blend without decoding the hurdle logic. Procurement playbook, pairing matrix, and 5-market regulatory map.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'caprylhydroxamic acid',
+      'caprylhydroxamic acid preservative',
+      'CHA preservative',
+      'spectrastat',
+      'aromastat',
+      'hurdle technology preservative',
+      'natural preservative CHA',
+      'caprylhydroxamic acid formulation',
+      'caprylhydroxamic acid use level',
+      'caprylhydroxamic acid supplier',
+      'caprylhydroxamic acid MOQ',
+      'chelator preservative indie beauty',
+    ],
+    datePublished: '2026-10-22',
+    dateModified: '2026-10-22',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/hero-caprylhydroxamic-acid.webp',
+    toc: [
+      { id: 'why-indie-brands', text: 'Why "phenoxyethanol-free" indie brands reach for CHA', level: 2 },
+      { id: 'chelator-paradox', text: 'The chelator paradox: how CHA preserves', level: 2 },
+      { id: 'what-cha-cant-do', text: 'What CHA cannot do alone — hurdle mandate', level: 2 },
+      { id: 'spectrastat-family', text: 'Decoding the Spectrastat family (8 blends)', level: 2 },
+      { id: 'monomer-vs-blend', text: 'Monomer vs pre-blended: procurement economics', level: 2 },
+      { id: 'build-your-hurdle', text: 'Build your own CHA hurdle: 4 verified pairings', level: 2 },
+      { id: 'use-level-tree', text: 'CHA use-level decision tree', level: 2 },
+      { id: 'regulatory-map', text: 'The CHA regulatory map (5 markets)', level: 2 },
+      { id: 'sourcing-100kg', text: 'Sourcing 100 kg monomer CHA', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
   {
     slug: '1-2-hexanediol-technical-guide',
     title:
