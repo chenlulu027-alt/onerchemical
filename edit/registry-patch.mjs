@@ -1,29 +1,23 @@
 #!/usr/bin/env node
 /**
- * edit/registry-patch.mjs
+ * edit/registry-patch.mjs — v2 (2026-10-23 fix)
  * -------------------------------------------------------------
+ * v1 BUG: used registry.search(regex) + registry.indexOf('[', arrAnchor),
+ *         which hit the `[` inside `BlogArticle[]` type annotation instead
+ *         of the array opening `[`. Fix: use regex.exec() + m.index + m[0].length
+ *         so insertIdx lands exactly ONE char after the array opening `[`.
+ *
  * Zero-dependency helper that inserts a BlogArticle entry at
  * ARTICLES[0] in src/lib/blog-registry.ts.
  *
  * Usage:
  *   node edit/registry-patch.mjs <entry-file> [--dry] [--force] [--registry=<path>]
  *
- * Entry file:
- *   .ts / .tsx / .txt containing exactly ONE object literal + trailing comma.
- *   Leading `//` or `/* ... *\/` comments are stripped.
- *
- * Features:
- *   - Idempotent slug check (exit 3 on duplicate without --force)
- *   - Auto-backup to <registry>.bak before writing
- *   - Custom lexer tracks {}[]() depth and skips braces inside strings
- *     and comments (not full TS AST — AST pulls heavy deps and prettier
- *     reformats the output anyway)
- *
  * Exit codes:
  *   0 success | 1 usage | 2 parse | 3 duplicate slug | 4 I/O
  * -------------------------------------------------------------
  */
-import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, copyFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { argv, exit } from 'node:process';
 
@@ -56,19 +50,15 @@ try {
   exit(4);
 }
 
-// Strip leading // and /* */ comments
 const entryStripped = stripLeadingComments(rawEntry).trim();
 
-// Must start with { and end with },
 if (!entryStripped.startsWith('{') || !/},?\s*$/.test(entryStripped)) {
   console.error('registry-patch: entry file must contain one object literal starting with { and ending with },');
   exit(2);
 }
 
-// Ensure trailing comma for safe insert
 const entryBlock = entryStripped.endsWith(',') ? entryStripped : `${entryStripped},`;
 
-// Extract slug for idempotency check
 const slugMatch = entryBlock.match(/slug\s*:\s*['"]([^'"]+)['"]/);
 if (!slugMatch) {
   console.error('registry-patch: cannot find slug field in entry');
@@ -92,38 +82,42 @@ if (dupPattern.test(registry) && !flags.force) {
   exit(3);
 }
 
-// ---------- 4. Find ARTICLES array opening ----------
-const arrAnchor = registry.search(/export\s+const\s+ARTICLES\s*:\s*BlogArticle\s*\[\]\s*=\s*\[/);
-if (arrAnchor < 0) {
-  console.error('registry-patch: cannot locate `export const ARTICLES: BlogArticle[] = [` in registry');
+// ---------- 4. Locate ARTICLES array opening bracket (v2 fix) ----------
+// Match the FULL declaration up to AND INCLUDING the array `[`, then
+// insertIdx = m.index + m[0].length. This guarantees we land after the
+// array `[`, never inside `BlogArticle[]`. Also tolerates missing type
+// annotation (`export const ARTICLES = [`).
+const declRe = /export\s+const\s+ARTICLES(?:\s*:\s*BlogArticle\s*\[\s*\])?\s*=\s*\[/;
+const m = declRe.exec(registry);
+if (!m) {
+  console.error('registry-patch: cannot locate `export const ARTICLES ... = [` in registry');
   exit(2);
 }
+const insertIdx = m.index + m[0].length;
 
-// Advance to the character AFTER the opening `[`
-const openBracketIdx = registry.indexOf('[', arrAnchor);
-const insertIdx = openBracketIdx + 1;
-
-// Preserve newline + leading indentation style of first element (if any)
-const after = registry.slice(insertIdx);
-const firstNonWs = after.search(/\S/);
-const leadingWs = firstNonWs > 0 ? after.slice(0, firstNonWs) : '\n  ';
-
-// Normalise entry indentation to 2 spaces inside the array
+// ---------- 5. Compose inserted block (v2 — clean, no double whitespace) ----------
+// Indent each entry line by 2 spaces (array-interior indent)
 const indentedEntry = entryBlock
   .split('\n')
-  .map((line, i) => (i === 0 ? `  ${line}` : `  ${line}`))
+  .map((line) => `  ${line}`)
   .join('\n');
 
+// Insert: `\n<indented-entry>\n` right after the opening `[`.
+// Whatever came after the `[` originally (newline + first element, or just `]`)
+// is preserved untouched via registry.slice(insertIdx).
 const patched =
   registry.slice(0, insertIdx) +
   `\n${indentedEntry}` +
-  leadingWs +
-  registry.slice(insertIdx + (firstNonWs > 0 ? 0 : 0));
+  registry.slice(insertIdx);
 
-// ---------- 5. Write (or dry-run) ----------
+// ---------- 6. Write (or dry-run) ----------
 if (flags.dry) {
   console.log(`[dry-run] would insert slug "${newSlug}" at ARTICLES[0] in ${registryPath}`);
+  console.log(`[dry-run] insertIdx=${insertIdx}, matched: ${JSON.stringify(m[0])}`);
   console.log(`[dry-run] registry size: ${registry.length} -> ${patched.length} bytes (+${patched.length - registry.length})`);
+  console.log('[dry-run] 20 chars around insertion:');
+  console.log(`[dry-run]   before: ${JSON.stringify(registry.slice(Math.max(0, insertIdx - 20), insertIdx))}`);
+  console.log(`[dry-run]   after:  ${JSON.stringify(registry.slice(insertIdx, insertIdx + 20))}`);
   exit(0);
 }
 
@@ -143,6 +137,7 @@ try {
 
 console.log(`registry-patch: inserted slug "${newSlug}" at ARTICLES[0] in ${registryPath}`);
 console.log(`registry-patch: backup saved as ${registryPath}.bak`);
+console.log(`registry-patch: TIP — run \`npm run build\` locally before pushing; the regex-based build-search-index.mjs is strict about the ARTICLES declaration format.`);
 exit(0);
 
 // ---------- helpers ----------
@@ -153,13 +148,10 @@ function escapeRegex(s) {
 function stripLeadingComments(src) {
   let i = 0;
   while (i < src.length) {
-    // skip whitespace
     while (i < src.length && /\s/.test(src[i])) i++;
     if (src[i] === '/' && src[i + 1] === '/') {
-      // line comment
       while (i < src.length && src[i] !== '\n') i++;
     } else if (src[i] === '/' && src[i + 1] === '*') {
-      // block comment
       i += 2;
       while (i < src.length - 1 && !(src[i] === '*' && src[i + 1] === '/')) i++;
       i += 2;
