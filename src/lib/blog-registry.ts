@@ -55,6 +55,41 @@ export interface BlogArticle {
 }
 
 export const ARTICLES: BlogArticle[] = [
+      {
+    slug: 'ethylhexylglycerin-technical-guide',
+    title: 'Ethylhexylglycerin (EHG): When It Actually Preserves — And When It Doesn\u2019t',
+    excerpt:
+      'A sourcing specialist\u2019s guide to EHG (CAS 70445-33-9) for independent cosmetic brands — deodorant vs cosmetic use-cases, Sensiva SC50 pricing shadow, verified pairings, SCCS 2020 dose data, CoA red flags, and 25\u2013200kg procurement.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'ethylhexylglycerin',
+      'EHG',
+      'ethylhexylglycerin preservative',
+      'Sensiva SC50',
+      'EHG booster',
+      'ethylhexylglycerin max use rate',
+      'EHG not annex V',
+      'ethylhexylglycerin supplier',
+      'EHG small MOQ',
+      'ethylhexylglycerin SCCS',
+    ],
+    datePublished: '2026-10-23',
+    dateModified: '2026-10-23',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-05-ehg-hero.jpg',
+    toc: [
+      { id: 'when-ehg-preserves', text: 'When EHG actually preserves — and when it is just skin feel', level: 2 },
+      { id: 'why-ehg-boosts', text: 'Why EHG boosts preservation without an Annex V claim', level: 2 },
+      { id: 'sensiva-sc50-pricing-shadow', text: 'The Schülke Sensiva SC50 pricing shadow', level: 2 },
+      { id: 'ehg-pairing-map', text: 'EHG pairing map: four verified boosts and the two we refuse', level: 2 },
+      { id: 'ehg-dose-reality', text: 'How formulators set the EHG dose — and why most cap below the ceiling', level: 2 },
+      { id: 'ehg-coa-red-flags', text: 'Legitimate EHG CoA — the 7 fields we reject on sight', level: 2 },
+      { id: 'ehg-regulatory-5-market', text: 'EHG in global regulations: a preservative that officially isn\u2019t one', level: 2 },
+      { id: 'onerchemical-ehg-sourcing', text: '25kg–200kg EHG — the supply gap large distributors don\u2019t fill', level: 2 },
+      { id: 'ehg-faq', text: 'Ethylhexylglycerin FAQ', level: 2 },
+    ],
+  },
     {
     slug: 'caprylhydroxamic-acid-technical-guide',
     title: 'Caprylhydroxamic Acid in Cosmetic Preservation: Decoding the Chelator That Clean Beauty Keeps Buying',

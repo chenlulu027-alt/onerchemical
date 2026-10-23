@@ -9,7 +9,7 @@ import EHGPairingMatrix from '@/components/blog/article-05/EHGPairingMatrix';
 import { getArticle } from '@/lib/blog-registry';
 
 const SLUG = 'ethylhexylglycerin-technical-guide';
-const article = getArticle(SLUG)!;
+const article = getArticle(SLUG);
 
 export const metadata: Metadata = {
   title: 'Ethylhexylglycerin (EHG): When It Actually Preserves — And When It Doesn’t',
@@ -180,7 +180,7 @@ export default function Page() {
         excerpt="A sourcing specialist’s guide to EHG for independent cosmetic brands — deodorant vs cosmetic use-cases, Sensiva SC50 pricing shadow, verified pairings, SCCS 2020 dose data, CoA red flags, and 25–200kg procurement."
         datePublished={published}
         readingMinutes={14}
-        toc={article.toc}
+        toc={article?.toc}
       >
         {/* Hero image placeholder — alt follows GEO pattern */}
         <figure className="my-6">
@@ -192,16 +192,16 @@ export default function Page() {
           </figcaption>
         </figure>
 
-        <TLDRBox
-          items={[
-            'Ethylhexylglycerin (INCI: Ethylhexylglycerin; CAS 70445-33-9) is not an Annex V preservative — it is a skin conditioning / deodorant agent that boosts true preservatives by disrupting microbial cell membranes.',
-            'Deodorant formulas use 1–3% as the primary antimicrobial; cosmetic formulas use 0.3–1.0% as a booster. Mixing the two mental models is the top formulator error.',
-            'As of 2026-10, Schülke Sensiva SC50 and generic Chinese-origin EHG are the same molecule at equivalent GC purity; public price benchmarks suggest the branded EU wholesale premium runs 2–4× over 100kg generic FOB.',
-            'The SCCS 1618/20 opinion (adopted 2020) supports 1.0% as the practical cosmetic ceiling for sensitization safety; higher levels require your own risk assessment.',
-            'Four verified pairings: Phenoxyethanol, 1,2-Hexanediol, Caprylyl Glycol, Benzyl Alcohol. Avoid in high-cat systems and anhydrous formulas (aₘ < 0.6).',
-            'Onerchemical ships from 25kg with full CoA + SDS + export docs, 7–10 day lead — the small-batch gap Schülke direct deals do not fill.',
-          ]}
-        />
+        <TLDRBox>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Ethylhexylglycerin (INCI: Ethylhexylglycerin; CAS 70445-33-9) is not an Annex V preservative — it is a skin conditioning / deodorant agent that boosts true preservatives by disrupting microbial cell membranes.</li>
+            <li>Deodorant formulas use 1–3% as the primary antimicrobial; cosmetic formulas use 0.3–1.0% as a booster. Mixing the two mental models is the top formulator error.</li>
+            <li>As of 2026-10, Schülke Sensiva SC50 and generic Chinese-origin EHG are the same molecule at equivalent GC purity; public price benchmarks suggest the branded EU wholesale premium runs 2–4× over 100kg generic FOB.</li>
+            <li>The SCCS 1618/20 opinion (adopted 2020) supports 1.0% as the practical cosmetic ceiling for sensitization safety; higher levels require your own risk assessment.</li>
+            <li>Four verified pairings: Phenoxyethanol, 1,2-Hexanediol, Caprylyl Glycol, Benzyl Alcohol. Avoid in high-cat systems and anhydrous formulas (a<sub>w</sub> &lt; 0.6).</li>
+            <li>Onerchemical ships from 25kg with full CoA + SDS + export docs, 7–10 day lead — the small-batch gap Schülke direct deals do not fill.</li>
+          </ul>
+        </TLDRBox>
 
         {/* H2 1 */}
         <h2 id="when-ehg-preserves">
@@ -437,31 +437,30 @@ export default function Page() {
 
         {/* H2 9 — FAQ */}
         <h2 id="ehg-faq">Ethylhexylglycerin FAQ</h2>
-        <FAQ
-          items={[
+                <FAQ heading="Ethylhexylglycerin FAQ" id="ehg-faq" items={[
             {
-              q: 'Is Ethylhexylglycerin a preservative?',
-              a: 'Ethylhexylglycerin is not listed on EU Annex V as a preservative. INCI classifies it as a skin conditioning agent and deodorant agent. In cosmetic formulas it functions as a preservative booster, lowering the effective dose of a true preservative (phenoxyethanol, 1,2-hexanediol, caprylhydroxamic acid) rather than preserving on its own.',
+              question: 'Is Ethylhexylglycerin a preservative?',
+              answer: 'Ethylhexylglycerin is not listed on EU Annex V as a preservative. INCI classifies it as a skin conditioning agent and deodorant agent. In cosmetic formulas it functions as a preservative booster, lowering the effective dose of a true preservative (phenoxyethanol, 1,2-hexanediol, caprylhydroxamic acid) rather than preserving on its own.',
             },
             {
-              q: 'What is the maximum use level of EHG in cosmetics?',
-              a: 'Because EHG is not an Annex V preservative, there is no EU regulatory ceiling. As of 2026-10, the SCCS 1618/20 opinion considered 1.0% safe in cosmetic rinse-off and leave-on products when sensitization risk is assessed. Most leave-on formulations use 0.3–1.0%; deodorant and antiperspirant use levels of 1–3% are common because the primary function is antimicrobial, not preservation booster.',
+              question: 'What is the maximum use level of EHG in cosmetics?',
+              answer: 'Because EHG is not an Annex V preservative, there is no EU regulatory ceiling. As of 2026-10, the SCCS 1618/20 opinion considered 1.0% safe in cosmetic rinse-off and leave-on products when sensitization risk is assessed. Most leave-on formulations use 0.3–1.0%; deodorant and antiperspirant use levels of 1–3% are common because the primary function is antimicrobial, not preservation booster.',
             },
             {
-              q: 'Is Sensiva SC50 the same as generic ethylhexylglycerin?',
-              a: 'Sensiva SC50 is Schülke’s branded Ethylhexylglycerin product. Chemically it is the same molecule (CAS 70445-33-9) as generic Chinese-origin EHG at equivalent GC purity. The price delta reflects brand premium, Schülke’s formulation-support service, and EU warehousing — not a chemical difference. As of 2026-10, public price benchmarks suggest generic 100kg FOB sits well below Sensiva SC50 EU wholesale at comparable MOQ.',
+              question: 'Is Sensiva SC50 the same as generic ethylhexylglycerin?',
+              answer: 'Sensiva SC50 is Schülke’s branded Ethylhexylglycerin product. Chemically it is the same molecule (CAS 70445-33-9) as generic Chinese-origin EHG at equivalent GC purity. The price delta reflects brand premium, Schülke’s formulation-support service, and EU warehousing — not a chemical difference. As of 2026-10, public price benchmarks suggest generic 100kg FOB sits well below Sensiva SC50 EU wholesale at comparable MOQ.',
             },
             {
-              q: 'What does EHG pair with best?',
-              a: 'The four verified boost pairings are Phenoxyethanol (classic Euxyl PE 9010 pattern), 1,2-Hexanediol (preservative-free positioning), Caprylyl Glycol (Optiphen family), and Benzyl Alcohol (natural-leaning blends). EHG should not be combined with cationic surfactants in high-cat systems and offers no meaningful boost in anhydrous formulations with water activity below 0.6.',
+              question: 'What does EHG pair with best?',
+              answer: 'The four verified boost pairings are Phenoxyethanol (classic Euxyl PE 9010 pattern), 1,2-Hexanediol (preservative-free positioning), Caprylyl Glycol (Optiphen family), and Benzyl Alcohol (natural-leaning blends). EHG should not be combined with cationic surfactants in high-cat systems and offers no meaningful boost in anhydrous formulations with water activity below 0.6.',
             },
             {
-              q: 'Why is EHG banned in some natural cosmetic standards?',
-              a: 'COSMOS and NATRUE do not accept EHG because the raw material is synthesized from petrochemical glycidyl ether chemistry, not plant-derived. Ecocert certification is similarly closed. Brands pursuing certified-natural claims substitute Caprylyl Glycol or Glyceryl Caprylate; both pair with the same preservative systems.',
+              question: 'Why is EHG banned in some natural cosmetic standards?',
+              answer: 'COSMOS and NATRUE do not accept EHG because the raw material is synthesized from petrochemical glycidyl ether chemistry, not plant-derived. Ecocert certification is similarly closed. Brands pursuing certified-natural claims substitute Caprylyl Glycol or Glyceryl Caprylate; both pair with the same preservative systems.',
             },
             {
-              q: 'What is the minimum order quantity for ethylhexylglycerin?',
-              a: 'Onerchemical ships EHG from 25kg (one drum) with full CoA, SDS, and export documentation. Lead time is 7–10 business days for in-stock material, 15–20 days for custom-spec batches. Schülke direct deals typically start at larger volumes aimed at OEM accounts, which is the market gap Onerchemical covers for independent cosmetic brands.',
+              question: 'What is the minimum order quantity for ethylhexylglycerin?',
+              answer: 'Onerchemical ships EHG from 25kg (one drum) with full CoA, SDS, and export documentation. Lead time is 7–10 business days for in-stock material, 15–20 days for custom-spec batches. Schülke direct deals typically start at larger volumes aimed at OEM accounts, which is the market gap Onerchemical covers for independent cosmetic brands.',
             },
           ]}
         />
