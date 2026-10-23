@@ -54,7 +54,47 @@ export interface BlogArticle {
   toc?: TOCEntry[];
 }
 
-export const ARTICLES: BlogArticle[] = [
+export const ARTICLES: BlogArticle[
+  {
+    slug: 'iso-11930-challenge-test-protocol',
+    title: 'Why Your First Challenge Test Failed (And How to Pass ISO 11930 on the Second Try)',
+    excerpt:
+      'A procurement-view walkthrough of the ISO 11930 challenge test — what it actually measures, which criterion your product needs, how to read the five-strain panel, and the pre-submission checklist that keeps indie brands from paying for a second lab run.',
+    cluster: 'challenge-testing',
+    searchKeywords: [
+      'ISO 11930 challenge test',
+      'preservative efficacy test',
+      'challenge test protocol',
+      'ISO 11930 criteria A B',
+      'cosmetic preservative efficacy testing',
+      'USP 51 vs ISO 11930',
+      '5-strain inoculum challenge test',
+      'challenge test interpretation',
+    ],
+    datePublished: '2026-10-23',
+    dateModified: '2026-10-23',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    toc: [
+      { id: 'first-test-failed', text: 'The USD 450 Lab Report That Said "Fail": What Actually Went Wrong', level: 2 },
+      { id: 'what-iso-11930-measures', text: 'What Does ISO 11930 Actually Measure?', level: 2 },
+      { id: 'criterion-a-vs-b', text: 'Criterion A vs Criterion B: Which One Does Your Product Need?', level: 2 },
+      { id: '28-day-timeline', text: 'What Happens Across the 28-Day Timeline?', level: 2 },
+      { id: 'd7-signal', text: 'What a Day 7 bacterial fail usually means', level: 3 },
+      { id: 'd28-regrowth', text: 'What a Day 28 regrowth signal usually means', level: 3 },
+      { id: 'pre-submission-checklist', text: 'Before You Ship Samples: What Is on the Pre-Submission Checklist?', level: 2 },
+      { id: 'reading-the-report', text: 'How Do You Read a Challenge Test Report Beyond Pass/Fail?', level: 2 },
+      { id: 'iso-vs-usp-vs-ep', text: 'ISO 11930 vs USP <51> vs EP 5.1.3 vs CTFA M-3: When Is Each One Required?', level: 2 },
+      { id: 'market-requirements', text: 'Which Markets Legally Require a Challenge Test — and Which Only Expect One?', level: 2 },
+      { id: 'eu-requirements', text: 'EU and UK', level: 3 },
+      { id: 'us-requirements', text: 'United States', level: 3 },
+      { id: 'china-requirements', text: 'China', level: 3 },
+      { id: 'japan-korea-requirements', text: 'Japan and Korea', level: 3 },
+      { id: 'where-to-test', text: 'Where Should You Run the Test — Independent Lab, In-House, or Contract Manufacturer?', level: 2 },
+      { id: 'challenge-test-faq', text: 'Challenge test FAQ', level: 2 },
+    ],
+  },
+  ] = [
       {
     slug: 'ethylhexylglycerin-technical-guide',
     title: 'Ethylhexylglycerin (EHG): When It Actually Preserves — And When It Doesn\u2019t',
