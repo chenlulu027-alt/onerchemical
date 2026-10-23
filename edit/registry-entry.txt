@@ -1,0 +1,46 @@
+// =============================================================================
+// MANUAL PASTE — src/lib/blog-registry.ts
+// Add this entry to the top of the ARTICLES array (newest-first order).
+// =============================================================================
+
+  {
+    slug: 'ethylhexylglycerin-technical-guide',
+    title: 'Ethylhexylglycerin (EHG): When It Actually Preserves — And When It Doesn’t',
+    excerpt:
+      'A sourcing specialist’s guide to EHG (CAS 70445-33-9) for independent cosmetic brands — deodorant vs cosmetic use-cases, Sensiva SC50 pricing shadow, verified pairings, SCCS 2020 dose data, CoA red flags, and 25–200kg procurement.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'ethylhexylglycerin',
+      'EHG',
+      'ethylhexylglycerin preservative',
+      'Sensiva SC50',
+      'EHG booster',
+      'ethylhexylglycerin max use rate',
+      'EHG not annex V',
+      'ethylhexylglycerin supplier',
+      'EHG small MOQ',
+      'ethylhexylglycerin SCCS',
+    ],
+    datePublished: '2026-10-23',
+    dateModified: '2026-10-23',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-05-ehg-hero.jpg',
+    toc: [
+      { id: 'when-ehg-preserves', text: 'When EHG actually preserves — and when it is just skin feel', level: 2 },
+      { id: 'why-ehg-boosts', text: 'Why EHG boosts preservation without an Annex V claim', level: 2 },
+      { id: 'sensiva-sc50-pricing-shadow', text: 'The Schülke Sensiva SC50 pricing shadow', level: 2 },
+      { id: 'ehg-pairing-map', text: 'EHG pairing map: four verified boosts and the two we refuse', level: 2 },
+      { id: 'ehg-dose-reality', text: 'How formulators set the EHG dose — and why most cap below the ceiling', level: 2 },
+      { id: 'ehg-coa-red-flags', text: 'Legitimate EHG CoA — the 7 fields we reject on sight', level: 2 },
+      { id: 'ehg-regulatory-5-market', text: 'EHG in global regulations: a preservative that officially isn’t one', level: 2 },
+      { id: 'onerchemical-ehg-sourcing', text: '25kg–200kg EHG — the supply gap large distributors don’t fill', level: 2 },
+      { id: 'ehg-faq', text: 'Ethylhexylglycerin FAQ', level: 2 },
+    ],
+  },
+
+// =============================================================================
+// If this is your first paste, verify the imports/types at the top of
+// blog-registry.ts match the fields above. Required: slug, title, excerpt,
+// cluster, searchKeywords, datePublished, author, readingMinutes.
+// =============================================================================
