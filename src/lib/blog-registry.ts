@@ -55,6 +55,42 @@ export interface BlogArticle {
 }
 
 export const ARTICLES: BlogArticle[] = [
+  {
+    slug: 'how-to-preserve-cosmetic-emulsion',
+    title: 'How to Preserve a Cosmetic Emulsion: The Indie Formulator’s 2026 Playbook',
+    excerpt:
+      'Why oil-in-water emulsions fail ISO 11930 more than any other product type, which 7 preservative systems actually pass at 100 kg scale, and how emulsifier chemistry quietly kills your preservative — field playbook from Onerchemical’s preservation sourcing desk.',
+    cluster: 'formulation-guides',
+    searchKeywords: [
+      'how to preserve a cosmetic emulsion',
+      'cosmetic lotion preservative system',
+      'preserving oil-in-water emulsion',
+      'emulsion preservation challenge test',
+      'o/w emulsion preservative',
+      'emulsifier preservative compatibility',
+      'phenoxyethanol lotion dose',
+      'preservative-free emulsion claim',
+      'ISO 11930 emulsion',
+      'chelator emulsion preservation',
+    ],
+    datePublished: '2026-10-26',
+    dateModified: '2026-10-26',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/how-to-preserve-cosmetic-emulsion/hero.jpg',
+    toc: [
+      { id: 'barcelona-recall', text: 'The Barcelona lab recall that defined this playbook', level: 2 },
+      { id: 'why-emulsions-fail', text: 'Why do emulsions fail ISO 11930 more than any other product type?', level: 2 },
+      { id: 'three-philosophies', text: 'What are the three preservation philosophies for 2026 emulsions?', level: 2 },
+      { id: 'selector', text: 'Which preservative system fits your emulsion?', level: 2 },
+      { id: 'pairing-matrix', text: 'Pairing matrix: 7 verified emulsion-grade combinations', level: 2 },
+      { id: 'coa-red-flags', text: 'What CoA red flags do emulsion-grade preservatives hide?', level: 2 },
+      { id: 'chelator-synergy', text: 'How does chelator synergy change your preservation math?', level: 2 },
+      { id: 'emulsifier-interaction', text: 'Preservative–emulsifier interaction map', level: 2 },
+      { id: 'regulatory', text: 'What can indie brands claim? 5-market regulatory snapshot', level: 2 },
+      { id: 'emulsion-faq', text: 'Emulsion preservation FAQ', level: 2 },
+    ],
+  },
       {
   slug: 'iso-11930-challenge-test-protocol',
   title: 'Why Your First Challenge Test Failed (And How to Pass ISO 11930 on the Second Try)',

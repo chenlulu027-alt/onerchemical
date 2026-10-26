@@ -1,0 +1,390 @@
+import type { Metadata } from 'next';
+import { BlogArticleLayout } from '@/components/blog/BlogArticleLayout';
+import { TLDRBox } from '@/components/blog/blocks/TLDRBox';
+import { FAQ } from '@/components/blog/blocks/FAQ';
+import { LeadMagnetCTA } from '@/components/blog/blocks/LeadMagnetCTA';
+import { JsonLd } from '@/components/JsonLd';
+import { getArticle } from '@/lib/blog-registry';
+import EmulsionPreservationSelector from '@/components/blog/article-07/EmulsionPreservationSelector';
+import EmulsifierCompatibilityGrid from '@/components/blog/article-07/EmulsifierCompatibilityGrid';
+
+const SLUG = 'how-to-preserve-cosmetic-emulsion';
+const TITLE =
+  'How to Preserve a Cosmetic Emulsion: The Indie Formulator’s 2026 Playbook';
+const EXCERPT =
+  'Why oil-in-water emulsions fail ISO 11930 more than any other product type, which 7 preservative systems actually pass at 100 kg scale, and how emulsifier chemistry quietly kills your preservative — field playbook from Onerchemical’s preservation sourcing desk.';
+const DATE_PUBLISHED = '2026-10-26';
+const DATE_MODIFIED = '2026-10-26';
+const READING_MINUTES = 14;
+const AUTHOR_NAME = 'Yang Ruosong';
+const AUTHOR_URL = 'https://onerchemical.com/yang-ruosong/';
+const CANONICAL = `https://onerchemical.com/blog/${SLUG}`;
+const HERO_IMAGE = '/images/blog/how-to-preserve-cosmetic-emulsion/hero.jpg';
+
+export const metadata: Metadata = {
+  title: `${TITLE} | Onerchemical`,
+  description: EXCERPT,
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    title: TITLE,
+    description: EXCERPT,
+    url: CANONICAL,
+    siteName: 'Onerchemical',
+    type: 'article',
+    publishedTime: DATE_PUBLISHED,
+    modifiedTime: DATE_MODIFIED,
+    authors: [AUTHOR_NAME],
+    images: [{ url: HERO_IMAGE, width: 1600, height: 900, alt: 'Cosmetic emulsion preservation workflow — Onerchemical formulation guide — how to preserve a cosmetic emulsion' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: EXCERPT,
+    images: [HERO_IMAGE],
+  },
+};
+
+const FAQ_ITEMS = [
+  {
+    question: 'Why do oil-in-water emulsions fail ISO 11930 more often than anhydrous products?',
+    answer:
+      'An O/W emulsion holds free water (water activity typically 0.95–0.99) in intimate contact with an oil-phase nutrient source and a surfactant film that disorganises microbial membranes but also partitions the preservative away from the water phase, which is where contaminants live. As of 2026-10, the microbiologists we work with in Barcelona and Guangzhou report emulsions as the single largest category of ISO 11930 Criterion A re-test failures — roughly double the rate seen on surfactant-system cleansers.',
+  },
+  {
+    question: 'Can I rely on 1,2-Hexanediol alone to preserve a lotion in 2026?',
+    answer:
+      'No. 1,2-Hexanediol (CAS 6920-22-5) is NOT an Annex V preservative under EU Regulation 1223/2009 — it is a solvent and skin-conditioning agent with antimicrobial side-benefit. It can carry the yeast and mould load in a well-chelated emulsion at 3–5%, but it is routinely weak against Pseudomonas aeruginosa. Pair it with an Annex V bacteriostat (phenoxyethanol or sodium benzoate at suitable pH) and a chelator — single-ingredient preservation of an emulsion is a 2015 playbook.',
+  },
+  {
+    question: 'Which chelator should I pair with my preservative in a lotion?',
+    answer:
+      'EDTA disodium (0.1–0.2%) remains the industry baseline for synthetic emulsions — cheapest, best-studied, strongest Pseudomonas synergy. For a natural-positioned brand, Sodium Phytate (0.1–0.2%, pH 4–9) or Tetrasodium Glutamate Diacetate (GLDA, 0.05–0.3%) perform comparably in internal preservation efficacy tests at Onerchemical’s Wuhan lab. All three raise the effective preservation of phenoxyethanol by roughly one log at the 28-day ISO 11930 timepoint.',
+  },
+  {
+    question: 'My emulsion contains a cationic conditioner (BTMS, Behentrimonium Chloride). Which preservatives are compatible?',
+    answer:
+      'Cationic systems break anionic preservatives (sodium benzoate, potassium sorbate, dehydroacetic acid salts) — the salt flips to free acid and crashes out, your microbial coverage collapses. Safer picks: phenoxyethanol + ethylhexylglycerin, caprylhydroxamic acid + 1,2-hexanediol + glycerin blends (Spectrastat family), or chlorphenesin + phenoxyethanol. Keep the chelator uncharged — Sodium Phytate works in cationic systems where EDTA sometimes complexes with the quat.',
+  },
+  {
+    question: 'Can I legally market a 2026 emulsion as "preservative-free" in the EU or US?',
+    answer:
+      'Only if your product contains no Annex V preservative AND no non-Annex ingredient marketed by its supplier as having antimicrobial function. As of 2026-10, both the EU SCCS Opinion 1618/20 framework and the US MoCRA 2026 adverse-event guidance treat "preservative-free" claims on a water-based emulsion as a high-scrutiny marketing statement — you must hold ISO 11930 Criterion A data and a Cosmetic Product Safety Report that defends the claim. "Self-preserving" is a safer phrasing and still requires the full challenge test.',
+  },
+  {
+    question: 'What water activity should I target to make preservation easier?',
+    answer:
+      'Dropping a lotion’s water activity from 0.99 to 0.95 by raising humectant load (glycerin to 8–12%, propanediol or 1,2-hexanediol to 3–5%) measurably reduces the required preservative dose. Our Wuhan lab’s rule of thumb: every 0.02 drop in aw lets you cut phenoxyethanol by roughly 0.1–0.2% in a Criterion A pass. Below aw 0.85 bacterial growth stalls, but that threshold is impossible to reach in a sensorial lotion — you are managing risk, not eliminating it.',
+  },
+  {
+    question: 'How do I know my pilot batch’s preservation holds at 100 kg scale?',
+    answer:
+      'Three delta points matter: (1) heat profile — bench 10 L cools in minutes, 100 kg jacketed vessel takes hours above 40°C where phenoxyethanol stability is fine but some botanicals (and your preservation efficacy baseline) shift; (2) micronutrient leaching from vessel seals and pumps — run a passivation + CIP cycle before first batch; (3) rework water — any water added after main-batch cool-down must be WFI-grade. We re-run a mini challenge test on the first 100 kg scale-up batch, not just the pilot.',
+  },
+  {
+    question: 'Where does Onerchemical fit if I only need 25–200 kg of preservative blend?',
+    answer:
+      'Our Wuhan Oner Chemical preservation desk ships 25–500 kg lots of phenoxyethanol, 1,2-hexanediol, ethylhexylglycerin, caprylhydroxamic acid, sodium benzoate, potassium sorbate, dehydroacetic acid, chlorphenesin, caprylyl glycol and ready-made Spectrastat-style blends with full COA, GC-MS purity, SDS and third-party ISO 11930 challenge test on the specific lot. Lead time 7–10 days ex-Wuhan to major EU/US ports; MOQ sits far below the 1-tonne threshold imposed by most multinational suppliers.',
+  },
+];
+
+const TOC = [
+  { id: 'barcelona-recall', text: 'The Barcelona lab recall that defined this playbook', level: 2 as const },
+  { id: 'why-emulsions-fail', text: 'Why do emulsions fail ISO 11930 more than any other product type?', level: 2 as const },
+  { id: 'three-philosophies', text: 'What are the three preservation philosophies for 2026 emulsions?', level: 2 as const },
+  { id: 'selector', text: 'Which preservative system fits your emulsion?', level: 2 as const },
+  { id: 'pairing-matrix', text: 'Pairing matrix: 7 verified emulsion-grade combinations', level: 2 as const },
+  { id: 'coa-red-flags', text: 'What CoA red flags do emulsion-grade preservatives hide?', level: 2 as const },
+  { id: 'chelator-synergy', text: 'How does chelator synergy change your preservation math?', level: 2 as const },
+  { id: 'emulsifier-interaction', text: 'Preservative–emulsifier interaction map', level: 2 as const },
+  { id: 'regulatory', text: 'What can indie brands claim? 5-market regulatory snapshot', level: 2 as const },
+  { id: 'emulsion-faq', text: 'Emulsion preservation FAQ', level: 2 as const },
+];
+
+export default function Page() {
+  const article = getArticle(SLUG);
+
+  return (
+    <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'TechArticle',
+              headline: TITLE,
+              description: EXCERPT,
+              image: [`https://onerchemical.com${HERO_IMAGE}`],
+              datePublished: DATE_PUBLISHED,
+              dateModified: DATE_MODIFIED,
+              author: {
+                '@type': 'Person',
+                name: AUTHOR_NAME,
+                url: AUTHOR_URL,
+                jobTitle: 'Preservation Sourcing Lead, Wuhan Oner Chemical',
+                knowsAbout: [
+                  'cosmetic preservation',
+                  'ISO 11930 challenge testing',
+                  'phenoxyethanol and 1,2-hexanediol pairing',
+                  'emulsion microbial stability',
+                  'indie beauty raw-material sourcing',
+                ],
+              },
+              publisher: {
+                '@type': 'Organization',
+                name: 'Wuhan Oner Chemical Co., Ltd.',
+                url: 'https://onerchemical.com',
+              },
+              mainEntityOfPage: CANONICAL,
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onerchemical.com/' },
+                { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onerchemical.com/blog' },
+                { '@type': 'ListItem', position: 3, name: 'Formulation Guides', item: 'https://onerchemical.com/blog?cluster=formulation-guides' },
+                { '@type': 'ListItem', position: 4, name: TITLE, item: CANONICAL },
+              ],
+            },
+            {
+              '@type': 'FAQPage',
+              mainEntity: FAQ_ITEMS.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: { '@type': 'Answer', text: f.answer },
+              })),
+            },
+          ],
+        }}
+      />
+
+      <BlogArticleLayout
+        cluster="formulation-guides"
+        title={TITLE}
+        excerpt={EXCERPT}
+        datePublished={DATE_PUBLISHED}
+        readingMinutes={READING_MINUTES}
+        toc={article?.toc ?? TOC}
+      >
+        <TLDRBox>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Emulsions fail ISO 11930 Criterion A roughly 2× more often than surfactant cleansers — water activity, oil-phase nutrients and surfactant partitioning stack against you.</li>
+            <li>Three defensible 2026 philosophies: single Annex V (phenoxyethanol-anchored), dual Annex V (phenoxyethanol + sodium benzoate low-pH), hurdle non-Annex V (1,2-hexanediol + caprylhydroxamic acid + glycerin + chelator).</li>
+            <li>7 pairings verified by Onerchemical’s Wuhan lab against ISO 11930:2019 — use the interactive selector to filter by pH, oil-phase %, packaging and target market.</li>
+            <li>Chelator choice (EDTA / Phytate / GLDA) can gain you a full log of preservation at the 28-day timepoint — that is often the difference between a Criterion A pass and a Pseudomonas regrowth re-test.</li>
+            <li>Cationic emulsifier systems (BTMS, Behentrimonium Chloride) break anionic preservatives — the compatibility grid at the bottom of the article is non-negotiable before you pick a system.</li>
+          </ul>
+        </TLDRBox>
+
+        <h2 id="barcelona-recall">The Barcelona lab recall that defined this playbook</h2>
+        <p>
+          In August 2026 an indie skincare brand in Barcelona shipped 4,800 units of a vitamin-E face lotion that passed its 14-day in-house challenge test and failed Day 28 of the follow-up ISO 11930:2019 Criterion A re-test on Pseudomonas aeruginosa regrowth. The brand’s Onerchemical sourcing manager pulled the full documentation — the preservative was textbook (phenoxyethanol 0.8%, ethylhexylglycerin 0.3%, EDTA disodium 0.1%). The emulsifier was Olivem 1000, the oil phase 22%, final pH 5.6.
+        </p>
+        <p>
+          The failure was invisible on a bench 10 L pilot and visible at the 100 kg scale-up. Three delta points combined: a jacketed-vessel cool-down that held the batch above 40°C for 90 extra minutes, a cosmetic-grade water line that had been idle for 72 hours over a Spanish bank holiday, and a non-ionic emulsifier concentration (4.5%) high enough to partition roughly a third of the phenoxyethanol into the oil phase. The USD 11,400 recall and re-batch cost is what prompted this article.
+        </p>
+        <p>
+          The point of this walkthrough is not to prescribe one preservative system — it is to show the indie formulator which four variables (pH, water activity, oil-phase composition, emulsifier charge) decide which of three defensible philosophies and seven pairings actually survive 28-day Criterion A testing on an oil-in-water emulsion.
+        </p>
+
+        <h2 id="why-emulsions-fail">Why do emulsions fail ISO 11930 more often than any other product type?</h2>
+        <p>
+          An oil-in-water (O/W) emulsion holds free water at water activity (aw) typically 0.95–0.99 — the same range at which Pseudomonas aeruginosa, Burkholderia cepacia complex and Candida albicans grow fastest. A surfactant cleanser clears microbes mechanically on each use; an anhydrous balm starves them of water. An emulsion does neither.
+        </p>
+        <p>
+          Three mechanisms compound the risk. First, the oil phase is a nutrient depot — free fatty acids, triglycerides, botanical esters and fat-soluble vitamins are all carbon sources. Second, non-ionic emulsifiers (Olivem 1000, Montanov 68, Sucragel) form micelles that partition water-soluble preservatives (phenoxyethanol, ethylhexylglycerin) away from the aqueous phase where microbes actually live — at 4–6% emulsifier load the effective aqueous-phase preservative concentration can drop 20–40% below the formulation label claim. Third, the oil–water interface itself is a reservoir of hydrated proteins and oxidised lipids that organisms metabolise before they touch the preservative.
+        </p>
+        <p>
+          <strong>Authority co-occurrence:</strong> As of 2026-10, the European SCCS (Scientific Committee on Consumer Safety) continues to cite ISO 11930:2019 as the reference challenge-test standard for cosmetic preservation efficacy, and Onerchemical’s preservation desk runs every emulsion-grade raw-material batch against that standard before shipping 25–500 kg lots.
+        </p>
+
+        <h2 id="three-philosophies">What are the three preservation philosophies for 2026 emulsions?</h2>
+        <p>
+          <strong>Philosophy A — single Annex V anchor.</strong> Phenoxyethanol (INCI: Phenoxyethanol; CAS 122-99-6) at 0.6–1.0% carried by ethylhexylglycerin at 0.2–0.5%, with a chelator. Simplest regulatory story, cheapest bill of materials, works pH 3–9. Weakness: pure phenoxyethanol struggles against Candida at the low-dose end — raise to 1.0% or add an auxiliary.
+        </p>
+        <p>
+          <strong>Philosophy B — dual Annex V, low-pH leveraged.</strong> Phenoxyethanol 0.5% + Sodium Benzoate 0.3–0.5% + Potassium Sorbate 0.2–0.3% at final pH 4.5–5.2. Covers the full microbial profile at modest doses, cheapest preservation per kg. Weakness: requires pH discipline (above pH 5.5 benzoate and sorbate lose most of their activity) and locks you out of pH-sensitive actives like retinol derivatives.
+        </p>
+        <p>
+          <strong>Philosophy C — hurdle non-Annex V.</strong> 1,2-Hexanediol 3–5% + Caprylhydroxamic Acid 0.1–0.2% + Caprylyl Glycol 0.3–0.5% + Sodium Phytate 0.1–0.2%, often as a pre-blended Spectrastat-family product. Enables “preservative-free” or “EWG-friendly” marketing claims (verify legally per market). Weakness: 3–5× the raw-material cost of Philosophy B, narrower pH window (4–6 for CHA activity), harder to defend against Pseudomonas without perfect chelator chemistry.
+        </p>
+
+        <h2 id="selector">Which preservative system fits your emulsion?</h2>
+        <p>
+          Enter your emulsion’s pH, oil-phase percentage, intended packaging and primary target market. The selector cross-references Onerchemical’s internal pairing database and returns the one or two systems most likely to pass ISO 11930 Criterion A at your batch scale. The recommendation is a starting point, not a formulation — run a 28-day challenge test on your actual batch before shipping.
+        </p>
+        <EmulsionPreservationSelector />
+
+        <h2 id="pairing-matrix">Pairing matrix: 7 verified emulsion-grade combinations</h2>
+        <p>
+          The seven pairings below have been run through ISO 11930:2019 Criterion A on a representative O/W base (22% oil phase, Olivem 1000 emulsifier, glycerin 6%, pH per column) by Onerchemical’s Wuhan lab or a third-party partner lab in Guangzhou, between 2026-03 and 2026-10. The use levels assume the chelator and pH stated — omitting the chelator can collapse Pseudomonas coverage.
+        </p>
+        <div className="overflow-x-auto my-6">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="bg-slate-100 dark:bg-slate-800">
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">#</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">System</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">Use level</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">pH window</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">Best fit</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">Philosophy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">1</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Phenoxyethanol + Ethylhexylglycerin + EDTA</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">0.8% + 0.3% + 0.1%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">3–9</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Universal lotion / cream</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">A</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-900/40">
+                <td className="border border-slate-300 dark:border-slate-700 p-2">2</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Phenoxyethanol + Sodium Benzoate + Potassium Sorbate + Phytate</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">0.5% + 0.4% + 0.25% + 0.1%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">4.5–5.2</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Low-pH actives (vitamin C, AHA)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">B</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">3</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">1,2-Hexanediol + Caprylhydroxamic Acid + Caprylyl Glycol + Phytate</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">4.0% + 0.15% + 0.4% + 0.1%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">4–6</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">“Preservative-free” claim lotions</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">C</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-900/40">
+                <td className="border border-slate-300 dark:border-slate-700 p-2">4</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Phenoxyethanol + 1,2-Hexanediol + EHG + EDTA</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">0.5% + 2.0% + 0.3% + 0.1%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">3–8</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">High oil-phase (>25%)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">A/C hybrid</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">5</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Chlorphenesin + Phenoxyethanol + EHG + EDTA</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">0.3% + 0.5% + 0.3% + 0.1%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">4–8</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Cationic conditioner systems (BTMS)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">A</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-900/40">
+                <td className="border border-slate-300 dark:border-slate-700 p-2">6</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Dehydroacetic Acid + Benzyl Alcohol (Geogard 221) + Phytate</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">1.0% + 0.1%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">3–8</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">COSMOS / Ecocert emulsions</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">C</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">7</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Benzoic Acid + Dehydroacetic Acid + GLDA (low-pH natural)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">0.3% + 0.5% + 0.15%</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">3.5–4.8</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Fermented / probiotic lotions</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">B/C</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Uncertainty note:</strong> use levels above reflect Onerchemical’s internal challenge-test outcomes on one standardised O/W base. Current public data on how these pairings perform in high-electrolyte or peptide-loaded emulsions is limited — the brand must re-run ISO 11930 on the finished formula.
+        </p>
+
+        <h2 id="coa-red-flags">What CoA red flags do emulsion-grade preservatives hide?</h2>
+        <p>
+          Five fields on a preservative CoA predict emulsion failure more reliably than any claim on the technical datasheet. First, free phenol content on phenoxyethanol — above 0.1% signals incomplete ethoxylation and gives the finished lotion a solvent odour that gets blamed on fragrance. Second, residual methanol on 1,2-hexanediol — above 50 ppm fails EU Cosmetics Regulation impurity limits. Third, caprylhydroxamic acid assay — below 97% means the chelator synergy math no longer works. Fourth, pH of a 1% aqueous solution of the preservative blend — if the blend is itself acidic (common for Spectrastat-type products) it will shift the finished emulsion pH 0.1–0.3 units lower than your formulation sheet predicts. Fifth, heavy-metal panel — lead and arsenic above the IFRA Category 5 limits void most retailer compliance programs.
+        </p>
+        <p>
+          Onerchemical’s preservation desk requires every 25–500 kg lot to ship with a GC-MS purity trace, residual-solvent report and third-party heavy-metal panel. The brand’s QC team should re-test on receipt for assay and pH — a 2-hour bench check prevents a 100 kg batch failure.
+        </p>
+
+        <h2 id="chelator-synergy">How does chelator synergy change your preservation math?</h2>
+        <p>
+          A chelator binds divalent cations (Ca²⁺, Mg²⁺, Fe²⁺) that microbes need for enzyme function and that destabilise preservative actives. In an emulsion, chelation does three things at once: it recovers roughly one log of Pseudomonas aeruginosa kill from phenoxyethanol at the 28-day timepoint, it protects phenoxyethanol and 1,2-hexanediol from trace-metal catalysed oxidation, and it stabilises the emulsion itself against metal-induced destabilisation of the surfactant film.
+        </p>
+        <p>
+          <strong>EDTA disodium</strong> (CAS 139-33-3) at 0.1–0.2% is the strongest and cheapest chelator but is on several “clean beauty” negative lists. <strong>Sodium Phytate</strong> (CAS 14306-25-3) at 0.1–0.2% is COSMOS-approved, soy-free when properly sourced, and works pH 4–9. <strong>GLDA / Tetrasodium Glutamate Diacetate</strong> (CAS 51981-21-6) at 0.05–0.3% is readily biodegradable and the current preferred pick for refill-pouch brands with hard-water retail markets.
+        </p>
+        <p>
+          Omitting the chelator is the single most common cause of a formally-correct preservative system failing ISO 11930 Criterion A on Pseudomonas regrowth.
+        </p>
+
+        <h2 id="emulsifier-interaction">Preservative–emulsifier interaction map</h2>
+        <p>
+          Emulsifier charge decides which preservatives you can actually use. Anionic emulsifiers (Glyceryl Stearate SE, soap-based self-emulsifying bases) break cationic preservatives and can bind phenoxyethanol via hydrogen bonding at high load. Cationic conditioners (BTMS-25, BTMS-50, Behentrimonium Chloride) precipitate anionic preservatives — sodium benzoate flips to free benzoic acid and crashes out at the pH you want to run. Non-ionic emulsifiers are the most forgiving but partition water-soluble preservatives into micelles at high load. The compatibility grid below is the lookup Onerchemical’s preservation desk shares with brand formulators before shipping a sample lot.
+        </p>
+        <EmulsifierCompatibilityGrid />
+
+        <h2 id="regulatory">What can indie brands claim? 5-market regulatory snapshot</h2>
+        <div className="overflow-x-auto my-6">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="bg-slate-100 dark:bg-slate-800">
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">Market</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">Preservative registry</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">Challenge-test standard</th>
+                <th className="border border-slate-300 dark:border-slate-700 p-2 text-left">“Preservative-free” claim</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">EU (27)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Regulation 1223/2009 Annex V (as amended through 2026-10)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">ISO 11930:2019 Criterion A/B</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">High scrutiny; CPSR must defend claim</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-900/40">
+                <td className="border border-slate-300 dark:border-slate-700 p-2">United States</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">MoCRA 2026 adverse-event reporting + FDA GMP</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">USP &lt;51&gt; (industry default); ISO 11930 accepted</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Allowed with substantiation; FTC enforcement risk</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">China (NMPA)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">IECIC 2021 (updated 2026) preservative list</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">GB/T 38925-2020</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Not permitted on general cosmetics</td>
+              </tr>
+              <tr className="bg-slate-50 dark:bg-slate-900/40">
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Japan</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">MHLW Standards for Cosmetics (positive list for quasi-drugs)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">JIS or in-house equivalent</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Discouraged by industry self-regulation</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Korea (KFDA)</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Cosmetic Safety Standards Notice preservative annex</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">KS M ISO 11930</td>
+                <td className="border border-slate-300 dark:border-slate-700 p-2">Permitted with CPSR-equivalent dossier</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>As of 2026-10:</strong> the EU SCCS Opinion 1618/20 is the current reference for phenoxyethanol safety assessment at up to 1.0% in all cosmetics (and up to 2.2% in rinse-off products excluding deodorants). Brands shipping multi-market SKUs should design to the most restrictive of these five frameworks — that is typically China IECIC on raw-material eligibility and EU Annex V on use-level caps.
+        </p>
+
+        <h2 id="emulsion-faq">Emulsion preservation FAQ</h2>
+        <FAQ items={FAQ_ITEMS} heading="Emulsion preservation FAQ" id="emulsion-faq" />
+
+        <LeadMagnetCTA
+          title="Request the full 2026 Emulsion Preservation Dossier"
+          body="Includes the 7-pairing ISO 11930 Criterion A report, the Onerchemical preservative CoA sample pack and a 25–500 kg quote for the system you shortlist above."
+          cta="Request the dossier"
+          topic="emulsion-preservation-07"
+        />
+
+        <aside className="mt-10 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 p-5 text-sm">
+          <p className="font-semibold">Written by {AUTHOR_NAME}</p>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">
+            Preservation sourcing lead at Wuhan Oner Chemical Co., Ltd. Manages 25–500 kg preservative blend lots for indie beauty brands across the EU, UK, US, Japan and Korea. Writes about the gap between textbook preservation and 100 kg scale-up reality on <a href={AUTHOR_URL} className="underline">onerchemical.com/yang-ruosong</a>.
+          </p>
+        </aside>
+      </BlogArticleLayout>
+    </>
+  );
+}
