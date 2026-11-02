@@ -1,0 +1,187 @@
+'use client';
+
+import { useState, useMemo } from 'react';
+
+type TierKey = 'all' | 'chinese-commodity' | 'trader-repack' | 'korean-japanese' | 'branded';
+type QuantityKey = '100' | '500' | '1000' | '25000';
+
+interface Row {
+  tier: TierKey;
+  tierLabel: string;
+  example: string;
+  gradeNote: string;
+  priceByQty: Record<QuantityKey, string>;
+  leadTime: string;
+  typicalCerts: string;
+  moqReality: string;
+}
+
+const ROWS: Row[] = [
+  {
+    tier: 'chinese-commodity',
+    tierLabel: 'Chinese commodity (direct manufacturer)',
+    example: 'Jiangsu / Zhejiang mid-tier plants',
+    gradeNote: 'Cosmetic grade ≥99.0%, non-branded',
+    priceByQty: {
+      '100': 'USD 4.20 – 4.80 / kg',
+      '500': 'USD 3.80 – 4.30 / kg',
+      '1000': 'USD 3.50 – 4.00 / kg',
+      '25000': 'USD 3.20 – 3.60 / kg',
+    },
+    leadTime: '7 – 12 days ex-works · 25 – 35 days to EU/US port',
+    typicalCerts: 'COA, SDS, TDS, ISO 9001, REACH pre-registered',
+    moqReality: 'Real MOQ 500kg from plant; 100kg is a factory-authorised trader deal',
+  },
+  {
+    tier: 'trader-repack',
+    tierLabel: 'Trader / aggregator (China-based, re-packed)',
+    example: 'Shenzhen / Shanghai export traders',
+    gradeNote: 'Same source as above, re-packed into 25kg jerrycans',
+    priceByQty: {
+      '100': 'USD 4.50 – 6.00 / kg',
+      '500': 'USD 4.20 – 5.20 / kg',
+      '1000': 'USD 4.00 – 4.80 / kg',
+      '25000': 'Rare — direct manufacturer preferred at this scale',
+    },
+    leadTime: '3 – 7 days ex-warehouse · 25 – 35 days to port',
+    typicalCerts: 'COA (manufacturer or re-issued), SDS, country-of-origin',
+    moqReality: 'True 25kg / 50kg / 100kg available; small-batch premium baked in',
+  },
+  {
+    tier: 'korean-japanese',
+    tierLabel: 'Korean / Japanese generic',
+    example: 'Daejung Chemicals (KR), various JP distributors',
+    gradeNote: 'Cosmetic grade ≥99.5%, lower aldehyde / heavy metal spec',
+    priceByQty: {
+      '100': 'USD 6.50 – 9.00 / kg',
+      '500': 'USD 6.00 – 8.00 / kg',
+      '1000': 'USD 5.80 – 7.50 / kg',
+      '25000': 'USD 5.50 – 7.00 / kg',
+    },
+    leadTime: '14 – 21 days ex-works · 30 – 45 days to EU/US port',
+    typicalCerts: 'COA with aldehyde + heavy-metal detail, SDS, J-ECI listed',
+    moqReality: '100kg typically honoured by distributors; direct plant MOQ usually 1 ton',
+  },
+  {
+    tier: 'branded',
+    tierLabel: 'Branded European (Schülke / Clariant)',
+    example: 'Schülke Phenoxetol, Clariant Nipaguard PO5',
+    gradeNote: 'Pharma-adjacent spec, batch-traceable, formulation support included',
+    priceByQty: {
+      '100': 'USD 15.00 – 25.00 / kg',
+      '500': 'USD 13.00 – 20.00 / kg',
+      '1000': 'USD 11.00 – 17.00 / kg',
+      '25000': 'USD 9.50 – 14.00 / kg',
+    },
+    leadTime: '4 – 8 weeks via distributor · often 10+ weeks ex-Germany',
+    typicalCerts: 'Full dossier: COA, SDS, allergen declaration, Kosher/Halal, nitrosamine statement, GMO status, animal-origin statement',
+    moqReality: '100kg technically available via distributor but often re-packed from 200kg drums; typical starting unit is 200kg drum',
+  },
+];
+
+const TIER_FILTERS: { key: TierKey; label: string }[] = [
+  { key: 'all', label: 'All tiers' },
+  { key: 'chinese-commodity', label: 'Chinese commodity' },
+  { key: 'trader-repack', label: 'Trader / repack' },
+  { key: 'korean-japanese', label: 'Korean / Japanese' },
+  { key: 'branded', label: 'Branded (EU)' },
+];
+
+const QTY_OPTIONS: { key: QuantityKey; label: string }[] = [
+  { key: '100', label: '100 kg' },
+  { key: '500', label: '500 kg' },
+  { key: '1000', label: '1,000 kg' },
+  { key: '25000', label: '25,000 kg (container)' },
+];
+
+export default function PhenoxyPriceBenchmarkTable() {
+  const [tier, setTier] = useState<TierKey>('all');
+  const [qty, setQty] = useState<QuantityKey>('100');
+
+  const filtered = useMemo(
+    () => (tier === 'all' ? ROWS : ROWS.filter((r) => r.tier === tier)),
+    [tier]
+  );
+
+  return (
+    <div className="my-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+      <div className="mb-4 flex flex-col gap-4 border-b border-slate-200 pb-4 dark:border-slate-700 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+            2026 Q4 Phenoxyethanol Price Benchmark (FOB China)
+          </h3>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+            Indicative ranges from Oner Chemical procurement desk, Oct 2026. Spot pricing varies with batch, packaging, and incoterms. Pre-shipment inspection add-on: USD 150 – 300 / lot.
+          </p>
+        </div>
+      </div>
+
+      <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
+          Supplier tier
+          <select
+            value={tier}
+            onChange={(e) => setTier(e.target.value as TierKey)}
+            className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+          >
+            {TIER_FILTERS.map((t) => (
+              <option key={t.key} value={t.key}>{t.label}</option>
+            ))}
+          </select>
+        </label>
+        <label className="block text-xs font-medium text-slate-700 dark:text-slate-300">
+          Quantity
+          <select
+            value={qty}
+            onChange={(e) => setQty(e.target.value as QuantityKey)}
+            className="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+          >
+            {QTY_OPTIONS.map((q) => (
+              <option key={q.key} value={q.key}>{q.label}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="bg-slate-50 dark:bg-slate-800">
+              <th className="border-b border-slate-200 p-3 text-left font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-200">Tier</th>
+              <th className="border-b border-slate-200 p-3 text-left font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-200">Price @ {QTY_OPTIONS.find((q) => q.key === qty)?.label}</th>
+              <th className="border-b border-slate-200 p-3 text-left font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-200">Lead time</th>
+              <th className="border-b border-slate-200 p-3 text-left font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-200">MOQ reality</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((r) => (
+              <tr key={r.tier} className="align-top">
+                <td className="border-b border-slate-100 p-3 dark:border-slate-800">
+                  <div className="font-medium text-slate-900 dark:text-slate-100">{r.tierLabel}</div>
+                  <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{r.example}</div>
+                  <div className="mt-1 text-xs italic text-slate-500 dark:text-slate-400">{r.gradeNote}</div>
+                </td>
+                <td className="border-b border-slate-100 p-3 font-mono text-sm text-slate-800 dark:border-slate-800 dark:text-slate-200">
+                  {r.priceByQty[qty]}
+                </td>
+                <td className="border-b border-slate-100 p-3 text-sm text-slate-700 dark:border-slate-800 dark:text-slate-300">
+                  {r.leadTime}
+                </td>
+                <td className="border-b border-slate-100 p-3 text-sm text-slate-700 dark:border-slate-800 dark:text-slate-300">
+                  {r.moqReality}
+                  <div className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                    <span className="font-semibold">Certs: </span>{r.typicalCerts}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">
+        Benchmark updated October 2026. Values reflect spot pricing seen on Oner Chemical procurement desk across EU, US, and MENA indie-brand enquiries. For a current signed quote on your target quantity + incoterm, request a technical dossier at the bottom of the article.
+      </p>
+    </div>
+  );
+}

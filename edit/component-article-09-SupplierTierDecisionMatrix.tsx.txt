@@ -1,0 +1,193 @@
+'use client';
+
+import { useState, useMemo } from 'react';
+
+type Priority = 1 | 2 | 3 | 4 | 5;
+
+interface TierScore {
+  key: string;
+  label: string;
+  pros: string[];
+  cons: string[];
+  bestFor: string;
+  weights: { price: number; cert: number; leadTime: number; traceability: number };
+}
+
+const TIERS: TierScore[] = [
+  {
+    key: 'chinese-commodity',
+    label: 'Chinese commodity (direct manufacturer)',
+    pros: [
+      'Lowest unit price (USD 3.5–4.5/kg @ 100kg via authorised trader)',
+      'Short ex-works lead time (7–12 days)',
+      'Scalable to container quantities with the same lot discipline',
+    ],
+    cons: [
+      'True plant MOQ is 500kg; sub-500kg orders usually route through a trader',
+      'CoA detail varies plant-to-plant — always request 3-batch retrospective',
+      'Formulation support = none; you own the troubleshooting',
+    ],
+    bestFor: 'Established indie brand with ≥500kg annual phenoxyethanol pull and in-house QC',
+    weights: { price: 5, cert: 2, leadTime: 4, traceability: 3 },
+  },
+  {
+    key: 'trader-repack',
+    label: 'Trader / aggregator (China-based)',
+    pros: [
+      'True 25–100kg MOQ with no premium gymnastics',
+      'Fastest ex-warehouse (3–7 days from Shenzhen / Shanghai)',
+      'Will accept SWIFT, PayPal B2B, Wise — flexible payment terms',
+    ],
+    cons: [
+      '15–30% premium over plant price (packs the small-batch cost)',
+      'Re-packed CoA may be re-issued — insist on the original manufacturer CoA',
+      'Trader can switch source plant mid-year without telling you',
+    ],
+    bestFor: 'Launch-stage indie brand or sampling / R&D phase (25–100kg trial)',
+    weights: { price: 4, cert: 2, leadTime: 5, traceability: 2 },
+  },
+  {
+    key: 'korean-japanese',
+    label: 'Korean / Japanese generic',
+    pros: [
+      'Tighter spec (lower aldehyde, lower heavy-metal ceilings)',
+      'J-ECI / K-REACH listed — plug-and-play for Japan / Korea market',
+      'More consistent batch-to-batch than typical Chinese commodity',
+    ],
+    cons: [
+      '70–100% price premium over Chinese commodity',
+      'Longer ex-works lead time (14–21 days)',
+      'Distributor-fronted; direct plant access rare unless 1-ton+ quantity',
+    ],
+    bestFor: 'Brands with primary market in Japan / Korea, or clean-beauty positioning citing lower impurity ceilings',
+    weights: { price: 3, cert: 4, leadTime: 3, traceability: 4 },
+  },
+  {
+    key: 'branded',
+    label: 'Branded European (Schülke / Clariant)',
+    pros: [
+      'Full dossier out of the box (COA, SDS, nitrosamine, allergen, GMO, animal-origin, Kosher/Halal)',
+      'Formulation support — technical hotline, application notes, SCCS opinion mapping',
+      'Highest audit trail — pharma-adjacent batch traceability',
+    ],
+    cons: [
+      '3–6x unit price premium over Chinese commodity',
+      '4–8+ week lead time via distributor',
+      'True 100kg often re-packed from 200kg drum; no discount on true small-batch',
+    ],
+    bestFor: 'Retailer-gated brand (Sephora Clean, Credo, John Lewis Beauty) where SDS/allergen dossier is a condition of listing',
+    weights: { price: 1, cert: 5, leadTime: 2, traceability: 5 },
+  },
+];
+
+const PRIORITIES: { key: keyof TierScore['weights']; label: string; help: string }[] = [
+  { key: 'price', label: 'Unit price priority', help: 'Lowest cost / kg wins' },
+  { key: 'cert', label: 'Certification depth priority', help: 'Full dossier, retailer-ready paperwork' },
+  { key: 'leadTime', label: 'Lead-time priority', help: 'Fastest ex-works, lowest MOQ' },
+  { key: 'traceability', label: 'Traceability priority', help: 'Single-source plant, batch audit trail' },
+];
+
+export default function SupplierTierDecisionMatrix() {
+  const [weights, setWeights] = useState<Record<keyof TierScore['weights'], Priority>>({
+    price: 3,
+    cert: 3,
+    leadTime: 3,
+    traceability: 3,
+  });
+
+  const ranked = useMemo(() => {
+    return [...TIERS]
+      .map((t) => {
+        const score =
+          t.weights.price * weights.price +
+          t.weights.cert * weights.cert +
+          t.weights.leadTime * weights.leadTime +
+          t.weights.traceability * weights.traceability;
+        return { ...t, score };
+      })
+      .sort((a, b) => b.score - a.score);
+  }, [weights]);
+
+  return (
+    <div className="my-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+        Supplier tier decision matrix
+      </h3>
+      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+        Rate how much each priority matters to your procurement situation (1 = minor, 5 = dealbreaker). Ranking updates live.
+      </p>
+
+      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        {PRIORITIES.map((p) => (
+          <div key={p.key} className="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-800">
+            <label className="flex items-center justify-between text-sm font-medium text-slate-800 dark:text-slate-200">
+              <span>{p.label}</span>
+              <span className="rounded bg-sky-100 px-2 py-0.5 text-xs font-mono text-sky-800 dark:bg-sky-900 dark:text-sky-100">
+                {weights[p.key]} / 5
+              </span>
+            </label>
+            <input
+              type="range"
+              min={1}
+              max={5}
+              value={weights[p.key]}
+              onChange={(e) =>
+                setWeights((w) => ({ ...w, [p.key]: Number(e.target.value) as Priority }))
+              }
+              className="mt-2 w-full accent-sky-600"
+            />
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{p.help}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 space-y-3">
+        {ranked.map((t, idx) => (
+          <div
+            key={t.key}
+            className={`rounded-lg border p-4 ${
+              idx === 0
+                ? 'border-sky-300 bg-sky-50 dark:border-sky-700 dark:bg-sky-950'
+                : 'border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900'
+            }`}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
+                    idx === 0
+                      ? 'bg-sky-600 text-white'
+                      : 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200'
+                  }`}>
+                    {idx + 1}
+                  </span>
+                  <h4 className="font-semibold text-slate-900 dark:text-slate-100">{t.label}</h4>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  <span className="font-semibold">Best for: </span>{t.bestFor}
+                </p>
+              </div>
+              <span className="shrink-0 rounded bg-slate-100 px-2 py-1 text-xs font-mono text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                score {t.score}
+              </span>
+            </div>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">Pros</div>
+                <ul className="mt-1 list-disc space-y-1 pl-5 text-xs text-slate-700 dark:text-slate-300">
+                  {t.pros.map((p, i) => <li key={i}>{p}</li>)}
+                </ul>
+              </div>
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-wide text-rose-700 dark:text-rose-400">Cons</div>
+                <ul className="mt-1 list-disc space-y-1 pl-5 text-xs text-slate-700 dark:text-slate-300">
+                  {t.cons.map((c, i) => <li key={i}>{c}</li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
