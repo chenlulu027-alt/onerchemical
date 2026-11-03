@@ -1,74 +1,90 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-
+import fs from 'node:fs/promises';
+import path from 'node:path';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-
-/**
- * Lead-magnet gated download. Caller posts { email, asset }, gets back
- * a signed URL to a PDF under /public/downloads. Phase 0: unsigned —
- * returns the public path directly. Harden with signed URLs when
- * conversion volume warrants it.
- */
-
-type Body = {
-  email?: string;
-  name?: string;
-  company?: string;
-  asset?: string; // slug of the downloadable, e.g. "iso-11930-cheatsheet"
-  _hp?: string;
+const PDF_MAP: Record<string, { file: string; subject: string; title: string }> = {
+  'preservative-procurement-checklist': {
+    file: 'onerchemical-preservative-procurement-checklist.pdf',
+    subject: 'Your Preservative Procurement Readiness Checklist',
+    title: 'Preservative Procurement Readiness Checklist',
+  },
 };
-
-const ASSETS: Record<string, { filename: string; label: string }> = {
-  // 'iso-11930-cheatsheet': { filename: 'iso-11930-cheatsheet.pdf', label: 'ISO 11930 cheatsheet' },
-};
-
-function isValidEmail(s: unknown): s is string {
-  return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
-}
 
 export async function POST(req: Request) {
-  let body: Body;
   try {
-    body = (await req.json()) as Body;
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
-  }
+    const body = await req.json().catch(() => null) as
+      | { email?: string; company?: string; resource?: string; source?: string }
+      | null;
 
-  if (body._hp && body._hp.length > 0) {
-    return NextResponse.json({ ok: true });
-  }
+    if (!body?.email || !body?.resource) {
+      return NextResponse.json({ error: 'missing fields' }, { status: 400 });
+    }
 
-  if (!isValidEmail(body.email) || !body.asset) {
-    return NextResponse.json({ error: 'Missing or invalid fields' }, { status: 400 });
-  }
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email);
+    if (!emailOk) {
+      return NextResponse.json({ error: 'invalid email' }, { status: 400 });
+    }
 
-  const asset = ASSETS[body.asset];
-  if (!asset) {
-    return NextResponse.json({ error: 'Unknown asset' }, { status: 404 });
-  }
+    const resource = PDF_MAP[body.resource];
+    if (!resource) {
+      return NextResponse.json({ error: 'unknown resource' }, { status: 400 });
+    }
+        // ↓↓↓ 新增这5行 ↓↓↓
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('[lead-magnet] RESEND_API_KEY not set');
+      return NextResponse.json({ error: 'service not configured' }, { status: 503 });
+    }
+    const resend = new Resend(apiKey);
+    // ↑↑↑ 新增结束 ↑↑↑
 
-  const { RESEND_API_KEY, RESEND_FROM, LEAD_NOTIFY_TO } = process.env;
-  if (!RESEND_API_KEY || !RESEND_FROM || !LEAD_NOTIFY_TO) {
-    return NextResponse.json({ error: 'Mail transport not configured' }, { status: 500 });
-  }
+    const pdfPath = path.join(process.cwd(), 'public', 'downloads', resource.file);
+    const pdfBuffer = await fs.readFile(pdfPath);
 
-  const resend = new Resend(RESEND_API_KEY);
-
-  // notify internally
-  try {
     await resend.emails.send({
-      from: RESEND_FROM,
-      to: [LEAD_NOTIFY_TO],
-      subject: `[Lead magnet] ${asset.label} → ${body.email}`,
-      text: `New download:\n\nAsset: ${asset.label}\nEmail: ${body.email}\nName: ${body.name ?? '(none)'}\nCompany: ${body.company ?? '(none)'}`,
+      from: 'Onerchemical <yang@onerchemical.com>',
+      to: body.email,
+      replyTo: 'yang@onerchemical.com',
+      subject: resource.subject,
+      html: `
+        <p>Hi,</p>
+        <p>The <strong>${resource.title}</strong> is attached as a PDF.</p>
+        <p>It covers the 14 documentation fields and verification steps your supplier must satisfy before you commit to a production-volume preservative order. If any of them look thin on your current supplier, reply to this email and we can walk through what batch-consistent sourcing looks like.</p>
+        <p>— Yang Ruosong<br/>Preservation Supply Specialist, Wuhan Oner Chemical</p>
+        <p style="color:#64748b;font-size:12px;">Source: ${body.source ?? 'onerchemical.com'}${
+          body.company ? ' &middot; Company: ' + body.company : ''
+        }</p>
+      `,
+      attachments: [
+        {
+          filename: resource.file,
+          content: pdfBuffer.toString('base64'),
+        },
+      ],
     });
-  } catch (e) {
-    console.error('[api/lead-magnet] internal notify failed', e);
-  }
 
-  return NextResponse.json({
-    ok: true,
-    downloadUrl: `/downloads/${asset.filename}`,
-  });
+    if (process.env.LEAD_NOTIFY_TO) {
+      await resend.emails.send({
+        from: 'Onerchemical Leads <leads@onerchemical.com>',
+        to: process.env.LEAD_NOTIFY_TO,
+        subject: `[Lead] ${resource.title} — ${body.email}`,
+        html: `
+          <p>New lead-magnet download:</p>
+          <ul>
+            <li>Email: ${body.email}</li>
+            <li>Company: ${body.company || '—'}</li>
+            <li>Resource: ${body.resource}</li>
+            <li>Source page: ${body.source ?? '—'}</li>
+          </ul>
+        `,
+      });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error('[lead-magnet] error', err);
+    return NextResponse.json({ error: 'send failed' }, { status: 500 });
+  }
 }

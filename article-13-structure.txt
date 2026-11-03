@@ -1,0 +1,1337 @@
+
+
+===== FILE: blog-registry.ts (全文) =====
+/**
+ * Central registry for every blog article. Build fails if cluster or
+ * searchKeywords are missing 鈥?enforced by required fields on BlogArticle.
+ *
+ * Adding a new article:
+ *   1. Create src/app/blog/<slug>/page.tsx with inline toc + anchor ids
+ *   2. Add an entry here with the same slug
+ *   3. Run `npm run typecheck` 鈥?missing fields error at compile time
+ */
+
+import type { TOCEntry } from './toc';
+
+export const CLUSTERS = {
+  'preservative-chemistry': {
+    label: 'Preservative Chemistry',
+    description:
+      'The molecules, mechanisms, and interactions behind cosmetic preservation.',
+  },
+  'challenge-testing': {
+    label: 'Challenge Testing',
+    description:
+      'ISO 11930, USP 51, and PET methodology for formulators and QC teams.',
+  },
+  regulatory: {
+    label: 'Regulatory',
+    description:
+      'Preservative compliance across EU 1223/2009, US FDA, China NMPA, and ASEAN.',
+  },
+  'formulation-guides': {
+    label: 'Formulation Guides',
+    description:
+      'Choosing preservative systems by product form, pH, and distribution channel.',
+    
+  },
+    'sourcing': {
+    label: 'Sourcing',
+    description: 'Preservative supplier guides, 100kg MOQ economics, CoA red flags, and procurement SOPs for recurring-volume buyers.',
+  },
+} as const;
+
+export type ClusterKey = keyof typeof CLUSTERS;
+
+export interface BlogArticle {
+  slug: string;
+  title: string;
+  excerpt: string;
+  cluster: ClusterKey;
+  searchKeywords: string[]; // feeds internal search + cannibalization audit
+  datePublished: string;
+  dateModified?: string;
+  author: string;
+  readingMinutes: number;
+  heroImage?: string;
+  draft?: boolean;
+  /**
+   * Optional. If set, renders a right-side TOC (desktop) + collapsible
+   * block (mobile). Each entry's id must match an h2/h3 id in the article body.
+   */
+  toc?: TOCEntry[];
+}
+
+export const ARTICLES: BlogArticle[] = [
+  {
+      slug: 'eu-annex-v-preservative-compliance-guide',
+      title: 'EU Annex V Preservatives: The 2026 Compliance Guide for Cosmetic Brands and Contract Manufacturers',
+      excerpt:
+        'A procurement, QC and regulatory playbook for established cosmetic brands and contract manufacturers: the 59-entry Annex V decoder, five limit-reading traps, non-Annex V multifunctional legal status, CPSR evidence requirements, supplier dossier audit, CPNP notification fields, Safety Gate enforcement patterns, and change-management SOP under Regulation 1223/2009.',
+      cluster: 'regulatory',
+      searchKeywords: [
+        'EU Annex V preservatives',
+        'annex v preservatives list',
+        'cosmetic preservative EU regulation',
+        'EU 1223/2009 preservatives',
+        'cosmetic preservative concentration limits EU',
+        'CPNP preservative compliance',
+        'Annex V entry number',
+        'preservative compliance EU cosmetic',
+        'allowed preservatives EU cosmetics',
+        'EU cosmetic regulation preservative list',
+        'Safety Gate preservative withdrawal',
+        'cosmetic preservative CPSR',
+      ],
+      datePublished: '2026-11-03',
+      dateModified: '2026-11-03',
+      author: 'Yang Ruosong',
+      readingMinutes: 18,
+      heroImage: '/images/blog/article-12/hero.jpg',
+      toc: [
+        { id: 'rotterdam-opener', text: 'A 鈧?8,000 Rotterdam seizure, one secondary preservative over limit', level: 2 },
+        { id: 'what-annex-v-governs', text: 'What Annex V actually governs (and what it does not)', level: 2 },
+        { id: 'entry-decoder', text: 'The full 59-entry Annex V decoder', level: 2 },
+        { id: 'five-traps', text: 'Five traps when reading entry limits', level: 2 },
+        { id: 'non-annex-v-multifunctionals', text: 'Non-Annex V multifunctionals: legal grey zone or clear status?', level: 2 },
+        { id: 'cpsr-evidence', text: 'CPSR Part A and B: where Annex V evidence must appear', level: 2 },
+        { id: 'supplier-dossier-audit', text: 'Supplier dossier audit: 7 CoA fields for Annex V defence', level: 2 },
+        { id: 'cpnp-notification', text: 'CPNP notification: four fields where Annex V compliance surfaces', level: 2 },
+        { id: 'safety-gate-patterns', text: 'Safety Gate 2024-2026 preservative enforcement patterns', level: 2 },
+        { id: 'change-management-sop', text: 'Change-management SOP when your supplier changes source, process or grade', level: 2 },
+        { id: 'uk-divergence', text: 'UK post-Brexit divergence: where SCCS and OPSS rules now differ', level: 2 },
+        { id: 'annex-v-faq', text: 'EU Annex V preservative compliance FAQ', level: 2 },
+        { id: 'related-reading', text: 'Related reading', level: 2 },
+      ],
+    },
+  {
+    slug: 'preservative-coa-batch-consistency',
+    title: 'Preservative CoA Batch Consistency: How Established Brands Catch Drift Before QC Fails',
+    excerpt: 'A procurement and QC playbook for cosmetic preservative buyers: which 7 CoA fields need batch-variance monitoring, how to build a Shewhart drift tracker, and the 60-day change-notification clause your supply contract needs.',
+    cluster: 'regulatory',
+    searchKeywords: [
+      'preservative CoA batch consistency',
+      'cosmetic preservative batch to batch variance',
+      'preservative CoA field drift',
+      'cosmetic raw material supplier audit scorecard',
+      'preservative supply change notification clause',
+      'phenoxyethanol phenol residue drift',
+      'Shewhart control chart cosmetic raw material',
+      'EU 1223/2009 PIF update CoA',
+      'MoCRA batch record preservative',
+      'IECIC 2021 batch traceability',
+    ],
+    datePublished: '2026-11-02',
+    dateModified: '2026-11-02',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-11/hero.jpg',
+    toc: [
+      { id: 'why-all-pass-coa-fail', text: 'Why do "all-pass" CoAs still fail your challenge test?', level: 2 },
+      { id: 'seven-fields-variance', text: 'Which 7 CoA fields need batch-variance monitoring?', level: 2 },
+      { id: 'drift-tracker', text: 'How to build a moving-average tracker for CoA drift', level: 2 },
+      { id: 'three-root-causes', text: 'What are the 3 upstream root causes of batch inconsistency?', level: 2 },
+      { id: 'audit-scorecard', text: 'How should supplier audits score CoA consistency annually?', level: 2 },
+      { id: 'change-notification', text: 'Why is a 60-day change-notification clause non-negotiable?', level: 2 },
+      { id: 'third-party-retest', text: 'When to trigger independent third-party retest', level: 2 },
+      { id: 'five-market-compliance', text: 'What do EU / MoCRA / NMPA / Japan / Korea require on CoA consistency?', level: 2 },
+      { id: 'dual-sourcing', text: 'How does dual-sourcing avoid introducing a second consistency risk?', level: 2 },
+      { id: 'preservative-coa-faq', text: 'Preservative CoA batch consistency FAQ', level: 2 },
+    ],
+  },
+  {
+      slug: '1-2-hexanediol-supplier-guide',
+      title: '1,2-Hexanediol Supplier Guide: Price Benchmarks, CoA Red Flags & 100kg MOQ Playbook (2026)',
+      excerpt:
+        '2026 FOB China price benchmarks across 4 supplier tiers (USD 12-70/kg), 7-field CoA red flags specific to 1,2-hexanediol, and a 100kg MOQ procurement SOP built from a Berlin indie-brand case where the cheapest quote was not cheapest in use.',
+      cluster: 'sourcing',
+      searchKeywords: [
+        '1,2-hexanediol supplier',
+        'hexanediol supplier guide',
+        'hexanediol price',
+        'hexanediol MOQ',
+        'hexanediol CoA',
+        'Hydrolite 6 alternative',
+        'BESTCARE500 hexanediol',
+        '1,2-hexanediol procurement',
+        'cosmetic preservative sourcing',
+        'FOB China hexanediol',
+      ],
+      datePublished: '2026-10-30',
+      dateModified: '2026-10-30',
+      author: 'Yang Ruosong',
+      readingMinutes: 14,
+      heroImage: '/images/blog/article-10/hero.jpg',
+      toc: [
+        { id: 'berlin-opener', text: 'The USD 2,400 Berlin indie-brand four-quote spread', level: 2 },
+        { id: 'three-tier-decoder', text: 'Three-tier supplier decoder for 1,2-hexanediol', level: 2 },
+        { id: '100kg-sweet-spot', text: 'Why 100kg MOQ is the sweet spot for indie formulators', level: 2 },
+        { id: 'price-benchmark-table', text: '2026 price benchmark table 鈥?tier 脳 quantity', level: 2 },
+        { id: 'coa-red-flags', text: 'Seven CoA red flags specific to 1,2-hexanediol', level: 2 },
+        { id: 'supplier-decision-matrix', text: 'Supplier tier decision matrix', level: 2 },
+        { id: 'compliance-paperwork', text: 'Six-document compliance paperwork checklist', level: 2 },
+        { id: 'regulatory-map', text: 'Five-market regulatory snapshot', level: 2 },
+        { id: 'procurement-sop', text: 'Seven-step procurement SOP (RFQ to receipt QC)', level: 2 },
+        { id: 'hexanediol-faq', text: '1,2-Hexanediol procurement FAQ', level: 2 },
+        { id: 'related-reading', text: 'Related reading', level: 2 },
+      ],
+    },
+  {
+    slug: 'how-to-preserve-cosmetic-emulsion',
+    title: 'How to Preserve a Cosmetic Emulsion: The Indie Formulator鈥檚 2026 Playbook',
+    excerpt:
+      'Why oil-in-water emulsions fail ISO 11930 more than any other product type, which 7 preservative systems actually pass at 100 kg scale, and how emulsifier chemistry quietly kills your preservative 鈥?field playbook from Onerchemical鈥檚 preservation sourcing desk.',
+    cluster: 'formulation-guides',
+    searchKeywords: [
+      'how to preserve a cosmetic emulsion',
+      'cosmetic lotion preservative system',
+      'preserving oil-in-water emulsion',
+      'emulsion preservation challenge test',
+      'o/w emulsion preservative',
+      'emulsifier preservative compatibility',
+      'phenoxyethanol lotion dose',
+      'preservative-free emulsion claim',
+      'ISO 11930 emulsion',
+      'chelator emulsion preservation',
+    ],
+    datePublished: '2026-10-26',
+    dateModified: '2026-10-26',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/how-to-preserve-cosmetic-emulsion/hero.jpg',
+    toc: [
+      { id: 'barcelona-recall', text: 'The Barcelona lab recall that defined this playbook', level: 2 },
+      { id: 'why-emulsions-fail', text: 'Why do emulsions fail ISO 11930 more than any other product type?', level: 2 },
+      { id: 'three-philosophies', text: 'What are the three preservation philosophies for 2026 emulsions?', level: 2 },
+      { id: 'selector', text: 'Which preservative system fits your emulsion?', level: 2 },
+      { id: 'pairing-matrix', text: 'Pairing matrix: 7 verified emulsion-grade combinations', level: 2 },
+      { id: 'coa-red-flags', text: 'What CoA red flags do emulsion-grade preservatives hide?', level: 2 },
+      { id: 'chelator-synergy', text: 'How does chelator synergy change your preservation math?', level: 2 },
+      { id: 'emulsifier-interaction', text: 'Preservative鈥揺mulsifier interaction map', level: 2 },
+      { id: 'regulatory', text: 'What can indie brands claim? 5-market regulatory snapshot', level: 2 },
+      { id: 'emulsion-faq', text: 'Emulsion preservation FAQ', level: 2 },
+    ],
+  },
+      {
+  slug: 'iso-11930-challenge-test-protocol',
+  title: 'Why Your First Challenge Test Failed (And How to Pass ISO 11930 on the Second Try)',
+  excerpt:
+    'A procurement-view walkthrough of the ISO 11930 challenge test 鈥?what it actually measures, which criterion your product needs, how to read the five-strain panel, and the pre-submission checklist that keeps indie brands from paying for a second lab run.',
+  cluster: 'challenge-testing',
+  searchKeywords: [
+    'ISO 11930 challenge test',
+    'preservative efficacy test',
+    'challenge test protocol',
+    'ISO 11930 criteria A B',
+    'cosmetic preservative efficacy testing',
+    'USP 51 vs ISO 11930',
+    '5-strain inoculum challenge test',
+    'challenge test interpretation',
+  ],
+  datePublished: '2026-10-23',
+  dateModified: '2026-10-23',
+  author: 'Yang Ruosong',
+  readingMinutes: 14,
+  toc: [
+    { id: 'first-test-failed', text: 'The USD 450 Lab Report That Said "Fail": What Actually Went Wrong', level: 2 },
+    { id: 'what-iso-11930-measures', text: 'What Does ISO 11930 Actually Measure?', level: 2 },
+    { id: 'criterion-a-vs-b', text: 'Criterion A vs Criterion B: Which One Does Your Product Need?', level: 2 },
+    { id: '28-day-timeline', text: 'What Happens Across the 28-Day Timeline?', level: 2 },
+    { id: 'd7-signal', text: 'What a Day 7 bacterial fail usually means', level: 3 },
+    { id: 'd28-regrowth', text: 'What a Day 28 regrowth signal usually means', level: 3 },
+    { id: 'pre-submission-checklist', text: 'Before You Ship Samples: What Is on the Pre-Submission Checklist?', level: 2 },
+    { id: 'reading-the-report', text: 'How Do You Read a Challenge Test Report Beyond Pass/Fail?', level: 2 },
+    { id: 'iso-vs-usp-vs-ep', text: 'ISO 11930 vs USP <51> vs EP 5.1.3 vs CTFA M-3: When Is Each One Required?', level: 2 },
+    { id: 'market-requirements', text: 'Which Markets Legally Require a Challenge Test 鈥?and Which Only Expect One?', level: 2 },
+    { id: 'eu-requirements', text: 'EU and UK', level: 3 },
+    { id: 'us-requirements', text: 'United States', level: 3 },
+    { id: 'china-requirements', text: 'China', level: 3 },
+    { id: 'japan-korea-requirements', text: 'Japan and Korea', level: 3 },
+    { id: 'where-to-test', text: 'Where Should You Run the Test 鈥?Independent Lab, In-House, or Contract Manufacturer?', level: 2 },
+    { id: 'challenge-test-faq', text: 'Challenge test FAQ', level: 2 },
+  ],
+},
+      {
+    slug: 'ethylhexylglycerin-technical-guide',
+    title: 'Ethylhexylglycerin (EHG): When It Actually Preserves 鈥?And When It Doesn\u2019t',
+    excerpt:
+      'A sourcing specialist\u2019s guide to EHG (CAS 70445-33-9) for independent cosmetic brands 鈥?deodorant vs cosmetic use-cases, Sensiva SC50 pricing shadow, verified pairings, SCCS 2020 dose data, CoA red flags, and 25\u2013200kg procurement.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'ethylhexylglycerin',
+      'EHG',
+      'ethylhexylglycerin preservative',
+      'Sensiva SC50',
+      'EHG booster',
+      'ethylhexylglycerin max use rate',
+      'EHG not annex V',
+      'ethylhexylglycerin supplier',
+      'EHG small MOQ',
+      'ethylhexylglycerin SCCS',
+    ],
+    datePublished: '2026-10-23',
+    dateModified: '2026-10-23',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-05-ehg-hero.jpg',
+    toc: [
+      { id: 'when-ehg-preserves', text: 'When EHG actually preserves 鈥?and when it is just skin feel', level: 2 },
+      { id: 'why-ehg-boosts', text: 'Why EHG boosts preservation without an Annex V claim', level: 2 },
+      { id: 'sensiva-sc50-pricing-shadow', text: 'The Sch眉lke Sensiva SC50 pricing shadow', level: 2 },
+      { id: 'ehg-pairing-map', text: 'EHG pairing map: four verified boosts and the two we refuse', level: 2 },
+      { id: 'ehg-dose-reality', text: 'How formulators set the EHG dose 鈥?and why most cap below the ceiling', level: 2 },
+      { id: 'ehg-coa-red-flags', text: 'Legitimate EHG CoA 鈥?the 7 fields we reject on sight', level: 2 },
+      { id: 'ehg-regulatory-5-market', text: 'EHG in global regulations: a preservative that officially isn\u2019t one', level: 2 },
+      { id: 'onerchemical-ehg-sourcing', text: '25kg鈥?00kg EHG 鈥?the supply gap large distributors don\u2019t fill', level: 2 },
+      { id: 'ehg-faq', text: 'Ethylhexylglycerin FAQ', level: 2 },
+    ],
+  },
+    {
+    slug: 'caprylhydroxamic-acid-technical-guide',
+    title: 'Caprylhydroxamic Acid in Cosmetic Preservation: Decoding the Chelator That Clean Beauty Keeps Buying',
+    excerpt:
+      'As of 2026-10, caprylhydroxamic acid (CAS 7377-03-9) anchors most phenoxyethanol-free preservation systems on the market 鈥?yet most indie brands buy it inside a Spectrastat blend without decoding the hurdle logic. Procurement playbook, pairing matrix, and 5-market regulatory map.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'caprylhydroxamic acid',
+      'caprylhydroxamic acid preservative',
+      'CHA preservative',
+      'spectrastat',
+      'aromastat',
+      'hurdle technology preservative',
+      'natural preservative CHA',
+      'caprylhydroxamic acid formulation',
+      'caprylhydroxamic acid use level',
+      'caprylhydroxamic acid supplier',
+      'caprylhydroxamic acid MOQ',
+      'chelator preservative indie beauty',
+    ],
+    datePublished: '2026-10-22',
+    dateModified: '2026-10-22',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/hero-caprylhydroxamic-acid.webp',
+    toc: [
+      { id: 'why-indie-brands', text: 'Why "phenoxyethanol-free" indie brands reach for CHA', level: 2 },
+      { id: 'chelator-paradox', text: 'The chelator paradox: how CHA preserves', level: 2 },
+      { id: 'what-cha-cant-do', text: 'What CHA cannot do alone 鈥?hurdle mandate', level: 2 },
+      { id: 'spectrastat-family', text: 'Decoding the Spectrastat family (8 blends)', level: 2 },
+      { id: 'monomer-vs-blend', text: 'Monomer vs pre-blended: procurement economics', level: 2 },
+      { id: 'build-your-hurdle', text: 'Build your own CHA hurdle: 4 verified pairings', level: 2 },
+      { id: 'use-level-tree', text: 'CHA use-level decision tree', level: 2 },
+      { id: 'regulatory-map', text: 'The CHA regulatory map (5 markets)', level: 2 },
+      { id: 'sourcing-100kg', text: 'Sourcing 100 kg monomer CHA', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+  {
+    slug: '1-2-hexanediol-technical-guide',
+    title:
+      "1,2-Hexanediol in Cosmetics 鈥?When It Actually Works as a Preservative, and When It Doesn't",
+    excerpt:
+      'As of 2026-10, 1,2-Hexanediol sits in EU CosIng but outside Annex V. Pairing matrix, Challenge Test usage rates, COA red flags, and 5-market regulatory status for independent cosmetic brands.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      '1,2-hexanediol',
+      '1,2-hexanediol cosmetic',
+      '1,2-hexanediol preservative',
+      '1,2-hexanediol vs phenoxyethanol',
+      'hexanediol usage rate',
+      '1,2-hexanediol INCI',
+      '1,2-hexanediol EU Annex V',
+      '1,2-hexanediol challenge test',
+      '1,2-hexanediol COA',
+      'cas 6920-22-5',
+    ],
+    datePublished: '2026-10-21',
+    dateModified: '2026-10-21',
+    author: 'Yang Ruosong',
+    readingMinutes: 12,
+    heroImage: '/images/hero-1-2-hexanediol.webp',
+    toc: [
+      { id: 'why-indie-reaches', text: 'Why indie formulators reach for 1,2-HD', level: 2 },
+      { id: 'actually-preservative', text: 'Is it actually a preservative?', level: 2 },
+      { id: 'pairing-matrix', text: 'Compatibility matrix', level: 2 },
+      { id: 'challenge-test-rates', text: 'Usage rates that pass Challenge Test', level: 2 },
+      { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+      { id: 'regulations', text: '5-market regulations', level: 2 },
+      { id: 'sourcing', text: 'Sample vs 100 kg order', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+  {
+    slug: 'phenoxyethanol-ethylhexylglycerin-combination',
+    title: 'Phenoxyethanol vs. ethylhexylglycerin: when to combine them',
+    excerpt:
+      'A mechanistic review of the two most common broad-spectrum partners in modern leave-on cosmetics, with a decision tree for when the combination is justified over phenoxyethanol alone.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'phenoxyethanol ethylhexylglycerin',
+      'phenoxyethanol vs ethylhexylglycerin',
+      'ethylhexylglycerin booster',
+      'phenoxyethanol combination preservative',
+    ],
+    datePublished: '2026-10-19',
+    author: 'Yang Ruosong',
+    readingMinutes: 12,
+    toc: [
+      { id: 'why-two-together', text: 'Why the two show up together', level: 2 },
+      { id: 'when-necessary', text: 'When the combination is necessary', level: 2 },
+      { id: 'decision-tree', text: 'Pick your system', level: 3 },
+      { id: 'regulatory-layer', text: 'The regulatory layer', level: 2 },
+      { id: 'formulation-details', text: 'Formulation details', level: 2 },
+      { id: 'wrong-answer', text: 'When it is the wrong answer', level: 2 },
+      { id: 'faq', text: 'Frequently asked questions', level: 2 },
+    ],
+  },
+  {
+    slug: 'phenoxyethanol-technical-guide',
+    title: 'Why your phenoxyethanol system fails: a 7-layer breakdown from a preservation specialist',
+    excerpt:
+      'Mechanism blind spots, COA red flags, pairing matrix by formula type, 5-market regulations, and a real 100kg sourcing path for independent cosmetic brands.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'phenoxyethanol',
+      'phenoxyethanol preservative',
+      'phenoxyethanol concentration',
+      'phenoxyethanol COA',
+      'phenoxyethanol EU Annex V',
+      'phenoxyethanol pairing',
+      'phenoxyethanol MOQ',
+      'phenoxyethanol supplier',
+      'preservative for indie beauty',
+      'small batch phenoxyethanol',
+    ],
+    datePublished: '2026-10-20',
+    dateModified: '2026-10-20',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/phenoxyethanol-tg/hero.jpg',
+    toc: [
+      { id: 'three-failures', text: 'Three real failure scenarios', level: 2 },
+      { id: 'mechanism-gaps', text: 'Mechanism blind spots', level: 2 },
+      { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+      { id: 'pairing-matrix', text: 'Pairing matrix by formula type', level: 2 },
+      { id: 'regulations', text: 'Global regulation matrix', level: 2 },
+      { id: 'sourcing-100kg', text: '100kg sourcing path', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+];
+export function getArticle(slug: string): BlogArticle | undefined {
+  return ARTICLES.find((a) => a.slug === slug && !a.draft);
+}
+
+export function articlesByCluster(cluster: ClusterKey): BlogArticle[] {
+  return ARTICLES.filter((a) => a.cluster === cluster && !a.draft);
+}
+
+export function publishedArticles(): BlogArticle[] {
+  return ARTICLES.filter((a) => !a.draft).sort((a, b) =>
+    b.datePublished.localeCompare(a.datePublished),
+  );
+}
+
+
+===== FILE: src\app\blog\page.tsx =====
+import type { Metadata } from 'next';
+import { buildMeta } from '@/lib/seo';
+import { publishedArticles } from '@/lib/blog-registry';
+import { BlogListClient } from './BlogListClient';
+
+export const metadata: Metadata = buildMeta({
+  title: 'Research',
+  description:
+    'Technical articles on cosmetic preservation chemistry, challenge testing, regulation, and formulation strategy 鈥?written for formulators, by chemists.',
+  path: '/blog',
+});
+
+export default function BlogListPage() {
+  const articles = publishedArticles();
+  return <BlogListClient articles={articles} />;
+}
+
+
+
+===== FILE: src\app\blog\BlogListClient.tsx =====
+'use client';
+
+import { useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { CLUSTERS, type BlogArticle, type ClusterKey } from '@/lib/blog-registry';
+
+type Filter = 'all' | ClusterKey;
+
+export function BlogListClient({ articles }: { articles: BlogArticle[] }) {
+  const [filter, setFilter] = useState<Filter>('all');
+  const filtered = useMemo(
+    () => (filter === 'all' ? articles : articles.filter((a) => a.cluster === filter)),
+    [filter, articles],
+  );
+  const clusterKeys = Object.keys(CLUSTERS) as ClusterKey[];
+
+  return (
+    <section className="mx-auto max-w-5xl px-6 py-16">
+      <header className="mb-10 border-b border-ink-100 pb-10">
+        <h1 className="mb-3 font-serif text-5xl font-normal text-ink-900">Research</h1>
+        <p className="max-w-2xl text-lg text-ink-500">
+          Technical articles on cosmetic preservation chemistry, challenge testing, regulation, and
+          formulation strategy.
+        </p>
+      </header>
+
+      <nav aria-label="Cluster filter" className="relative mb-10 flex flex-wrap gap-1.5">
+        <Tab active={filter === 'all'} id="all" onClick={() => setFilter('all')}>All</Tab>
+        {clusterKeys.map((k) => (
+          <Tab key={k} active={filter === k} id={k} onClick={() => setFilter(k)}>
+            {CLUSTERS[k].label}
+          </Tab>
+        ))}
+      </nav>
+
+      {filtered.length === 0 ? (
+        <p className="text-ink-500">No articles in this cluster yet.</p>
+      ) : (
+        <ul className="divide-y divide-ink-100 border-t border-ink-100">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {filtered.map((a, i) => (
+              <motion.li
+                key={a.slug}
+                layout
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3, delay: Math.min(i * 0.04, 0.2) }}
+              >
+                <LocalizedLink
+                  href={`/blog/${a.slug}`}
+                  className="group block py-6 transition hover:bg-paper/60"
+                >
+                  <div className="mb-2 text-[10px] uppercase tracking-[1.5px] text-brand-800">
+                    {CLUSTERS[a.cluster].label}
+                  </div>
+                  <h2 className="mb-2 font-serif text-2xl font-normal text-ink-900 group-hover:text-brand-900">
+                    {a.title}
+                  </h2>
+                  <p className="mb-3 text-base leading-relaxed text-ink-500">{a.excerpt}</p>
+                  <div className="text-xs text-ink-500">
+                    {a.author} 路{' '}
+                    {new Date(a.datePublished).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}{' '}
+                    路 {a.readingMinutes} min read
+                  </div>
+                </LocalizedLink>
+              </motion.li>
+            ))}
+          </AnimatePresence>
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function Tab({
+  active,
+  id,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  id: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="relative rounded-full px-4 py-1.5 text-xs text-ink-700 transition hover:text-ink-900"
+    >
+      {active && (
+        <motion.span
+          layoutId="active-tab-pill"
+          className="absolute inset-0 rounded-full bg-brand-800"
+          transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+        />
+      )}
+      <span className={'relative z-10 ' + (active ? 'font-medium text-white' : '')}>{children}</span>
+    </button>
+  );
+}
+
+
+
+===== CHECK: /blog/cluster/ 或 /knowledge/ 路由 =====
+
+Name                                          Files
+----                                          -----
+1-2-hexanediol-supplier-guide                     1
+1-2-hexanediol-technical-guide                    1
+caprylhydroxamic-acid-technical-guide             1
+ethylhexylglycerin-technical-guide                1
+eu-annex-v-preservative-compliance-guide          1
+how-to-preserve-cosmetic-emulsion                 1
+iso-11930-challenge-test-protocol                 1
+phenoxyethanol-ethylhexylglycerin-combination     1
+phenoxyethanol-technical-guide                    1
+preservative-coa-batch-consistency                1
+
+
+
+
+
+===== FILE: scripts\build-search-index.mjs =====
+#!/usr/bin/env node
+/**
+ * Build /public/search-index.json from src/lib/blog-registry.ts.
+ * Runs as a `prebuild` hook 鈥?zero runtime cost, pure static JSON.
+ *
+ * We don't import blog-registry at build time (it's TS). We parse it
+ * as plain text with a loose regex 鈥?the registry file is single-purpose
+ * and the shape is stable. If the shape changes, update this script.
+ *
+ * Design choice: no AST parser dependency. The parse is lenient 鈥?a
+ * missing field throws, and the build fails fast with a clear message.
+ */
+
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '..');
+const REGISTRY = resolve(ROOT, 'src/lib/blog-registry.ts');
+const OUT = resolve(ROOT, 'public/search-index.json');
+
+const src = readFileSync(REGISTRY, 'utf8');
+
+/* --------- extract CLUSTERS { key: { label, description } } -------------- */
+const clustersMatch = src.match(/export const CLUSTERS\s*=\s*({[\s\S]*?})\s*as\s+const;/);
+if (!clustersMatch) throw new Error('build-search-index: CLUSTERS block not found');
+const clustersRaw = clustersMatch[1];
+const clusterLabels = {};
+for (const m of clustersRaw.matchAll(/['"]([a-z0-9-]+)['"]\s*:\s*{[^}]*?label\s*:\s*['"]([^'"]+)['"]/g)) {
+  clusterLabels[m[1]] = m[2];
+}
+
+/* --------- extract ARTICLES array -------------------------------------- */
+const articlesMatch = src.match(/export const ARTICLES\s*:\s*BlogArticle\[\]\s*=\s*(\[[\s\S]*?\]);/);
+if (!articlesMatch) throw new Error('build-search-index: ARTICLES array not found');
+
+// Simple field extractor: find each {...} object in the array
+const objRE = /{[^{}]*(?:{[^{}]*}[^{}]*)*}/g;
+const objects = articlesMatch[1].match(objRE) ?? [];
+
+function pick(obj, key) {
+  const m = obj.match(new RegExp('\\b' + key + '\\s*:\\s*([\'"])((?:[^\\\\]|\\\\.)*?)\\1'));
+  return m ? m[2].replace(/\\(['"\\])/g, '$1') : undefined;
+}
+function pickBool(obj, key) {
+  const m = obj.match(new RegExp('\\b' + key + '\\s*:\\s*(true|false)'));
+  return m ? m[1] === 'true' : false;
+}
+function pickArr(obj, key) {
+  const m = obj.match(new RegExp('\\b' + key + '\\s*:\\s*(\\[[^\\]]*\\])'));
+  if (!m) return [];
+  return [...m[1].matchAll(/['"]([^'"]+)['"]/g)].map((x) => x[1]);
+}
+
+const docs = [];
+for (const o of objects) {
+  if (pickBool(o, 'draft')) continue;
+  const slug = pick(o, 'slug');
+  const title = pick(o, 'title');
+  const excerpt = pick(o, 'excerpt');
+  const cluster = pick(o, 'cluster');
+  const searchKeywords = pickArr(o, 'searchKeywords');
+  if (!slug || !title || !excerpt || !cluster) {
+    throw new Error('build-search-index: missing required field in ' + JSON.stringify(o).slice(0, 120));
+  }
+  docs.push({
+    slug,
+    title,
+    excerpt,
+    cluster: clusterLabels[cluster] ?? cluster,
+    searchKeywords,
+    type: 'article',
+    url: `/blog/${slug}`,
+  });
+}
+
+/* --------- add static pages worth searching ---------------------------- */
+docs.push(
+  { slug: 'about', title: 'About Onerchemical', excerpt: 'The publication, who writes, what we don\u2019t do.', cluster: 'About', searchKeywords: ['about', 'company', 'publisher'], type: 'page', url: '/about' },
+  { slug: 'yang-ruosong', title: 'Yang Ruosong', excerpt: 'Head of Technical Content 鈥?cosmetic preservation articles.', cluster: 'Author', searchKeywords: ['yang ruosong', 'author', 'bio'], type: 'page', url: '/yang-ruosong' },
+);
+
+mkdirSync(dirname(OUT), { recursive: true });
+writeFileSync(OUT, JSON.stringify(docs));
+console.log(`[search-index] wrote ${docs.length} docs 鈫?public/search-index.json`);
+
+
+
+===== FILE: src\lib\seo.ts =====
+import type { Metadata } from 'next';
+import { makeAlternates } from './i18n';
+
+export const SITE = {
+  name: 'Onerchemical',
+  tagline: 'The science of cosmetic preservation',
+  description:
+    'Peer-reviewed guidance on cosmetic preservative selection, challenge testing, and compliance across EU, US, and APAC markets.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://onerchemical.com',
+  locale: 'en_US',
+  twitter: '',
+  ogImageDefault: '/opengraph-image',
+} as const;
+
+export const ORG = {
+  legalName: 'Wuhan Oner Chemical Co., Ltd.',
+  tradingName: 'Onerchemical',
+  foundingDate: '2012',
+  city: 'Wuhan',
+  region: 'Hubei',
+  country: 'CN',
+} as const;
+
+export const AUTHOR = {
+  name: 'Yang Ruosong',
+  slug: 'yang-ruosong',
+  jobTitle: 'Head of Technical Content',
+  profileUrl: 'https://onerchemical.com/yang-ruosong/',
+} as const;
+
+type BuildMetaInput = {
+  title: string;
+  description: string;
+  path: string; // e.g. "/", "/blog", "/blog/some-slug"
+  ogImage?: string; // absolute or relative; defaults to site OG
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+};
+
+/**
+ * Single entry point for every page's `metadata` export. Guarantees
+ * canonical URL, hreflang alternates, OG + Twitter, and consistent title suffix.
+ */
+export function buildMeta(input: BuildMetaInput): Metadata {
+  const url = `${SITE.url}${input.path}`;
+  const titleFull =
+    input.path === '/' ? `${SITE.name} 鈥?${SITE.tagline}` : `${input.title} | ${SITE.name}`;
+  const ogImage = input.ogImage
+    ? input.ogImage.startsWith('http')
+      ? input.ogImage
+      : `${SITE.url}${input.ogImage}`
+    : `${SITE.url}${SITE.ogImageDefault}`;
+
+  return {
+    metadataBase: new URL(SITE.url),
+    title: titleFull,
+    description: input.description,
+    alternates: {
+      canonical: url,
+      languages: makeAlternates(input.path, SITE.url),
+    },
+    openGraph: {
+      type: input.type ?? 'website',
+      url,
+      title: titleFull,
+      description: input.description,
+      siteName: SITE.name,
+      locale: SITE.locale,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: input.title }],
+      ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
+      ...(input.modifiedTime ? { modifiedTime: input.modifiedTime } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titleFull,
+      description: input.description,
+      images: [ogImage],
+    },
+    robots: input.noindex
+      ? { index: false, follow: false }
+      : { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  };
+}
+
+
+
+===== FILE: src\app\sitemap.ts =====
+import type { MetadataRoute } from 'next';
+import { SITE } from '@/lib/seo';
+import { makeAlternates } from '@/lib/i18n';
+import { publishedArticles } from '@/lib/blog-registry';
+import { PRODUCTS } from '@/lib/products';
+
+type Entry = MetadataRoute.Sitemap[number];
+
+/**
+ * makeEntry wraps a canonical path + optional lastModified into a sitemap
+ * entry with hreflang alternates baked in. Phase 0: EN only, but the
+ * alternates field already carries x-default so Google can start reading it.
+ */
+function makeEntry(
+  path: string,
+  opts: {
+    lastModified?: string | Date;
+    changeFrequency?: Entry['changeFrequency'];
+    priority?: number;
+  } = {},
+): Entry {
+  return {
+    url: `${SITE.url}${path}`,
+    lastModified: opts.lastModified ? new Date(opts.lastModified) : new Date(),
+    changeFrequency: opts.changeFrequency ?? 'monthly',
+    priority: opts.priority ?? 0.5,
+    alternates: {
+      languages: makeAlternates(path, SITE.url),
+    },
+  };
+}
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticEntries: Entry[] = [
+    makeEntry('/', { changeFrequency: 'weekly', priority: 1.0 }),
+    makeEntry('/blog', { changeFrequency: 'weekly', priority: 0.8 }),
+    makeEntry('/about', { changeFrequency: 'yearly', priority: 0.4 }),
+    makeEntry('/yang-ruosong', { changeFrequency: 'monthly', priority: 0.5 }),
+  ];
+
+  const articleEntries: Entry[] = publishedArticles().map((a) =>
+    makeEntry(`/blog/${a.slug}`, {
+      lastModified: a.dateModified ?? a.datePublished,
+      changeFrequency: 'yearly',
+      priority: 0.7,
+    }),
+  );
+
+  const productEntries: Entry[] = PRODUCTS.map((p) =>
+    makeEntry(`/products/${p.slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }),
+  );
+
+  return [...staticEntries, ...articleEntries, ...productEntries];
+}
+
+
+
+===== FILE: Header.tsx =====
+'use client';
+
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useQuote } from '@/context/QuoteContext';
+import { SearchButton } from '@/components/search/Search';
+
+export function Header() {
+  const { openQuote } = useQuote();
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <LocalizedLink href="/" className="flex items-center gap-2.5">
+          <span className="flex h-7 w-7 items-center justify-center rounded bg-brand-800 font-serif text-sm text-white">
+            O
+          </span>
+          <span className="text-[15px] font-medium tracking-tight text-ink-900">Onerchemical</span>
+          <span className="ml-1 hidden rounded-full bg-ink-100 px-2 py-0.5 text-[11px] text-ink-500 md:inline">
+            Preservation Science
+          </span>
+        </LocalizedLink>
+
+        <nav className="hidden items-center gap-5 text-sm text-ink-700 md:flex">
+          <LocalizedLink href="/products/phenoxyethanol-supply" className="hover:text-brand-800">
+            Preservatives
+          </LocalizedLink>
+          <LocalizedLink href="/blog" className="hover:text-brand-800">
+            Research
+          </LocalizedLink>
+          <LocalizedLink href="/about" className="hover:text-brand-800">
+            About
+          </LocalizedLink>
+          <SearchButton />
+          <button
+            type="button"
+            onClick={() => openQuote()}
+            className="font-medium text-brand-800 hover:text-brand-900"
+          >
+            Request sample
+          </button>
+          <LanguageSwitcher />
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+
+
+===== FILE: Footer.tsx =====
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { ORG, SITE } from '@/lib/seo';
+
+export function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="mt-24 border-t border-ink-100 bg-paper">
+      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-4">
+        <div>
+          <div className="mb-3 flex items-center gap-2">
+            <span className="flex h-6 w-6 items-center justify-center rounded bg-brand-800 font-serif text-xs text-white">
+              O
+            </span>
+            <span className="text-sm font-medium text-ink-900">{SITE.name}</span>
+          </div>
+          <p className="text-xs leading-relaxed text-ink-500">
+            Published by {ORG.legalName}. Technical content for cosmetic formulators and contract
+            manufacturers.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="mb-3 text-xs uppercase tracking-wider text-ink-500">Research</h3>
+          <ul className="space-y-2 text-sm">
+            <li><LocalizedLink href="/blog" className="text-ink-700 hover:text-brand-800">All articles</LocalizedLink></li>
+            <li><LocalizedLink href="/yang-ruosong" className="text-ink-700 hover:text-brand-800">Author</LocalizedLink></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-3 text-xs uppercase tracking-wider text-ink-500">Supply</h3>
+          <ul className="space-y-2 text-sm">
+            <li><LocalizedLink href="/products/phenoxyethanol-supply" className="text-ink-700 hover:text-brand-800">Preservatives</LocalizedLink></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-3 text-xs uppercase tracking-wider text-ink-500">Company</h3>
+          <ul className="space-y-2 text-sm">
+            <li><LocalizedLink href="/about" className="text-ink-700 hover:text-brand-800">About</LocalizedLink></li>
+            </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-ink-100">
+        <div className="mx-auto max-w-6xl px-6 py-4 text-xs text-ink-500">
+          漏 {year} {ORG.legalName}. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+
+===== FILE: src\app\page.tsx =====
+import type { Metadata } from 'next';
+import { buildMeta, ORG } from '@/lib/seo';
+import { publishedArticles, CLUSTERS } from '@/lib/blog-registry';
+import { HomeHero, LatestResearchGrid, TrustStrip } from './HomeClient';
+
+export const metadata: Metadata = buildMeta({
+  title: 'Home',
+  description:
+    'Peer-reviewed guidance on cosmetic preservative selection, challenge testing, and compliance across EU, US, and APAC markets 鈥?written for formulators, by chemists.',
+  path: '/',
+});
+
+export default function HomePage() {
+  const latest = publishedArticles().slice(0, 4);
+  // Pre-resolve cluster labels on the server so client component stays data-only
+  const cards = latest.map((a) => ({
+    slug: a.slug,
+    title: a.title,
+    excerpt: a.excerpt,
+    author: a.author,
+    readingMinutes: a.readingMinutes,
+    clusterLabel: CLUSTERS[a.cluster].label,
+  }));
+
+  return (
+    <>
+      <HomeHero orgLegal={ORG.legalName} />
+      <TrustStrip />
+      <LatestResearchGrid cards={cards} />
+    </>
+  );
+}
+
+
+
+===== FILE: src\app\HomeClient.tsx =====
+'use client';
+
+import { motion } from 'motion/react';
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { MotionReveal } from '@/components/ui/animations';
+
+/* -------------------------------------------------------------------------- */
+/* Hero 鈥?entrance stagger (eyebrow 鈫?H1 lines 鈫?copy 鈫?CTAs)                  */
+/* -------------------------------------------------------------------------- */
+
+export function HomeHero({ orgLegal }: { orgLegal: string }) {
+  return (
+    <section className="border-b border-ink-100">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <motion.div
+          className="mb-4 text-[11px] uppercase tracking-[1.5px] text-ink-500"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          A technical resource from {orgLegal}
+        </motion.div>
+
+        <h1 className="mb-6 max-w-3xl font-serif text-5xl font-normal leading-[1.1] tracking-tight text-ink-900 md:text-6xl">
+          <motion.span
+            className="block overflow-hidden"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+          >
+            The science of
+          </motion.span>
+          <motion.span
+            className="block overflow-hidden"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.18, ease: [0.21, 0.47, 0.32, 0.98] }}
+          >
+            cosmetic preservation.
+          </motion.span>
+        </h1>
+
+        <motion.p
+          className="mb-8 max-w-xl text-lg leading-relaxed text-ink-700"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.32 }}
+        >
+          Peer-reviewed guidance on preservative selection, challenge testing, and compliance across
+          EU, US, and APAC markets 鈥?written for formulators, by chemists.
+        </motion.p>
+
+        <motion.div
+          className="flex flex-wrap gap-3"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.44 }}
+        >
+          <LocalizedLink
+            href="/blog"
+            className="rounded-md bg-brand-800 px-5 py-2.5 text-sm text-white transition hover:bg-brand-900"
+          >
+            Browse the knowledge base
+          </LocalizedLink>
+          <LocalizedLink
+            href="/products/phenoxyethanol-supply"
+            className="rounded-md border border-ink-300 bg-white px-5 py-2.5 text-sm text-ink-900 transition hover:border-ink-500"
+          >
+            Request a custom quote
+          </LocalizedLink>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Trust strip                                                                 */
+/* -------------------------------------------------------------------------- */
+
+export function TrustStrip() {
+  const stats = [
+    { value: '14+', label: 'Years in cosmetic ingredients' },
+    { value: 'ISO 9001', label: 'Certified manufacturing' },
+    { value: '40+', label: 'Countries served' },
+  ];
+  return (
+    <section className="bg-paper">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-6 py-10 md:grid-cols-3">
+        {stats.map((s, i) => (
+          <MotionReveal key={s.label} delay={i * 0.08}>
+            <div className="font-serif text-2xl font-medium text-ink-900">{s.value}</div>
+            <div className="mt-0.5 text-sm text-ink-500">{s.label}</div>
+          </MotionReveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Latest research grid                                                        */
+/* -------------------------------------------------------------------------- */
+
+type Card = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  readingMinutes: number;
+  clusterLabel: string;
+};
+
+export function LatestResearchGrid({ cards }: { cards: Card[] }) {
+  return (
+    <section className="mx-auto max-w-6xl px-6 py-16">
+      <MotionReveal>
+        <div className="mb-8 flex items-end justify-between">
+          <h2 className="font-serif text-3xl font-normal text-ink-900">Latest from the knowledge base</h2>
+          <LocalizedLink href="/blog" className="text-sm text-brand-800 hover:text-brand-900">
+            View all 鈫?          </LocalizedLink>
+        </div>
+      </MotionReveal>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        {cards.map((c, i) => (
+          <MotionReveal key={c.slug} delay={i * 0.07}>
+            <LocalizedLink
+              href={`/blog/${c.slug}`}
+              className="group block h-full rounded-lg border border-ink-100 bg-white p-6 transition hover:-translate-y-0.5 hover:border-ink-300 hover:shadow-sm"
+            >
+              <div className="mb-2 text-[10px] uppercase tracking-[1.5px] text-brand-800">
+                {c.clusterLabel}
+              </div>
+              <h3 className="mb-3 font-serif text-xl font-normal leading-snug text-ink-900 group-hover:text-brand-900">
+                {c.title}
+              </h3>
+              <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-ink-500">{c.excerpt}</p>
+              <div className="text-xs text-ink-500">
+                {c.author} 路 {c.readingMinutes} min read
+              </div>
+            </LocalizedLink>
+          </MotionReveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
+
+===== DIR: blog\blocks =====
+
+Path                                           Length LastWriteTime        
+----                                           ------ -------------        
+src\components\blog\blocks\ComparisonTable.tsx   1496 2026-10-19  16:46:45 
+src\components\blog\blocks\FAQ.tsx               1026 2026-10-19  16:47:41 
+src\components\blog\blocks\LeadMagnetCTA.tsx      795 2026-10-19  16:46:45 
+src\components\blog\blocks\TLDRBox.tsx            475 2026-10-19  16:46:45 
+
+
+
+
+
+===== ARTICLE COMPONENT DIRS =====
+
+--- article-01 ---
+
+Name                    Length
+----                    ------
+PhenoxyDecisionTree.tsx   5333
+
+
+
+
+--- article-02 ---
+
+Name                    Length
+----                    ------
+CoAChecklist.tsx          4012
+MicPartitionChart.tsx     3434
+PairingDecisionTree.tsx   5351
+RegulationMatrix.tsx      3686
+
+
+
+
+--- article-03 ---
+
+Name                    Length
+----                    ------
+ChallengeTestMatrix.tsx   6878
+CompatibilityMatrix.tsx   4291
+
+
+
+
+--- article-04 ---
+
+Name                      Length
+----                      ------
+HurdlePairingMatrix.tsx     7488
+SpectrastatComparator.tsx   9574
+
+
+
+
+--- article-05 ---
+
+Name                   Length
+----                   ------
+EHGPairingMatrix.tsx     7319
+EHGUseCaseSplitter.tsx   3266
+
+
+
+
+--- article-06 ---
+
+Name                            Length
+----                            ------
+ChallengeTestDecisionWizard.tsx  10325
+StrainFailureMatrix.tsx           7124
+
+
+
+
+--- article-07 ---
+
+Name                             Length
+----                             ------
+EmulsifierCompatibilityGrid.tsx    5484
+EmulsionPreservationSelector.tsx   9311
+
+
+
+
+--- article-10 ---
+
+Name                                     Length
+----                                     ------
+HexanediolPriceBenchmarkTable.tsx          8124
+HexanediolSupplierTierDecisionMatrix.tsx   7257
+
+
+
+
+--- article-11 ---
+
+Name                       Length
+----                       ------
+BatchDriftTracker.tsx        6370
+SupplierAuditScorecard.tsx   3339
+
+
+
+
+--- article-12 ---
+
+Name                           Length
+----                           ------
+AnnexVEntryDecoder.tsx          14464
+CPSRDocumentationChecklist.tsx  11822
+
+
+
+
+
+===== DIR: edit\ (完整列表，判断最新deploy状态) =====
+
+Path                                                               Length LastWriteTime        
+----                                                               ------ -------------        
+edit\AnnexVEntryDecoder.tsx.txt                                     14464 2026-11-03  14:19:57 
+edit\app-layout.tsx.txt                                              2566 2026-10-19  16:46:54 
+edit\BatchDriftTracker.tsx.txt                                       6370 2026-11-02  16:09:04 
+edit\blog-registry-article-03-patch.txt                              1035 2026-10-21  10:52:37 
+edit\ChallengeTestDecisionWizard.tsx.txt                            10325 2026-10-23  11:42:15 
+edit\component-article-03-challenge-matrix.tsx.txt                   6878 2026-10-21  10:52:26 
+edit\component-article-03-compat-matrix.tsx.txt                      4291 2026-10-21  10:51:50 
+edit\component-article-09-PhenoxyPriceBenchmarkTable.tsx.txt         8666 2026-10-28  16:54:25 
+edit\component-article-09-SupplierTierDecisionMatrix.tsx.txt         8105 2026-10-28  16:54:25 
+edit\component-blog-article-layout.tsx.txt                           2960 2026-10-19  16:46:54 
+edit\component-blog-blocks-faq.tsx.txt                               1026 2026-10-19  16:46:54 
+edit\component-blog-list-client.tsx.txt                              3858 2026-10-19  16:46:54 
+edit\component-blog-toc.tsx.txt                                      5201 2026-10-19  16:46:54 
+edit\component-ehg-pairing-matrix.tsx.txt                            7319 2026-10-23  10:18:32 
+edit\component-ehg-usecase-splitter.tsx.txt                          3266 2026-10-23  10:18:32 
+edit\component-header.tsx.txt                                        1814 2026-10-19  16:46:54 
+edit\component-quote-modal.tsx.txt                                   5533 2026-10-19  16:46:54 
+edit\component-search-page-client.tsx.txt                            3772 2026-10-19  16:46:54 
+edit\component-search.tsx.txt                                       10198 2026-10-19  16:46:54 
+edit\component-ui-animations.tsx.txt                                 3563 2026-10-19  16:46:54 
+edit\CPSRDocumentationChecklist.tsx.txt                             11822 2026-11-03  14:19:57 
+edit\deploy-06.mjs                                                   4105 2026-10-23  11:42:15 
+edit\deploy-07.mjs                                                   5474 2026-10-26  17:26:39 
+edit\deploy-09.mjs                                                   4784 2026-10-28  16:54:25 
+edit\deploy-10.mjs                                                   5683 2026-10-30  15:55:12 
+edit\deploy-11.mjs                                                   2616 2026-11-02  16:09:04 
+edit\deploy-12.mjs                                                   7010 2026-11-03  14:19:57 
+edit\deploy-article-02.mjs                                           2982 2026-10-20  11:37:28 
+edit\deploy-article-03-1-2-hexanediol-tg.mjs                         3634 2026-10-21  10:53:01 
+edit\deploy-article-04-caprylhydroxamic-acid-tg.mjs                  2837 2026-10-22  16:23:01 
+edit\deploy-article-05.mjs                                           2391 2026-10-23  10:18:32 
+edit\deploy-phase1-ux.mjs                                            4509 2026-10-19  16:46:54 
+edit\HexanediolPriceBenchmarkTable.tsx.txt                           8124 2026-10-30  15:55:12 
+edit\HexanediolSupplierTierDecisionMatrix.tsx.txt                    7257 2026-10-30  15:55:12 
+edit\lib-blog-registry.ts.txt                                        3363 2026-10-19  16:46:54 
+edit\lib-toc.ts.txt                                                   756 2026-10-19  16:46:54 
+edit\page-article-01.tsx.txt                                        10780 2026-10-19  16:46:54 
+edit\page-article-03-1-2-hexanediol-tg.tsx.txt                      23887 2026-10-21  10:51:26 
+edit\page-article-05-ethylhexylglycerin-technical-guide.tsx.txt     35141 2026-10-23  10:18:32 
+edit\page-article-06-iso-11930-challenge-test-protocol.tsx.txt      40558 2026-10-23  11:42:15 
+edit\page-article-07-emulsion-preservation.tsx.txt                  32116 2026-10-26  17:26:39 
+edit\page-article-09-phenoxyethanol-supplier-guide.tsx.txt          40076 2026-10-28  16:54:25 
+edit\page-article-10-hexanediol-sg.tsx.txt                          30745 2026-10-30  15:55:12 
+edit\page-article-11-preservative-coa-batch-consistency.tsx.txt     31551 2026-11-02  16:09:04 
+edit\page-article-12-eu-annex-v-preservative-compliance.tsx.txt     39683 2026-11-03  14:19:57 
+edit\page-home-client.tsx.txt                                        5747 2026-10-19  16:46:54 
+edit\page-home.tsx.txt                                               1015 2026-10-19  16:46:54 
+edit\page-search.tsx.txt                                              579 2026-10-19  16:46:54 
+edit\patch-phase1-isolation-v2.mjs                                   4356 2026-10-20  10:09:28 
+edit\patch-phase1-isolation-v3.mjs                                   3918 2026-10-20  10:13:24 
+edit\patch-phase1-isolation-v4.mjs                                   3671 2026-10-20  10:15:37 
+edit\patch-phase1-isolation-v5.mjs                                   3888 2026-10-20  10:20:49 
+edit\patch-phase1-isolation.mjs                                      6215 2026-10-20  10:03:05 
+edit\README.md                                                       5914 2026-10-20  11:37:29 
+edit\registry-entry-06.ts.txt                                        2586 2026-10-23  11:42:15 
+edit\registry-entry-07.ts.txt                                        2082 2026-10-26  17:26:39 
+edit\registry-entry-09.ts.txt                                        1892 2026-10-28  16:54:25 
+edit\registry-entry-10.ts.txt                                        2060 2026-10-30  15:55:12 
+edit\registry-entry-11.ts.txt                                        2144 2026-11-02  16:09:04 
+edit\registry-entry-12.ts.txt                                        2681 2026-11-03  14:19:57 
+edit\registry-entry.txt                                              2608 2026-10-23  10:18:32 
+edit\registry-patch.mjs                                              5987 2026-10-23  15:29:42 
+edit\scripts-build-search-index.mjs.txt                              3674 2026-10-19  16:46:54 
+edit\StrainFailureMatrix.tsx.txt                                     7124 2026-10-23  11:42:15 
+edit\SupplierAuditScorecard.tsx.txt                                  3339 2026-11-02  16:09:04 
+edit\templates\component-article-04-hurdle-pairing-matrix.tsx.txt    7488 2026-10-22  16:23:01 
+edit\templates\component-article-04-spectrastat-comparator.tsx.txt   9574 2026-10-22  16:23:01 
+edit\templates\component-article02-coa-checklist.tsx.txt             4012 2026-10-20  11:37:28 
+edit\templates\component-article02-mic-partition-chart.tsx.txt       3434 2026-10-20  11:37:28 
+edit\templates\component-article02-pairing-decision-tree.tsx.txt     5351 2026-10-20  11:37:28 
+edit\templates\component-article02-regulation-matrix.tsx.txt         3686 2026-10-20  11:37:28 
+edit\templates\page-article-02-phenoxyethanol-tg.tsx.txt            23347 2026-10-20  11:37:28 
+edit\templates\page-article-04-caprylhydroxamic-acid-tg.tsx.txt     40505 2026-10-22  16:23:01 
+edit\templates\registry-entry-article-02.ts.txt                      1033 2026-10-20  11:37:28 
+edit\templates\registry-entry-article-04.ts.txt                      2577 2026-10-22  16:23:01 
+
+
+
+
+
+===== LIVE ARTICLE SLUGS (src\app\blog\<slug>\page.tsx 存在的) =====
+
+1-2-hexanediol-supplier-guide                
+1-2-hexanediol-technical-guide               
+caprylhydroxamic-acid-technical-guide        
+ethylhexylglycerin-technical-guide           
+eu-annex-v-preservative-compliance-guide     
+how-to-preserve-cosmetic-emulsion            
+iso-11930-challenge-test-protocol            
+phenoxyethanol-ethylhexylglycerin-combination
+phenoxyethanol-technical-guide               
+preservative-coa-batch-consistency           
+
+
+

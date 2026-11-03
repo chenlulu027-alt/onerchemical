@@ -1,0 +1,2198 @@
+﻿
+
+===== FILE: src\app\blog\phenoxyethanol-supplier-guide\page.tsx =====
+<<< FILE NOT FOUND >>>
+
+
+===== FILE: src\app\blog\1-2-hexanediol-supplier-guide\page.tsx =====
+import type { Metadata } from 'next';
+import { BlogArticleLayout } from '@/components/blog/BlogArticleLayout';
+import { TLDRBox } from '@/components/blog/blocks/TLDRBox';
+import { FAQ } from '@/components/blog/blocks/FAQ';
+import { LeadMagnetCTA } from '@/components/blog/blocks/LeadMagnetCTA';
+import { JsonLd } from '@/components/JsonLd';
+import HexanediolPriceBenchmarkTable from '@/components/blog/article-10/HexanediolPriceBenchmarkTable';
+import HexanediolSupplierTierDecisionMatrix from '@/components/blog/article-10/HexanediolSupplierTierDecisionMatrix';
+import { getArticle } from '@/lib/blog-registry';
+
+const SLUG = '1-2-hexanediol-supplier-guide';
+const SITE = 'https://onerchemical.com';
+const CANONICAL = `${SITE}/blog/${SLUG}`;
+const PUBLISHED = '2026-10-30T00:00:00.000Z';
+const MODIFIED = '2026-10-30T00:00:00.000Z';
+
+export const metadata: Metadata = {
+  title: '1,2-Hexanediol Supplier Guide: Price, CoA Red Flags, 100kg MOQ (2026)',
+  description:
+    '2026 FOB China price benchmarks across 4 supplier tiers (USD 12-70/kg), 7-field CoA red flags specific to 1,2-hexanediol, and a 100kg MOQ procurement SOP built from a Berlin indie-brand case where cheapest was not cheapest.',
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    type: 'article',
+    url: CANONICAL,
+    siteName: 'Onerchemical',
+    title: '1,2-Hexanediol Supplier Guide (2026): Price, CoA, 100kg MOQ',
+    description:
+      'Four-tier 2026 price benchmarks, isomer-purity CoA red flags, and a 100kg-sweet-spot procurement SOP for 1,2-hexanediol 鈥?written for indie beauty formulators sourcing direct.',
+    publishedTime: PUBLISHED,
+    modifiedTime: MODIFIED,
+    authors: [`${SITE}/yang-ruosong/`],
+    images: [
+      {
+        url: `${SITE}/images/blog/article-10/hero.jpg`,
+        width: 1600,
+        height: 900,
+        alt: '1,2-Hexanediol being measured into a 100kg stainless drum at a Jiangsu cosmetic-grade filling line',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '1,2-Hexanediol Supplier Guide (2026)',
+    description:
+      'FOB China 2026 price benchmarks, isomer-purity CoA red flags, 100kg MOQ procurement SOP.',
+  },
+};
+
+export default function Page() {
+  const article = getArticle(SLUG);
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline:
+      '1,2-Hexanediol Supplier Guide: Price Benchmarks, CoA Red Flags &amp; 100kg MOQ Playbook (2026)',
+    description:
+      '2026 FOB China price benchmarks across 4 supplier tiers (USD 12-70/kg), 7-field CoA red flags, and a 100kg MOQ procurement SOP for 1,2-hexanediol in cosmetic preservation.',
+    mainEntityOfPage: CANONICAL,
+    datePublished: PUBLISHED,
+    dateModified: MODIFIED,
+    author: {
+      '@type': 'Person',
+      name: 'Yang Ruosong',
+      url: `${SITE}/yang-ruosong/`,
+      jobTitle: 'Preservation Sourcing Specialist',
+      worksFor: { '@type': 'Organization', name: 'Onerchemical' },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Onerchemical',
+      url: SITE,
+      logo: { '@type': 'ImageObject', url: `${SITE}/logo.png` },
+    },
+    image: `${SITE}/images/blog/article-10/hero.jpg`,
+    about: [
+      { '@type': 'Thing', name: '1,2-Hexanediol' },
+      { '@type': 'Thing', name: 'Cosmetic Preservative Sourcing' },
+      { '@type': 'Thing', name: 'CAS 6920-22-5' },
+    ],
+    keywords:
+      '1,2-hexanediol supplier, hexanediol price, hexanediol MOQ, hexanediol CoA, Hydrolite 6, cosmetic preservative sourcing',
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Sourcing',
+        item: `${SITE}/blog?cluster=sourcing`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: '1,2-Hexanediol Supplier Guide',
+        item: CANONICAL,
+      },
+    ],
+  };
+
+  const faqItems = [
+    {
+      question: 'Can I trust the USD 10/kg 1,2-hexanediol listings on Alibaba?',
+      answer:
+        'Below USD 11/kg at 100kg is below current Jiangsu/Shandong direct-plant cost in Q4 2026. Three failure modes are typical: (1) sample bait-and-switch 鈥?first batch GC-pure, follow-ups blended with 1,6-hexanediol or industrial-grade; (2) non-cosmetic hazmat residue (residual catalyst, aldehydes) that fails a serious challenge test; (3) the listing is a reseller sitting on 25kg of unknown origin stock. If budget is genuinely tight, choose a trader at USD 14-16/kg with a verified repack site rather than a USD 9 listing from a trading company with no CoA history.',
+    },
+    {
+      question: 'What does USD 15 vs USD 25 actually buy me at 100kg?',
+      answer:
+        'At USD 15/kg you are usually buying Jiangsu cosmetic-grade monomer repacked by a trader with ISO 22716 facility audit, a 95-98% GC CoA, and 10-15 day lead time from a Dongguan warehouse. At USD 25/kg you are buying either Korean BESTCARE500-type generic (99.5% GC, documented isomer separation, pharma-adjacent facility) or a trader-held Hydrolite 6 analog with full REACH + non-animal declaration pack. The USD 10 gap buys documentation defensibility 鈥?not more active ingredient per gram.',
+    },
+    {
+      question: 'Is Symrise Hydrolite 6 the only credible branded choice for EU indie brands?',
+      answer:
+        'For "clean beauty retailer" paperwork gates (Credo, Sephora Clean, Whole Foods Premium Body Care), branded Hydrolite 6 still clears audits fastest because the brand file is already on reviewer desks. Minasolve offers a comparable European-manufactured option. Korean BESTCARE500-grade and Japanese Nagase SR grades pass most retailer gates when paired with your own third-party test report. The USD 45-70/kg Hydrolite 6 price buys brand-recognition shortcut; it does not buy a different molecule.',
+    },
+    {
+      question: 'How do I verify the real manufacturer behind a Chinese 1,2-hexanediol quote?',
+      answer:
+        'Request three artifacts together: (1) a facility GMP/ISO 22716 certificate with the production address printed, not a scanned trading-company letterhead; (2) the latest batch CoA where the production site field matches the certificate address; (3) a 30-second plant-walk video with the day\'s batch number on the whiteboard. Cross-check the address against Jiangsu/Shandong provincial industrial park registries. 80%+ of real 1,2-hexanediol cosmetic-grade capacity in China is concentrated in a short list of plants 鈥?a trader cannot name three real producers in the region, that trader is itself the first repack layer.',
+    },
+    {
+      question: 'What is a realistic trial order for 1,2-hexanediol in 2026?',
+      answer:
+        'Direct plants: 100kg minimum, 500g free sample standard. Traders: 25kg flex-MOQ common, 250-500g sample often charged at USD 50-80 refunded against first order. Korean/Japanese grades: 25kg single-drum minimum through local distributor, 100g sample free. Branded Hydrolite 6: 20kg pail minimum through Symrise distributor, formulation sample pack free on application. Below 25kg you are paying courier-shipped repack premium (USD 35-50/kg effective).',
+    },
+    {
+      question: 'How do I detect a source-plant switch between batches?',
+      answer:
+        'Lock in three fingerprint fields on your incoming QC: (1) GC assay 鈥?a 0.5% drift between batches from the same supposed plant is normal, more than 1.5% signals a different synthesis route; (2) water content by Karl Fischer 鈥?the baseline moisture signature of a plant\'s drying step is stable; (3) trace isomer peak pattern on the GC trace itself (ask for the chromatogram, not just the assay number). A supplier that cannot or will not send the raw chromatogram is a supplier that cannot defend plant-of-origin consistency.',
+    },
+    {
+      question: 'Which Jiangsu plants are actually direct producers vs trader repackers?',
+      answer:
+        'Public naming of plants here is intentionally avoided 鈥?the plant roster shifts quarterly as capacity consolidates. A direct dossier request to our sourcing desk returns the current verified-direct list with GMP cert copies. The decision rule to apply yourself: a direct plant will have a cosmetic raw material registration number tied to the physical production address, will accept a plant visit with 2 weeks notice, and will not resist invoicing from the same legal entity that signs the CoA.',
+    },
+    {
+      question: 'What are the real price-break tiers for 1,2-hexanediol?',
+      answer:
+        'Current 2026 Q4 FOB China for Jiangsu cosmetic-grade monomer: 25kg USD 16-19, 100kg USD 12-14, 500kg USD 10-12, 1000kg+ USD 9-11. Trader repack adds USD 2-4/kg at every tier. Korean/Japanese grades scale less 鈥?25kg USD 24-28, 100kg USD 18-22, 500kg USD 16-19. Branded Hydrolite 6 holds price with volume (USD 55-70/kg sustained to 500kg). The sharpest break for an indie brand is 25kg to 100kg (30-40% unit drop); the next break at 500kg is only 10-15% and usually not worth the inventory cost.',
+    },
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  };
+
+  return (
+    <>
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
+
+      <BlogArticleLayout
+        cluster="sourcing"
+        title="1,2-Hexanediol Supplier Guide: Price Benchmarks, CoA Red Flags &amp; 100kg MOQ Playbook (2026)"
+        excerpt="2026 FOB China price benchmarks across 4 supplier tiers (USD 12-70/kg), 7-field CoA red flags specific to 1,2-hexanediol, and a 100kg MOQ procurement SOP built from a Berlin indie-brand case where the cheapest quote was not cheapest in use."
+        datePublished={PUBLISHED}
+        readingMinutes={14}
+        toc={article?.toc}
+      >
+        <TLDRBox>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              2026 Q4 FOB China 100kg benchmarks: Chinese commodity USD 12-14/kg, trader repack
+              USD 14-18/kg, Korean/Japanese pharma-adjacent USD 18-26/kg, branded EU (Hydrolite 6)
+              USD 45-70/kg.
+            </li>
+            <li>
+              100kg is the real sweet spot for indie brands: the 25鈫?00kg price break is 30-40%,
+              the 100鈫?00kg break is only 10-15% and usually not worth the inventory cost.
+            </li>
+            <li>
+              Seven CoA fields matter for 1,2-hexanediol specifically 鈥?GC assay, isomer purity
+              (1,2- vs 1,6- vs mixed), KF water content, ICP-MS heavy metals, GC-headspace residual
+              solvents, microbial load, and verifiable batch-plant-date triplet.
+            </li>
+            <li>
+              USD 10 under genuine Jiangsu direct-plant cost is a quality flag, not a bargain 鈥?              the three failure modes are isomer blending, residual-catalyst hazmat, and
+              bait-and-switch between sample and bulk.
+            </li>
+            <li>
+              100kg MOQ, 7-10 day lead time, full COA + SDS + REACH + non-animal declaration pack
+              available from our sourcing desk 鈥?request a dossier below for the current
+              verified-direct plant list.
+            </li>
+          </ul>
+        </TLDRBox>
+
+        <h2 id="berlin-opener">
+          The USD 2,400 Berlin indie-brand four-quote spread
+        </h2>
+        <p>
+          In Q2 2026 a Berlin indie serum brand reached our desk with four live quotes for 100kg of
+          1,2-hexanediol: USD 9.80/kg from a Shenzhen trading company, USD 14.50/kg from a Jiangsu
+          repack trader, USD 22/kg from a Korean distributor citing BESTCARE500-equivalent spec,
+          and USD 58/kg from a Symrise Hydrolite 6 reseller. On price alone the spread is 5.9脳. The
+          brand had already paid for a 500g sample from the USD 9.80 quote and the formulator liked
+          the smell and viscosity.
+        </p>
+        <p>
+          The brand chose the USD 9.80/kg quote and placed a 100kg order. Six weeks later an ISO
+          11930 Challenge Test on the production emulsion failed at day 14 鈥?<em>P. aeruginosa</em>{' '}
+          regrowth from 10<sup>6</sup> to 10<sup>5</sup> instead of the required 2-log reduction.
+          Reformulation, re-testing and a 100kg write-off landed at EUR 2,400 against the EUR 100
+          they thought they had saved against the USD 14.50 trader.
+        </p>
+        <p>
+          Post-mortem GC on retained sample versus the originally-sent 500g: the sample was 99.1%
+          1,2-hexanediol; the bulk shipment was 94.2% 1,2-hexanediol with 3.8% 1,6-hexanediol and
+          2.0% unidentified diol residues. The bulk was within commodity industrial-grade spec and
+          failed cosmetic antimicrobial performance precisely because the 1,6-isomer does not share
+          1,2-hexanediol&apos;s membrane-disruption activity.
+        </p>
+        <p>
+          This article exists because that failure mode is systematic, not a one-off. The next nine
+          sections are the decoder, the pricing floor, the CoA fields that catch it, and the
+          procurement SOP that prevents it.
+        </p>
+
+        <h2 id="three-tier-decoder">
+          Three-tier supplier decoder for 1,2-hexanediol
+        </h2>
+        <p>
+          The global 1,2-hexanediol cosmetic market segments cleanly into four supply tiers. The
+          molecule is identical in a correctly-run plant at any tier; what differs is documentation
+          density, batch-to-batch isomer-purity consistency, and the paperwork that clean-beauty
+          retailers accept at audit.
+        </p>
+        <h3 id="tier-1-chinese-commodity">Tier 1 鈥?Chinese commodity (Jiangsu / Shandong direct plant)</h3>
+        <p>
+          80%+ of global cosmetic-grade 1,2-hexanediol capacity sits in a short list of Jiangsu and
+          Shandong plants that also run industrial-grade output for coatings and resin. Cosmetic
+          lines run as segregated campaigns with dedicated distillation. CoA depth: GC assay +
+          basic heavy metals + microbial. Minimum: 100kg. Price band: USD 12-14/kg at 100kg
+          (Q4 2026).
+        </p>
+        <h3 id="tier-2-trader-repack">Tier 2 鈥?Trader / repack (Dongguan, Shanghai, Hong Kong)</h3>
+        <p>
+          Traders buy from Tier 1 in 1000kg lots, repack into 25kg pails or 200kg drums in an
+          ISO 22716-audited facility, and add their own CoA layer. Flex MOQ 25-200kg. Lead time
+          10-15 days from warehouse stock. Price band: USD 14-18/kg at 100kg. For an indie brand
+          below 400kg annual pull, trader economics beat going direct 鈥?the direct-plant minimum
+          and dossier-management overhead do not amortize.
+        </p>
+        <h3 id="tier-3-korean-japanese">Tier 3 鈥?Korean / Japanese pharma-adjacent</h3>
+        <p>
+          Korean grades (BESTCARE500 and equivalents) and Japanese grades (Nagase and Daito-grade
+          lines) run on pharma-adjacent plants with documented isomer-separation steps and tighter
+          GC specifications (99.5% minimum). The paperwork pack includes REACH pre-registration,
+          non-animal declaration, and formulation-support literature. Minimum typically 25kg
+          single-drum. Price band: USD 18-26/kg at 100kg.
+        </p>
+        <h3 id="tier-4-branded-eu">Tier 4 鈥?Branded EU (Symrise Hydrolite 6, Minasolve)</h3>
+        <p>
+          Hydrolite 6 is Symrise&apos;s branded 1,2-hexanediol with European manufacturing, full
+          Ecocert &amp; COSMOS certification options, and a brand file already on major
+          clean-beauty retailer desks. Minasolve offers a comparable European-sourced alternative.
+          Price band: USD 45-70/kg at 100kg, held even at 500kg. You are paying for brand
+          recognition that shortcuts retailer gatekeeper audits 鈥?not for a different molecule.
+        </p>
+
+        <h2 id="100kg-sweet-spot">
+          Why 100kg MOQ is the sweet spot for indie formulators
+        </h2>
+        <p>
+          Three economic breakpoints shape the 1,2-hexanediol MOQ decision for an indie brand
+          pulling under 1000kg/year:
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>25 to 100kg:</strong> 30-40% unit price drop. The repack premium evaporates
+            because 100kg fits a standard HDPE pail. Freight per kg roughly halves.
+          </li>
+          <li>
+            <strong>100 to 500kg:</strong> 10-15% unit price drop. Capital tied up in inventory
+            grows 5脳 for a 10-15% saving 鈥?this breakpoint only makes sense when a brand has 12+
+            months of validated annual pull data.
+          </li>
+          <li>
+            <strong>500kg to 1000kg (direct-plant threshold):</strong> an additional 10-12% drop,
+            but adds dossier-maintenance overhead (CoA archive, batch traceability, direct audit
+            scheduling) that is only worth paying for above ~800kg/year sustained demand.
+          </li>
+        </ul>
+        <p>
+          For a brand launching with 3-6 SKU preserved by a dual phenoxy + hexanediol system at
+          1.5% hexanediol inclusion, 100kg of 1,2-hexanediol supports roughly 6,600kg of finished
+          emulsion 鈥?typically 12-18 months of first-launch demand. Buying 100kg from a verified
+          trader at USD 14-18/kg is the arithmetically correct answer for Year 1.
+        </p>
+
+        <h2 id="price-benchmark-table">
+          2026 price benchmark table 鈥?tier &times; quantity
+        </h2>
+        <p>
+          Prices below are FOB China (Tier 1 &amp; 2) or ex-works origin (Tier 3 &amp; 4),
+          cosmetic-grade only, excluding freight and import duties, verified against four
+          supplier-side quotes we gathered in October 2026. Use the filter to see how tier choice
+          and order quantity move the per-kg cost.
+        </p>
+        <HexanediolPriceBenchmarkTable />
+
+        <h2 id="coa-red-flags">
+          Seven CoA red flags specific to 1,2-hexanediol
+        </h2>
+        <p>
+          A CoA that passes commodity-industrial spec can still fail cosmetic preservation. These
+          are the seven fields that catch the three failure modes seen in real indie-brand
+          incidents (isomer blending, residual catalyst, bait-and-switch).
+        </p>
+        <h3 id="coa-1-assay">1. GC assay (not just &quot;purity&quot;)</h3>
+        <p>
+          Specification: GC assay by area% on a method capable of resolving C6-diol isomers. Minimum
+          99.0% for Tier 1-2, 99.5% for Tier 3-4. A CoA that reports &quot;purity: 99.0%&quot; with
+          no method citation is not an assay. Reject.
+        </p>
+        <h3 id="coa-2-isomer">2. Isomer purity 鈥?the field most CoAs omit</h3>
+        <p>
+          Specification: individual peaks for 1,6-hexanediol, 2,5-hexanediol, and mixed diol
+          residues each &lt;0.3%, total non-1,2-isomers &lt;0.5%. This is the field that the Berlin
+          case bulk shipment failed. Ask for the GC chromatogram image, not just the number. A
+          supplier that will not send the chromatogram cannot defend the number.
+        </p>
+        <h3 id="coa-3-water">3. Water content (Karl Fischer titration)</h3>
+        <p>
+          Specification: &le;0.3% by KF. The baseline moisture signature of a given plant&apos;s
+          drying step is stable batch-to-batch; a KF value that drifts more than 0.1% across three
+          consecutive batches from the same supposed plant is a plant-switch flag.
+        </p>
+        <h3 id="coa-4-heavy-metals">4. Heavy metals (ICP-MS, not colorimetric)</h3>
+        <p>
+          Specification: Pb &le;5 ppm, As &le;3 ppm, Cd &le;3 ppm, Hg &le;1 ppm, total heavy metals
+          &le;10 ppm, by ICP-MS. Colorimetric &quot;passes USP &lt;231&gt;&quot; is 1990s
+          methodology and insufficient for 2026 EU 1223/2009 importer defence.
+        </p>
+        <h3 id="coa-5-residual-solvents">5. Residual solvents (GC headspace)</h3>
+        <p>
+          Specification: methanol, ethanol, acetone, and process-specific solvents each &le;500 ppm
+          by GC headspace. A missing residual-solvent panel usually means the plant ran the
+          cosmetic campaign on shared equipment with an industrial run and skipped the clearance
+          verification.
+        </p>
+        <h3 id="coa-6-microbial">6. Microbial load</h3>
+        <p>
+          Specification: TAMC &le;100 CFU/g, TYMC &le;10 CFU/g, absence of <em>P. aeruginosa</em>,{' '}
+          <em>S. aureus</em>, <em>E. coli</em> per gram. 1,2-hexanediol is self-preserving at
+          supplied neat concentration, but incoming CoAs should still carry the panel 鈥?its absence
+          suggests the plant does not run cosmetic-grade microbial release testing.
+        </p>
+        <h3 id="coa-7-batch-triplet">7. Batch number + production date + production site</h3>
+        <p>
+          Specification: all three present, on the CoA, matching the invoice and the GMP/ISO 22716
+          facility certificate. A CoA with batch number but no production site, or with a
+          production site that does not match the certified facility, means the material was
+          repacked by an entity that does not have the production records to defend it.
+        </p>
+
+        <h2 id="supplier-decision-matrix">
+          Supplier tier decision matrix 鈥?rank by your real priorities
+        </h2>
+        <p>
+          Four priorities drive the tier choice: unit price, certification depth, lead time, and
+          traceability. Different indie brands weight them differently depending on retailer gates,
+          cash runway, and formulation stage. Adjust the sliders to see which tier ranks first for
+          your situation.
+        </p>
+        <HexanediolSupplierTierDecisionMatrix />
+
+        <h2 id="compliance-paperwork">
+          Six-document compliance paperwork checklist (cosmetic-grade import)
+        </h2>
+        <p>
+          For a 100kg cosmetic-grade import of 1,2-hexanediol into EU, US, or developed-Asia
+          markets, this is the minimum paperwork set that keeps the shipment moving through customs
+          and defensible at post-market audit.
+        </p>
+        <ol className="list-decimal pl-6 space-y-2">
+          <li>
+            <strong>CoA + SDS + TDS triplet</strong> 鈥?all three on supplier letterhead, batch
+            numbers consistent across all three documents.
+          </li>
+          <li>
+            <strong>GMP / ISO 22716 facility certificate</strong> 鈥?current, with the production
+            site address matching the CoA.
+          </li>
+          <li>
+            <strong>REACH pre-registration confirmation</strong> (EU-bound shipments) 鈥?supplier
+            or your EU importer-of-record carries the registration.
+          </li>
+          <li>
+            <strong>Certificate of Origin + commercial invoice</strong> 鈥?HS code 2905.39, country
+            of origin matching the facility certificate.
+          </li>
+          <li>
+            <strong>Third-party test report</strong> 鈥?SGS, Intertek, or BV test on retained
+            sample of the shipped lot (not the historical typical).
+          </li>
+          <li>
+            <strong>Non-animal testing declaration</strong> 鈥?mandatory for EU 1223/2009, India,
+            and increasingly US retailer audit (Credo, Sephora Clean).
+          </li>
+        </ol>
+
+        <h2 id="regulatory-map">
+          Five-market regulatory snapshot (importer responsibility)
+        </h2>
+        <p>
+          1,2-hexanediol is not listed in EU Cosmetic Regulation 1223/2009 Annex V. It is used as a
+          multifunctional skin-conditioning / humectant ingredient with incidental antimicrobial
+          activity 鈥?the regulatory handling differs materially by market.
+        </p>
+        <h3 id="reg-eu">EU 鈥?Regulation 1223/2009</h3>
+        <p>
+          Non-Annex V. INCI name &quot;Hexylene Glycol&quot; is a distinct substance (do not
+          substitute). CPNP notification required on finished product; supplier CoA + REACH
+          evidence folded into Product Information File. Importer-of-record responsibility sits
+          with the EU-based entity.
+        </p>
+        <h3 id="reg-us">USA 鈥?MoCRA</h3>
+        <p>
+          Facility registration required (effective 2024 enforcement). No preservative-specific
+          cap. Safety substantiation records must support use level; typical 0.5-3% as
+          multifunctional booster.
+        </p>
+        <h3 id="reg-china">China 鈥?IECIC 2021</h3>
+        <p>
+          1,2-hexanediol is on the IECIC inventory under its CAS 6920-22-5. New-ingredient filing
+          not required. Notified finished products must declare the ingredient at the use level in
+          the formula.
+        </p>
+        <h3 id="reg-japan">Japan 鈥?Quasi-Drug &amp; Cosmetic</h3>
+        <p>
+          Permitted in general cosmetics without a positive-list cap. For medicated / quasi-drug
+          categories, pharmacopeia-grade purity documentation required 鈥?Tier 3 (Japanese) or Tier
+          4 grades fit this gate.
+        </p>
+        <h3 id="reg-korea">Korea 鈥?KFDA (MFDS)</h3>
+        <p>
+          Permitted in general cosmetics. Functional-cosmetic category (brightening, anti-wrinkle,
+          sunscreen) requires finished-product efficacy filing but does not restrict 1,2-hexanediol
+          at ingredient level.
+        </p>
+
+        <h2 id="procurement-sop">
+          Seven-step procurement SOP (RFQ to receipt QC)
+        </h2>
+        <p>
+          Apply these steps in order for every new supplier. Steps 2 and 7 are the two that catch
+          the Berlin failure mode before it ships.
+        </p>
+        <ol className="list-decimal pl-6 space-y-3">
+          <li>
+            <strong>Issue RFQ with the 7 CoA fields spelled out.</strong> Specify assay method,
+            isomer purity threshold, KF water, ICP-MS panel, GC-headspace solvent panel, microbial
+            panel, batch-site-date triplet requirement. Suppliers who cannot answer at RFQ stage
+            drop out before they waste your sample budget.
+          </li>
+          <li>
+            <strong>Dossier audit before sample.</strong> Request facility certificate, latest
+            typical CoA with GC chromatogram, and REACH / regulatory pack. Verify production site
+            address matches between all three. This step rejects 40-60% of first-contact
+            suppliers.
+          </li>
+          <li>
+            <strong>Sample order (500g free from Tier 1-2; 250-500g paid USD 50-80 from traders;
+            100g free from Tier 3-4).</strong> Receive with batch number 鈥?this becomes your
+            retained sample for later chromatogram comparison.
+          </li>
+          <li>
+            <strong>Payment terms 鈥?30/70 T/T is the default.</strong> 30% deposit against pro
+            forma invoice, 70% against B/L copy. Avoid full-advance for first order; reject
+            suppliers who insist.
+          </li>
+          <li>
+            <strong>Pre-shipment inspection (SGS or BV) for first order above 100kg.</strong> USD
+            300-450 one-time cost. The inspector pulls samples from the actual drums, not
+            supplier-provided retains.
+          </li>
+          <li>
+            <strong>Incoterm choice 鈥?FOB China for 100kg+ to a freight-forwarder relationship,
+            EXW only if your forwarder has China pickup capability.</strong> CIF only when your
+            volume genuinely does not justify a forwarder relationship.
+          </li>
+          <li>
+            <strong>Receipt QC 鈥?mandatory GC spot-check against retained sample chromatogram.</strong>{' '}
+            This is the step that caught the Berlin isomer blend. In-house GC is ideal; local
+            contract lab GC run (USD 80-150) is the realistic indie-brand version.
+          </li>
+        </ol>
+
+        <LeadMagnetCTA
+          title="Verified-direct Jiangsu plant list &amp; CoA template pack"
+          body="Current (Q4 2026) list of verified-direct 1,2-hexanediol production sites in Jiangsu/Shandong, with GMP certificate copies, a GC chromatogram comparison template, and the 7-field RFQ template you can send to any supplier tomorrow. Sent to your inbox within 2 business hours."
+          cta="Request the sourcing dossier"
+          topic="hexanediol-sg-dossier"
+        />
+
+        <FAQ
+          heading="1,2-Hexanediol procurement FAQ"
+          id="hexanediol-faq"
+          items={faqItems}
+        />
+
+        <aside className="mt-16 rounded-lg border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900">
+          <h3 className="text-base font-semibold mb-2">About the author</h3>
+          <p className="text-sm text-neutral-700 dark:text-neutral-300">
+            <strong>Yang Ruosong</strong> is Onerchemical&apos;s preservation sourcing specialist,
+            focused on direct-plant and verified-trader supply of preservation raw materials for
+            indie beauty brands and small-to-mid formulators. Day-to-day work covers RFQ triage,
+            CoA defensibility audits, 100kg MOQ coordination, and the paperwork pack that keeps
+            cosmetic-grade imports moving through EU, US and APAC customs. Read more at{' '}
+            <a href="/yang-ruosong/" className="underline">
+              /yang-ruosong/
+            </a>
+            .
+          </p>
+        </aside>
+
+        <section className="mt-12">
+          <h2 id="related-reading">Related reading</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <a href="/blog/1-2-hexanediol-technical-guide">
+                1,2-Hexanediol Technical Guide
+              </a>{' '}
+              鈥?mechanism, usage rate matrix, pairing compatibility.
+            </li>
+            <li>
+              <a href="/blog/phenoxyethanol-vs-1-2-hexanediol">
+                Phenoxyethanol vs 1,2-Hexanediol
+              </a>{' '}
+              鈥?the broad-spectrum matchup and cost-in-use math.
+            </li>
+            <li>
+              <a href="/blog/phenoxyethanol-supplier-guide">
+                Phenoxyethanol Supplier Guide
+              </a>{' '}
+              鈥?sister sourcing guide, same tier framework.
+            </li>
+          </ul>
+        </section>
+      </BlogArticleLayout>
+    </>
+  );
+}
+
+
+
+===== FILE: src\components\blog\BlogArticleLayout.tsx =====
+import type { ReactNode } from 'react';
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { CLUSTERS, type ClusterKey } from '@/lib/blog-registry';
+import { AUTHOR } from '@/lib/seo';
+import type { TOCEntry } from '@/lib/toc';
+import { TOCDesktop, TOCMobile } from '@/components/blog/TOC';
+import { ScrollProgressBar, BackToTop } from '@/components/ui/animations';
+
+type Props = {
+  cluster: ClusterKey;
+  title: string;
+  excerpt: string;
+  datePublished: string;
+  readingMinutes: number;
+  toc?: TOCEntry[];
+  children: ReactNode;
+};
+
+export function BlogArticleLayout({
+  cluster,
+  title,
+  excerpt,
+  datePublished,
+  readingMinutes,
+  toc,
+  children,
+}: Props) {
+  const clusterMeta = CLUSTERS[cluster];
+  const hasTOC = !!toc && toc.length > 0;
+
+  return (
+    <>
+      <ScrollProgressBar />
+
+      <article className="mx-auto max-w-6xl px-6 py-12">
+        <nav aria-label="Breadcrumb" className="mb-8 text-xs text-ink-500">
+          <LocalizedLink href="/" className="hover:text-brand-800">Home</LocalizedLink>
+          <span className="mx-2">/</span>
+          <LocalizedLink href="/blog" className="hover:text-brand-800">Research</LocalizedLink>
+          <span className="mx-2">/</span>
+          <span className="text-ink-700">{clusterMeta.label}</span>
+        </nav>
+
+        <header className="mb-10 border-b border-ink-100 pb-10">
+          <div className="mb-3 text-[11px] uppercase tracking-[1.5px] text-brand-800">
+            {clusterMeta.label}
+          </div>
+          <h1 className="mb-4 font-serif text-4xl font-normal leading-tight tracking-tight text-ink-900 md:text-[42px]">
+            {title}
+          </h1>
+          <p className="mb-6 max-w-3xl text-lg leading-relaxed text-ink-500">{excerpt}</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ink-500">
+            <span>
+              By{' '}
+              <a href={AUTHOR.profileUrl} target="_blank" rel="noopener author" className="text-brand-800 hover:underline">
+                {AUTHOR.name}
+              </a>
+            </span>
+            <span>
+              Published{' '}
+              <time dateTime={datePublished}>
+                {new Date(datePublished).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+            </span>
+            <span>{readingMinutes} min read</span>
+          </div>
+        </header>
+
+        {hasTOC ? (
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_220px]">
+            <div className="min-w-0">
+              <TOCMobile entries={toc!} />
+              <div className="prose-blog">{children}</div>
+            </div>
+            <TOCDesktop entries={toc!} />
+          </div>
+        ) : (
+          <div className="mx-auto max-w-3xl prose-blog">{children}</div>
+        )}
+      </article>
+
+      <BackToTop />
+    </>
+  );
+}
+
+
+
+===== FILE: src\components\blog\blocks\TLDRBox.tsx =====
+import type { ReactNode } from 'react';
+
+type Props = { children: ReactNode };
+
+export function TLDRBox({ children }: Props) {
+  return (
+    <aside className="my-8 rounded-lg border-l-[3px] border-brand-800 bg-brand-50/60 p-5">
+      <div className="mb-2 text-[11px] font-medium uppercase tracking-[1.5px] text-brand-900">
+        TL;DR
+      </div>
+      <div className="text-[15px] leading-relaxed text-ink-900 [&>p]:m-0 [&>p+p]:mt-2">{children}</div>
+    </aside>
+  );
+}
+
+
+
+===== FILE: src\components\blog\blocks\FAQ.tsx =====
+export type FAQItem = { question: string; answer: string };
+
+type Props = { items: FAQItem[]; heading?: string; id?: string };
+
+export function FAQ({ items, heading = 'Frequently asked questions', id }: Props) {
+  return (
+    <section className="my-12">
+      {heading && (
+        <h2 id={id} className="mb-6 font-serif text-2xl font-normal text-ink-900">
+          {heading}
+        </h2>
+      )}
+      <dl className="divide-y divide-ink-100 border-y border-ink-100">
+        {items.map((item, i) => (
+          <details key={i} className="group py-4">
+            <summary className="flex cursor-pointer items-start justify-between gap-4 text-[15px] font-medium text-ink-900 marker:hidden">
+              <span>{item.question}</span>
+              <span className="mt-0.5 shrink-0 text-ink-500 transition group-open:rotate-45">+</span>
+            </summary>
+            <div className="mt-3 text-[15px] leading-relaxed text-ink-700">{item.answer}</div>
+          </details>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+
+
+===== FILE: src\components\blog\blocks\LeadMagnetCTA.tsx =====
+'use client';
+
+import { useQuote } from '@/context/QuoteContext';
+
+type Props = {
+  title: string;
+  body: string;
+  cta?: string;
+  topic?: string;
+};
+
+export function LeadMagnetCTA({ title, body, cta = 'Request a technical dossier', topic }: Props) {
+  const { openQuote } = useQuote();
+  return (
+    <aside className="my-12 rounded-lg bg-paper p-6 md:p-8">
+      <h3 className="mb-2 font-serif text-xl text-ink-900">{title}</h3>
+      <p className="mb-5 text-[15px] leading-relaxed text-ink-700">{body}</p>
+      <button
+        type="button"
+        onClick={() => openQuote({ topic })}
+        className="rounded-md border border-brand-800 bg-white px-5 py-2 text-sm font-medium text-brand-800 hover:bg-brand-800 hover:text-white"
+      >
+        {cta}
+      </button>
+    </aside>
+  );
+}
+
+
+
+===== FILE: src\components\blog\blocks\ComparisonTable.tsx =====
+type Row = { label: string; values: (string | number)[]; emphasize?: boolean };
+
+type Props = {
+  columns: string[]; // first column header is label column, following are compared items
+  rows: Row[];
+  caption?: string;
+};
+
+export function ComparisonTable({ columns, rows, caption }: Props) {
+  return (
+    <figure className="my-8">
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr>
+              {columns.map((c, i) => (
+                <th
+                  key={i}
+                  className={`border-b border-ink-300 py-2 text-left font-medium text-ink-900 ${
+                    i === 0 ? 'pr-4' : 'px-3'
+                  }`}
+                >
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={i} className={r.emphasize ? 'bg-brand-50/50' : ''}>
+                <td className="border-b border-ink-100 py-2.5 pr-4 font-medium text-ink-900">{r.label}</td>
+                {r.values.map((v, j) => (
+                  <td key={j} className="border-b border-ink-100 px-3 py-2.5 text-ink-700">
+                    {v}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {caption && (
+        <figcaption className="mt-2 text-xs italic text-ink-500">{caption}</figcaption>
+      )}
+    </figure>
+  );
+}
+
+
+
+===== FILE: src\components\JsonLd.tsx =====
+type Props = { data: unknown | unknown[] };
+
+/**
+ * Server component 鈥?inlines JSON-LD safely. Accepts a single object
+ * or an array. Each object becomes its own <script type="application/ld+json">.
+ */
+export function JsonLd({ data }: Props) {
+  const items = Array.isArray(data) ? data : [data];
+  return (
+    <>
+      {items.map((item, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          // JSON.stringify is enough; schema data is trusted (never user input)
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+        />
+      ))}
+    </>
+  );
+}
+
+
+
+===== FILE: src\lib\blog-registry.ts =====
+/**
+ * Central registry for every blog article. Build fails if cluster or
+ * searchKeywords are missing 鈥?enforced by required fields on BlogArticle.
+ *
+ * Adding a new article:
+ *   1. Create src/app/blog/<slug>/page.tsx with inline toc + anchor ids
+ *   2. Add an entry here with the same slug
+ *   3. Run `npm run typecheck` 鈥?missing fields error at compile time
+ */
+
+import type { TOCEntry } from './toc';
+
+export const CLUSTERS = {
+  'preservative-chemistry': {
+    label: 'Preservative Chemistry',
+    description:
+      'The molecules, mechanisms, and interactions behind cosmetic preservation.',
+  },
+  'challenge-testing': {
+    label: 'Challenge Testing',
+    description:
+      'ISO 11930, USP 51, and PET methodology for formulators and QC teams.',
+  },
+  regulatory: {
+    label: 'Regulatory',
+    description:
+      'Preservative compliance across EU 1223/2009, US FDA, China NMPA, and ASEAN.',
+  },
+  'formulation-guides': {
+    label: 'Formulation Guides',
+    description:
+      'Choosing preservative systems by product form, pH, and distribution channel.',
+    
+  },
+    'sourcing': {
+    label: 'Sourcing',
+    description: 'Preservative supplier guides, 100kg MOQ economics, CoA red flags, and procurement SOPs for recurring-volume buyers.',
+  },
+} as const;
+
+export type ClusterKey = keyof typeof CLUSTERS;
+
+export interface BlogArticle {
+  slug: string;
+  title: string;
+  excerpt: string;
+  cluster: ClusterKey;
+  searchKeywords: string[]; // feeds internal search + cannibalization audit
+  datePublished: string;
+  dateModified?: string;
+  author: string;
+  readingMinutes: number;
+  heroImage?: string;
+  draft?: boolean;
+  /**
+   * Optional. If set, renders a right-side TOC (desktop) + collapsible
+   * block (mobile). Each entry's id must match an h2/h3 id in the article body.
+   */
+  toc?: TOCEntry[];
+}
+
+export const ARTICLES: BlogArticle[] = [
+  {
+    slug: 'preservative-coa-batch-consistency',
+    title: 'Preservative CoA Batch Consistency: How Established Brands Catch Drift Before QC Fails',
+    excerpt: 'A procurement and QC playbook for cosmetic preservative buyers: which 7 CoA fields need batch-variance monitoring, how to build a Shewhart drift tracker, and the 60-day change-notification clause your supply contract needs.',
+    cluster: 'regulatory',
+    searchKeywords: [
+      'preservative CoA batch consistency',
+      'cosmetic preservative batch to batch variance',
+      'preservative CoA field drift',
+      'cosmetic raw material supplier audit scorecard',
+      'preservative supply change notification clause',
+      'phenoxyethanol phenol residue drift',
+      'Shewhart control chart cosmetic raw material',
+      'EU 1223/2009 PIF update CoA',
+      'MoCRA batch record preservative',
+      'IECIC 2021 batch traceability',
+    ],
+    datePublished: '2026-11-02',
+    dateModified: '2026-11-02',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-11/hero.jpg',
+    toc: [
+      { id: 'why-all-pass-coa-fail', text: 'Why do "all-pass" CoAs still fail your challenge test?', level: 2 },
+      { id: 'seven-fields-variance', text: 'Which 7 CoA fields need batch-variance monitoring?', level: 2 },
+      { id: 'drift-tracker', text: 'How to build a moving-average tracker for CoA drift', level: 2 },
+      { id: 'three-root-causes', text: 'What are the 3 upstream root causes of batch inconsistency?', level: 2 },
+      { id: 'audit-scorecard', text: 'How should supplier audits score CoA consistency annually?', level: 2 },
+      { id: 'change-notification', text: 'Why is a 60-day change-notification clause non-negotiable?', level: 2 },
+      { id: 'third-party-retest', text: 'When to trigger independent third-party retest', level: 2 },
+      { id: 'five-market-compliance', text: 'What do EU / MoCRA / NMPA / Japan / Korea require on CoA consistency?', level: 2 },
+      { id: 'dual-sourcing', text: 'How does dual-sourcing avoid introducing a second consistency risk?', level: 2 },
+      { id: 'preservative-coa-faq', text: 'Preservative CoA batch consistency FAQ', level: 2 },
+    ],
+  },
+  {
+      slug: '1-2-hexanediol-supplier-guide',
+      title: '1,2-Hexanediol Supplier Guide: Price Benchmarks, CoA Red Flags & 100kg MOQ Playbook (2026)',
+      excerpt:
+        '2026 FOB China price benchmarks across 4 supplier tiers (USD 12-70/kg), 7-field CoA red flags specific to 1,2-hexanediol, and a 100kg MOQ procurement SOP built from a Berlin indie-brand case where the cheapest quote was not cheapest in use.',
+      cluster: 'sourcing',
+      searchKeywords: [
+        '1,2-hexanediol supplier',
+        'hexanediol supplier guide',
+        'hexanediol price',
+        'hexanediol MOQ',
+        'hexanediol CoA',
+        'Hydrolite 6 alternative',
+        'BESTCARE500 hexanediol',
+        '1,2-hexanediol procurement',
+        'cosmetic preservative sourcing',
+        'FOB China hexanediol',
+      ],
+      datePublished: '2026-10-30',
+      dateModified: '2026-10-30',
+      author: 'Yang Ruosong',
+      readingMinutes: 14,
+      heroImage: '/images/blog/article-10/hero.jpg',
+      toc: [
+        { id: 'berlin-opener', text: 'The USD 2,400 Berlin indie-brand four-quote spread', level: 2 },
+        { id: 'three-tier-decoder', text: 'Three-tier supplier decoder for 1,2-hexanediol', level: 2 },
+        { id: '100kg-sweet-spot', text: 'Why 100kg MOQ is the sweet spot for indie formulators', level: 2 },
+        { id: 'price-benchmark-table', text: '2026 price benchmark table 鈥?tier 脳 quantity', level: 2 },
+        { id: 'coa-red-flags', text: 'Seven CoA red flags specific to 1,2-hexanediol', level: 2 },
+        { id: 'supplier-decision-matrix', text: 'Supplier tier decision matrix', level: 2 },
+        { id: 'compliance-paperwork', text: 'Six-document compliance paperwork checklist', level: 2 },
+        { id: 'regulatory-map', text: 'Five-market regulatory snapshot', level: 2 },
+        { id: 'procurement-sop', text: 'Seven-step procurement SOP (RFQ to receipt QC)', level: 2 },
+        { id: 'hexanediol-faq', text: '1,2-Hexanediol procurement FAQ', level: 2 },
+        { id: 'related-reading', text: 'Related reading', level: 2 },
+      ],
+    },
+  {
+    slug: 'how-to-preserve-cosmetic-emulsion',
+    title: 'How to Preserve a Cosmetic Emulsion: The Indie Formulator鈥檚 2026 Playbook',
+    excerpt:
+      'Why oil-in-water emulsions fail ISO 11930 more than any other product type, which 7 preservative systems actually pass at 100 kg scale, and how emulsifier chemistry quietly kills your preservative 鈥?field playbook from Onerchemical鈥檚 preservation sourcing desk.',
+    cluster: 'formulation-guides',
+    searchKeywords: [
+      'how to preserve a cosmetic emulsion',
+      'cosmetic lotion preservative system',
+      'preserving oil-in-water emulsion',
+      'emulsion preservation challenge test',
+      'o/w emulsion preservative',
+      'emulsifier preservative compatibility',
+      'phenoxyethanol lotion dose',
+      'preservative-free emulsion claim',
+      'ISO 11930 emulsion',
+      'chelator emulsion preservation',
+    ],
+    datePublished: '2026-10-26',
+    dateModified: '2026-10-26',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/how-to-preserve-cosmetic-emulsion/hero.jpg',
+    toc: [
+      { id: 'barcelona-recall', text: 'The Barcelona lab recall that defined this playbook', level: 2 },
+      { id: 'why-emulsions-fail', text: 'Why do emulsions fail ISO 11930 more than any other product type?', level: 2 },
+      { id: 'three-philosophies', text: 'What are the three preservation philosophies for 2026 emulsions?', level: 2 },
+      { id: 'selector', text: 'Which preservative system fits your emulsion?', level: 2 },
+      { id: 'pairing-matrix', text: 'Pairing matrix: 7 verified emulsion-grade combinations', level: 2 },
+      { id: 'coa-red-flags', text: 'What CoA red flags do emulsion-grade preservatives hide?', level: 2 },
+      { id: 'chelator-synergy', text: 'How does chelator synergy change your preservation math?', level: 2 },
+      { id: 'emulsifier-interaction', text: 'Preservative鈥揺mulsifier interaction map', level: 2 },
+      { id: 'regulatory', text: 'What can indie brands claim? 5-market regulatory snapshot', level: 2 },
+      { id: 'emulsion-faq', text: 'Emulsion preservation FAQ', level: 2 },
+    ],
+  },
+      {
+  slug: 'iso-11930-challenge-test-protocol',
+  title: 'Why Your First Challenge Test Failed (And How to Pass ISO 11930 on the Second Try)',
+  excerpt:
+    'A procurement-view walkthrough of the ISO 11930 challenge test 鈥?what it actually measures, which criterion your product needs, how to read the five-strain panel, and the pre-submission checklist that keeps indie brands from paying for a second lab run.',
+  cluster: 'challenge-testing',
+  searchKeywords: [
+    'ISO 11930 challenge test',
+    'preservative efficacy test',
+    'challenge test protocol',
+    'ISO 11930 criteria A B',
+    'cosmetic preservative efficacy testing',
+    'USP 51 vs ISO 11930',
+    '5-strain inoculum challenge test',
+    'challenge test interpretation',
+  ],
+  datePublished: '2026-10-23',
+  dateModified: '2026-10-23',
+  author: 'Yang Ruosong',
+  readingMinutes: 14,
+  toc: [
+    { id: 'first-test-failed', text: 'The USD 450 Lab Report That Said "Fail": What Actually Went Wrong', level: 2 },
+    { id: 'what-iso-11930-measures', text: 'What Does ISO 11930 Actually Measure?', level: 2 },
+    { id: 'criterion-a-vs-b', text: 'Criterion A vs Criterion B: Which One Does Your Product Need?', level: 2 },
+    { id: '28-day-timeline', text: 'What Happens Across the 28-Day Timeline?', level: 2 },
+    { id: 'd7-signal', text: 'What a Day 7 bacterial fail usually means', level: 3 },
+    { id: 'd28-regrowth', text: 'What a Day 28 regrowth signal usually means', level: 3 },
+    { id: 'pre-submission-checklist', text: 'Before You Ship Samples: What Is on the Pre-Submission Checklist?', level: 2 },
+    { id: 'reading-the-report', text: 'How Do You Read a Challenge Test Report Beyond Pass/Fail?', level: 2 },
+    { id: 'iso-vs-usp-vs-ep', text: 'ISO 11930 vs USP <51> vs EP 5.1.3 vs CTFA M-3: When Is Each One Required?', level: 2 },
+    { id: 'market-requirements', text: 'Which Markets Legally Require a Challenge Test 鈥?and Which Only Expect One?', level: 2 },
+    { id: 'eu-requirements', text: 'EU and UK', level: 3 },
+    { id: 'us-requirements', text: 'United States', level: 3 },
+    { id: 'china-requirements', text: 'China', level: 3 },
+    { id: 'japan-korea-requirements', text: 'Japan and Korea', level: 3 },
+    { id: 'where-to-test', text: 'Where Should You Run the Test 鈥?Independent Lab, In-House, or Contract Manufacturer?', level: 2 },
+    { id: 'challenge-test-faq', text: 'Challenge test FAQ', level: 2 },
+  ],
+},
+      {
+    slug: 'ethylhexylglycerin-technical-guide',
+    title: 'Ethylhexylglycerin (EHG): When It Actually Preserves 鈥?And When It Doesn\u2019t',
+    excerpt:
+      'A sourcing specialist\u2019s guide to EHG (CAS 70445-33-9) for independent cosmetic brands 鈥?deodorant vs cosmetic use-cases, Sensiva SC50 pricing shadow, verified pairings, SCCS 2020 dose data, CoA red flags, and 25\u2013200kg procurement.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'ethylhexylglycerin',
+      'EHG',
+      'ethylhexylglycerin preservative',
+      'Sensiva SC50',
+      'EHG booster',
+      'ethylhexylglycerin max use rate',
+      'EHG not annex V',
+      'ethylhexylglycerin supplier',
+      'EHG small MOQ',
+      'ethylhexylglycerin SCCS',
+    ],
+    datePublished: '2026-10-23',
+    dateModified: '2026-10-23',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-05-ehg-hero.jpg',
+    toc: [
+      { id: 'when-ehg-preserves', text: 'When EHG actually preserves 鈥?and when it is just skin feel', level: 2 },
+      { id: 'why-ehg-boosts', text: 'Why EHG boosts preservation without an Annex V claim', level: 2 },
+      { id: 'sensiva-sc50-pricing-shadow', text: 'The Sch眉lke Sensiva SC50 pricing shadow', level: 2 },
+      { id: 'ehg-pairing-map', text: 'EHG pairing map: four verified boosts and the two we refuse', level: 2 },
+      { id: 'ehg-dose-reality', text: 'How formulators set the EHG dose 鈥?and why most cap below the ceiling', level: 2 },
+      { id: 'ehg-coa-red-flags', text: 'Legitimate EHG CoA 鈥?the 7 fields we reject on sight', level: 2 },
+      { id: 'ehg-regulatory-5-market', text: 'EHG in global regulations: a preservative that officially isn\u2019t one', level: 2 },
+      { id: 'onerchemical-ehg-sourcing', text: '25kg鈥?00kg EHG 鈥?the supply gap large distributors don\u2019t fill', level: 2 },
+      { id: 'ehg-faq', text: 'Ethylhexylglycerin FAQ', level: 2 },
+    ],
+  },
+    {
+    slug: 'caprylhydroxamic-acid-technical-guide',
+    title: 'Caprylhydroxamic Acid in Cosmetic Preservation: Decoding the Chelator That Clean Beauty Keeps Buying',
+    excerpt:
+      'As of 2026-10, caprylhydroxamic acid (CAS 7377-03-9) anchors most phenoxyethanol-free preservation systems on the market 鈥?yet most indie brands buy it inside a Spectrastat blend without decoding the hurdle logic. Procurement playbook, pairing matrix, and 5-market regulatory map.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'caprylhydroxamic acid',
+      'caprylhydroxamic acid preservative',
+      'CHA preservative',
+      'spectrastat',
+      'aromastat',
+      'hurdle technology preservative',
+      'natural preservative CHA',
+      'caprylhydroxamic acid formulation',
+      'caprylhydroxamic acid use level',
+      'caprylhydroxamic acid supplier',
+      'caprylhydroxamic acid MOQ',
+      'chelator preservative indie beauty',
+    ],
+    datePublished: '2026-10-22',
+    dateModified: '2026-10-22',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/hero-caprylhydroxamic-acid.webp',
+    toc: [
+      { id: 'why-indie-brands', text: 'Why "phenoxyethanol-free" indie brands reach for CHA', level: 2 },
+      { id: 'chelator-paradox', text: 'The chelator paradox: how CHA preserves', level: 2 },
+      { id: 'what-cha-cant-do', text: 'What CHA cannot do alone 鈥?hurdle mandate', level: 2 },
+      { id: 'spectrastat-family', text: 'Decoding the Spectrastat family (8 blends)', level: 2 },
+      { id: 'monomer-vs-blend', text: 'Monomer vs pre-blended: procurement economics', level: 2 },
+      { id: 'build-your-hurdle', text: 'Build your own CHA hurdle: 4 verified pairings', level: 2 },
+      { id: 'use-level-tree', text: 'CHA use-level decision tree', level: 2 },
+      { id: 'regulatory-map', text: 'The CHA regulatory map (5 markets)', level: 2 },
+      { id: 'sourcing-100kg', text: 'Sourcing 100 kg monomer CHA', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+  {
+    slug: '1-2-hexanediol-technical-guide',
+    title:
+      "1,2-Hexanediol in Cosmetics 鈥?When It Actually Works as a Preservative, and When It Doesn't",
+    excerpt:
+      'As of 2026-10, 1,2-Hexanediol sits in EU CosIng but outside Annex V. Pairing matrix, Challenge Test usage rates, COA red flags, and 5-market regulatory status for independent cosmetic brands.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      '1,2-hexanediol',
+      '1,2-hexanediol cosmetic',
+      '1,2-hexanediol preservative',
+      '1,2-hexanediol vs phenoxyethanol',
+      'hexanediol usage rate',
+      '1,2-hexanediol INCI',
+      '1,2-hexanediol EU Annex V',
+      '1,2-hexanediol challenge test',
+      '1,2-hexanediol COA',
+      'cas 6920-22-5',
+    ],
+    datePublished: '2026-10-21',
+    dateModified: '2026-10-21',
+    author: 'Yang Ruosong',
+    readingMinutes: 12,
+    heroImage: '/images/hero-1-2-hexanediol.webp',
+    toc: [
+      { id: 'why-indie-reaches', text: 'Why indie formulators reach for 1,2-HD', level: 2 },
+      { id: 'actually-preservative', text: 'Is it actually a preservative?', level: 2 },
+      { id: 'pairing-matrix', text: 'Compatibility matrix', level: 2 },
+      { id: 'challenge-test-rates', text: 'Usage rates that pass Challenge Test', level: 2 },
+      { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+      { id: 'regulations', text: '5-market regulations', level: 2 },
+      { id: 'sourcing', text: 'Sample vs 100 kg order', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+  {
+    slug: 'phenoxyethanol-ethylhexylglycerin-combination',
+    title: 'Phenoxyethanol vs. ethylhexylglycerin: when to combine them',
+    excerpt:
+      'A mechanistic review of the two most common broad-spectrum partners in modern leave-on cosmetics, with a decision tree for when the combination is justified over phenoxyethanol alone.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'phenoxyethanol ethylhexylglycerin',
+      'phenoxyethanol vs ethylhexylglycerin',
+      'ethylhexylglycerin booster',
+      'phenoxyethanol combination preservative',
+    ],
+    datePublished: '2026-10-19',
+    author: 'Yang Ruosong',
+    readingMinutes: 12,
+    toc: [
+      { id: 'why-two-together', text: 'Why the two show up together', level: 2 },
+      { id: 'when-necessary', text: 'When the combination is necessary', level: 2 },
+      { id: 'decision-tree', text: 'Pick your system', level: 3 },
+      { id: 'regulatory-layer', text: 'The regulatory layer', level: 2 },
+      { id: 'formulation-details', text: 'Formulation details', level: 2 },
+      { id: 'wrong-answer', text: 'When it is the wrong answer', level: 2 },
+      { id: 'faq', text: 'Frequently asked questions', level: 2 },
+    ],
+  },
+  {
+    slug: 'phenoxyethanol-technical-guide',
+    title: 'Why your phenoxyethanol system fails: a 7-layer breakdown from a preservation specialist',
+    excerpt:
+      'Mechanism blind spots, COA red flags, pairing matrix by formula type, 5-market regulations, and a real 100kg sourcing path for independent cosmetic brands.',
+    cluster: 'preservative-chemistry',
+    searchKeywords: [
+      'phenoxyethanol',
+      'phenoxyethanol preservative',
+      'phenoxyethanol concentration',
+      'phenoxyethanol COA',
+      'phenoxyethanol EU Annex V',
+      'phenoxyethanol pairing',
+      'phenoxyethanol MOQ',
+      'phenoxyethanol supplier',
+      'preservative for indie beauty',
+      'small batch phenoxyethanol',
+    ],
+    datePublished: '2026-10-20',
+    dateModified: '2026-10-20',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/blog/phenoxyethanol-tg/hero.jpg',
+    toc: [
+      { id: 'three-failures', text: 'Three real failure scenarios', level: 2 },
+      { id: 'mechanism-gaps', text: 'Mechanism blind spots', level: 2 },
+      { id: 'coa-red-flags', text: 'COA red flags', level: 2 },
+      { id: 'pairing-matrix', text: 'Pairing matrix by formula type', level: 2 },
+      { id: 'regulations', text: 'Global regulation matrix', level: 2 },
+      { id: 'sourcing-100kg', text: '100kg sourcing path', level: 2 },
+      { id: 'faq', text: 'FAQ', level: 2 },
+    ],
+  },
+];
+export function getArticle(slug: string): BlogArticle | undefined {
+  return ARTICLES.find((a) => a.slug === slug && !a.draft);
+}
+
+export function articlesByCluster(cluster: ClusterKey): BlogArticle[] {
+  return ARTICLES.filter((a) => a.cluster === cluster && !a.draft);
+}
+
+export function publishedArticles(): BlogArticle[] {
+  return ARTICLES.filter((a) => !a.draft).sort((a, b) =>
+    b.datePublished.localeCompare(a.datePublished),
+  );
+}
+
+
+===== FILE: src\lib\toc.ts =====
+/**
+ * Table-of-contents helpers. The author declares the TOC inline in
+ * each article's page.tsx (not auto-generated from DOM) so SSR can
+ * render anchor hrefs correctly and 鈱楩 / direct-link / sharable
+ * anchors all work on first paint.
+ *
+ * Each article's h2 / h3 in the body MUST carry a matching id.
+ */
+
+export type TOCEntry = {
+  id: string;        // the h2/h3 id in the article body, no leading #
+  text: string;      // display label
+  level: 2 | 3;      // visual indent only
+};
+
+/** Convert a heading string to a URL-safe slug. Pure, deterministic. */
+export function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/['"`]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+
+
+===== FILE: src\app\blog\page.tsx =====
+import type { Metadata } from 'next';
+import { buildMeta } from '@/lib/seo';
+import { publishedArticles } from '@/lib/blog-registry';
+import { BlogListClient } from './BlogListClient';
+
+export const metadata: Metadata = buildMeta({
+  title: 'Research',
+  description:
+    'Technical articles on cosmetic preservation chemistry, challenge testing, regulation, and formulation strategy 鈥?written for formulators, by chemists.',
+  path: '/blog',
+});
+
+export default function BlogListPage() {
+  const articles = publishedArticles();
+  return <BlogListClient articles={articles} />;
+}
+
+
+
+===== FILE: edit\registry-patch.mjs =====
+#!/usr/bin/env node
+/**
+ * edit/registry-patch.mjs 鈥?v2 (2026-10-23 fix)
+ * -------------------------------------------------------------
+ * v1 BUG: used registry.search(regex) + registry.indexOf('[', arrAnchor),
+ *         which hit the `[` inside `BlogArticle[]` type annotation instead
+ *         of the array opening `[`. Fix: use regex.exec() + m.index + m[0].length
+ *         so insertIdx lands exactly ONE char after the array opening `[`.
+ *
+ * Zero-dependency helper that inserts a BlogArticle entry at
+ * ARTICLES[0] in src/lib/blog-registry.ts.
+ *
+ * Usage:
+ *   node edit/registry-patch.mjs <entry-file> [--dry] [--force] [--registry=<path>]
+ *
+ * Exit codes:
+ *   0 success | 1 usage | 2 parse | 3 duplicate slug | 4 I/O
+ * -------------------------------------------------------------
+ */
+import { readFileSync, writeFileSync, copyFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { argv, exit } from 'node:process';
+
+const args = argv.slice(2);
+const flags = { dry: false, force: false };
+let entryPath = '';
+let registryPath = 'src/lib/blog-registry.ts';
+
+for (const a of args) {
+  if (a === '--dry') flags.dry = true;
+  else if (a === '--force') flags.force = true;
+  else if (a.startsWith('--registry=')) registryPath = a.slice('--registry='.length);
+  else if (!entryPath) entryPath = a;
+  else { usage(`unexpected argument: ${a}`); exit(1); }
+}
+
+if (!entryPath) { usage('missing entry file'); exit(1); }
+
+function usage(reason = '') {
+  if (reason) console.error(`registry-patch: ${reason}`);
+  console.error('Usage: node edit/registry-patch.mjs <entry-file> [--dry] [--force] [--registry=<path>]');
+}
+
+// ---------- 1. Read entry ----------
+let rawEntry;
+try {
+  rawEntry = readFileSync(resolve(entryPath), 'utf8');
+} catch (e) {
+  console.error(`registry-patch: cannot read entry file: ${e.message}`);
+  exit(4);
+}
+
+const entryStripped = stripLeadingComments(rawEntry).trim();
+
+if (!entryStripped.startsWith('{') || !/},?\s*$/.test(entryStripped)) {
+  console.error('registry-patch: entry file must contain one object literal starting with { and ending with },');
+  exit(2);
+}
+
+const entryBlock = entryStripped.endsWith(',') ? entryStripped : `${entryStripped},`;
+
+const slugMatch = entryBlock.match(/slug\s*:\s*['"]([^'"]+)['"]/);
+if (!slugMatch) {
+  console.error('registry-patch: cannot find slug field in entry');
+  exit(2);
+}
+const newSlug = slugMatch[1];
+
+// ---------- 2. Read registry ----------
+let registry;
+try {
+  registry = readFileSync(resolve(registryPath), 'utf8');
+} catch (e) {
+  console.error(`registry-patch: cannot read registry: ${e.message}`);
+  exit(4);
+}
+
+// ---------- 3. Idempotency check ----------
+const dupPattern = new RegExp(`slug\\s*:\\s*['"]${escapeRegex(newSlug)}['"]`);
+if (dupPattern.test(registry) && !flags.force) {
+  console.error(`registry-patch: slug "${newSlug}" already present in registry (use --force to re-insert)`);
+  exit(3);
+}
+
+// ---------- 4. Locate ARTICLES array opening bracket (v2 fix) ----------
+// Match the FULL declaration up to AND INCLUDING the array `[`, then
+// insertIdx = m.index + m[0].length. This guarantees we land after the
+// array `[`, never inside `BlogArticle[]`. Also tolerates missing type
+// annotation (`export const ARTICLES = [`).
+const declRe = /export\s+const\s+ARTICLES(?:\s*:\s*BlogArticle\s*\[\s*\])?\s*=\s*\[/;
+const m = declRe.exec(registry);
+if (!m) {
+  console.error('registry-patch: cannot locate `export const ARTICLES ... = [` in registry');
+  exit(2);
+}
+const insertIdx = m.index + m[0].length;
+
+// ---------- 5. Compose inserted block (v2 鈥?clean, no double whitespace) ----------
+// Indent each entry line by 2 spaces (array-interior indent)
+const indentedEntry = entryBlock
+  .split('\n')
+  .map((line) => `  ${line}`)
+  .join('\n');
+
+// Insert: `\n<indented-entry>\n` right after the opening `[`.
+// Whatever came after the `[` originally (newline + first element, or just `]`)
+// is preserved untouched via registry.slice(insertIdx).
+const patched =
+  registry.slice(0, insertIdx) +
+  `\n${indentedEntry}` +
+  registry.slice(insertIdx);
+
+// ---------- 6. Write (or dry-run) ----------
+if (flags.dry) {
+  console.log(`[dry-run] would insert slug "${newSlug}" at ARTICLES[0] in ${registryPath}`);
+  console.log(`[dry-run] insertIdx=${insertIdx}, matched: ${JSON.stringify(m[0])}`);
+  console.log(`[dry-run] registry size: ${registry.length} -> ${patched.length} bytes (+${patched.length - registry.length})`);
+  console.log('[dry-run] 20 chars around insertion:');
+  console.log(`[dry-run]   before: ${JSON.stringify(registry.slice(Math.max(0, insertIdx - 20), insertIdx))}`);
+  console.log(`[dry-run]   after:  ${JSON.stringify(registry.slice(insertIdx, insertIdx + 20))}`);
+  exit(0);
+}
+
+try {
+  copyFileSync(resolve(registryPath), resolve(`${registryPath}.bak`));
+} catch (e) {
+  console.error(`registry-patch: cannot write backup: ${e.message}`);
+  exit(4);
+}
+
+try {
+  writeFileSync(resolve(registryPath), patched, 'utf8');
+} catch (e) {
+  console.error(`registry-patch: cannot write registry: ${e.message}`);
+  exit(4);
+}
+
+console.log(`registry-patch: inserted slug "${newSlug}" at ARTICLES[0] in ${registryPath}`);
+console.log(`registry-patch: backup saved as ${registryPath}.bak`);
+console.log(`registry-patch: TIP 鈥?run \`npm run build\` locally before pushing; the regex-based build-search-index.mjs is strict about the ARTICLES declaration format.`);
+exit(0);
+
+// ---------- helpers ----------
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function stripLeadingComments(src) {
+  let i = 0;
+  while (i < src.length) {
+    while (i < src.length && /\s/.test(src[i])) i++;
+    if (src[i] === '/' && src[i + 1] === '/') {
+      while (i < src.length && src[i] !== '\n') i++;
+    } else if (src[i] === '/' && src[i + 1] === '*') {
+      i += 2;
+      while (i < src.length - 1 && !(src[i] === '*' && src[i + 1] === '/')) i++;
+      i += 2;
+    } else {
+      break;
+    }
+  }
+  return src.slice(i);
+}
+
+
+
+===== FILE: edit\registry-entry-10.ts.txt =====
+  {
+    slug: '1-2-hexanediol-supplier-guide',
+    title: '1,2-Hexanediol Supplier Guide: Price Benchmarks, CoA Red Flags & 100kg MOQ Playbook (2026)',
+    excerpt:
+      '2026 FOB China price benchmarks across 4 supplier tiers (USD 12-70/kg), 7-field CoA red flags specific to 1,2-hexanediol, and a 100kg MOQ procurement SOP built from a Berlin indie-brand case where the cheapest quote was not cheapest in use.',
+    cluster: 'sourcing',
+    searchKeywords: [
+      '1,2-hexanediol supplier',
+      'hexanediol supplier guide',
+      'hexanediol price',
+      'hexanediol MOQ',
+      'hexanediol CoA',
+      'Hydrolite 6 alternative',
+      'BESTCARE500 hexanediol',
+      '1,2-hexanediol procurement',
+      'cosmetic preservative sourcing',
+      'FOB China hexanediol',
+    ],
+    datePublished: '2026-10-30',
+    dateModified: '2026-10-30',
+    author: {
+      name: 'Yang Ruosong',
+      url: '/yang-ruosong/',
+    },
+    readingMinutes: 14,
+    heroImage: '/images/blog/article-10/hero.jpg',
+    toc: [
+      { id: 'berlin-opener', text: 'The USD 2,400 Berlin indie-brand four-quote spread', level: 2 },
+      { id: 'three-tier-decoder', text: 'Three-tier supplier decoder for 1,2-hexanediol', level: 2 },
+      { id: '100kg-sweet-spot', text: 'Why 100kg MOQ is the sweet spot for indie formulators', level: 2 },
+      { id: 'price-benchmark-table', text: '2026 price benchmark table 鈥?tier 脳 quantity', level: 2 },
+      { id: 'coa-red-flags', text: 'Seven CoA red flags specific to 1,2-hexanediol', level: 2 },
+      { id: 'supplier-decision-matrix', text: 'Supplier tier decision matrix', level: 2 },
+      { id: 'compliance-paperwork', text: 'Six-document compliance paperwork checklist', level: 2 },
+      { id: 'regulatory-map', text: 'Five-market regulatory snapshot', level: 2 },
+      { id: 'procurement-sop', text: 'Seven-step procurement SOP (RFQ to receipt QC)', level: 2 },
+      { id: 'hexanediol-faq', text: '1,2-Hexanediol procurement FAQ', level: 2 },
+      { id: 'related-reading', text: 'Related reading', level: 2 },
+    ],
+  },
+
+
+
+===== FILE: edit\deploy-10.mjs =====
+#!/usr/bin/env node
+/**
+ * deploy-10.mjs 鈥?Article 10: 1,2-Hexanediol Supplier Guide
+ *
+ * Run from onerchemical project root:
+ *   node edit/deploy-10.mjs
+ *
+ * What it does (idempotent):
+ *   1. Reads 3 .tsx.txt templates in edit/ and writes:
+ *      - src/app/blog/1-2-hexanediol-supplier-guide/page.tsx
+ *      - src/components/blog/article-10/HexanediolPriceBenchmarkTable.tsx
+ *      - src/components/blog/article-10/HexanediolSupplierTierDecisionMatrix.tsx
+ *   2. Shells out to edit/registry-patch.mjs v2 to insert registry-entry-10.ts.txt
+ *      at ARTICLES[0] in src/lib/blog-registry.ts.
+ *   3. Prints reciprocal internal-link backfill instructions for 3 live pages.
+ *
+ * Prerequisites in repo (already present as of article-09):
+ *   - edit/registry-patch.mjs (v2) is executable from Node 18+
+ *   - src/lib/blog-registry.ts contains the ARTICLES: BlogArticle[] = [ ... ] array
+ *   - ClusterKey already includes 'sourcing' (added for article-09)
+ *
+ * Exit codes:
+ *   0 success / 1 missing template / 2 I/O error / 3 registry-patch failed
+ */
+
+import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '..');
+
+const SLUG = '1-2-hexanediol-supplier-guide';
+const ARTICLE_DIR_NAME = 'article-10';
+
+const TEMPLATES = [
+  {
+    src: 'edit/page-article-10-hexanediol-sg.tsx.txt',
+    dest: `src/app/blog/${SLUG}/page.tsx`,
+  },
+  {
+    src: 'edit/HexanediolPriceBenchmarkTable.tsx.txt',
+    dest: `src/components/blog/${ARTICLE_DIR_NAME}/HexanediolPriceBenchmarkTable.tsx`,
+  },
+  {
+    src: 'edit/HexanediolSupplierTierDecisionMatrix.tsx.txt',
+    dest: `src/components/blog/${ARTICLE_DIR_NAME}/HexanediolSupplierTierDecisionMatrix.tsx`,
+  },
+];
+
+const REGISTRY_ENTRY = 'edit/registry-entry-10.ts.txt';
+const REGISTRY_PATCH = 'edit/registry-patch.mjs';
+
+function log(msg) {
+  process.stdout.write(`[deploy-10] ${msg}\n`);
+}
+function warn(msg) {
+  process.stderr.write(`[deploy-10] WARN: ${msg}\n`);
+}
+function die(code, msg) {
+  process.stderr.write(`[deploy-10] FATAL: ${msg}\n`);
+  process.exit(code);
+}
+
+// --- Step 1: write page.tsx + 2 TSX components -----------------------------
+log('Step 1/3 鈥?writing templates to src/');
+for (const { src, dest } of TEMPLATES) {
+  const srcPath = join(ROOT, src);
+  const destPath = join(ROOT, dest);
+  if (!existsSync(srcPath)) die(1, `template not found: ${src}`);
+  try {
+    const content = readFileSync(srcPath, 'utf8');
+    mkdirSync(dirname(destPath), { recursive: true });
+    writeFileSync(destPath, content, 'utf8');
+    log(`  wrote ${dest} (${content.length} bytes)`);
+  } catch (e) {
+    die(2, `failed to write ${dest}: ${e.message}`);
+  }
+}
+
+// --- Step 2: insert registry entry via registry-patch.mjs v2 ---------------
+log('Step 2/3 鈥?inserting registry entry via registry-patch.mjs');
+const registryEntryPath = join(ROOT, REGISTRY_ENTRY);
+const registryPatchPath = join(ROOT, REGISTRY_PATCH);
+if (!existsSync(registryEntryPath)) die(1, `registry entry not found: ${REGISTRY_ENTRY}`);
+if (!existsSync(registryPatchPath)) die(1, `registry-patch helper not found: ${REGISTRY_PATCH}`);
+
+try {
+  // Dry-run first for sanity
+  log('  dry-run first鈥?);
+  execFileSync('node', [registryPatchPath, registryEntryPath, '--dry'], {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
+  // Real insert
+  log('  real insert鈥?);
+  execFileSync('node', [registryPatchPath, registryEntryPath], {
+    cwd: ROOT,
+    stdio: 'inherit',
+  });
+  log('  registry patched (backup at src/lib/blog-registry.ts.bak)');
+} catch (e) {
+  const code = e.status ?? 3;
+  if (code === 3) {
+    warn('registry-patch exited 3 (duplicate slug) 鈥?assuming already inserted, continuing');
+  } else {
+    die(3, `registry-patch failed with code ${code}: ${e.message}`);
+  }
+}
+
+// --- Step 3: reciprocal internal-link backfill instructions ---------------
+log('Step 3/3 鈥?reciprocal internal-link backfill (MANUAL step for Albar)');
+const BACKFILLS = [
+  {
+    file: 'src/app/blog/1-2-hexanediol-technical-guide/page.tsx',
+    insert: `<li><a href="/blog/${SLUG}">1,2-Hexanediol Supplier Guide</a> 鈥?2026 price benchmarks, CoA red flags, 100kg MOQ playbook.</li>`,
+    anchor: 'Related reading section (<h2 id="related-reading">)',
+  },
+  {
+    file: 'src/app/blog/phenoxyethanol-vs-1-2-hexanediol/page.tsx',
+    insert: `<li><a href="/blog/${SLUG}">1,2-Hexanediol Supplier Guide</a> 鈥?once you have decided on hexanediol, this is the sourcing playbook.</li>`,
+    anchor: 'Related reading section (<h2 id="related-reading">)',
+  },
+  {
+    file: 'src/app/blog/phenoxyethanol-supplier-guide/page.tsx',
+    insert: `<li><a href="/blog/${SLUG}">1,2-Hexanediol Supplier Guide</a> 鈥?sister sourcing guide, same tier framework applied to hexanediol.</li>`,
+    anchor: 'Related reading section (<h2 id="related-reading">)',
+  },
+];
+
+process.stdout.write('\n');
+log('==== RECIPROCAL BACKFILL (edit by hand after npm run build passes) ====\n');
+for (const b of BACKFILLS) {
+  process.stdout.write(`\n  FILE:   ${b.file}\n`);
+  process.stdout.write(`  WHERE:  ${b.anchor}\n`);
+  process.stdout.write(`  INSERT: ${b.insert}\n`);
+}
+process.stdout.write('\n');
+log('========================================================================');
+
+process.stdout.write('\n');
+log('鉁?deploy-10 complete.');
+log('Next: npm run build (locally), then git add src/ && git commit && git push.');
+log('If the build fails on ARTICLES-array regex, restore src/lib/blog-registry.ts.bak and investigate.');
+
+
+
+===== FILE: edit\page-article-10-1-2-hexanediol-supplier-guide.tsx.txt =====
+<<< FILE NOT FOUND >>>
+
+
+===== FILE: src\app\sitemap.ts =====
+import type { MetadataRoute } from 'next';
+import { SITE } from '@/lib/seo';
+import { makeAlternates } from '@/lib/i18n';
+import { publishedArticles } from '@/lib/blog-registry';
+import { PRODUCTS } from '@/lib/products';
+
+type Entry = MetadataRoute.Sitemap[number];
+
+/**
+ * makeEntry wraps a canonical path + optional lastModified into a sitemap
+ * entry with hreflang alternates baked in. Phase 0: EN only, but the
+ * alternates field already carries x-default so Google can start reading it.
+ */
+function makeEntry(
+  path: string,
+  opts: {
+    lastModified?: string | Date;
+    changeFrequency?: Entry['changeFrequency'];
+    priority?: number;
+  } = {},
+): Entry {
+  return {
+    url: `${SITE.url}${path}`,
+    lastModified: opts.lastModified ? new Date(opts.lastModified) : new Date(),
+    changeFrequency: opts.changeFrequency ?? 'monthly',
+    priority: opts.priority ?? 0.5,
+    alternates: {
+      languages: makeAlternates(path, SITE.url),
+    },
+  };
+}
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticEntries: Entry[] = [
+    makeEntry('/', { changeFrequency: 'weekly', priority: 1.0 }),
+    makeEntry('/blog', { changeFrequency: 'weekly', priority: 0.8 }),
+    makeEntry('/about', { changeFrequency: 'yearly', priority: 0.4 }),
+    makeEntry('/yang-ruosong', { changeFrequency: 'monthly', priority: 0.5 }),
+  ];
+
+  const articleEntries: Entry[] = publishedArticles().map((a) =>
+    makeEntry(`/blog/${a.slug}`, {
+      lastModified: a.dateModified ?? a.datePublished,
+      changeFrequency: 'yearly',
+      priority: 0.7,
+    }),
+  );
+
+  const productEntries: Entry[] = PRODUCTS.map((p) =>
+    makeEntry(`/products/${p.slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }),
+  );
+
+  return [...staticEntries, ...articleEntries, ...productEntries];
+}
+
+
+
+===== FILE: src\components\layout\Header.tsx =====
+'use client';
+
+import { LocalizedLink } from '@/components/LocalizedLink';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useQuote } from '@/context/QuoteContext';
+import { SearchButton } from '@/components/search/Search';
+
+export function Header() {
+  const { openQuote } = useQuote();
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <LocalizedLink href="/" className="flex items-center gap-2.5">
+          <span className="flex h-7 w-7 items-center justify-center rounded bg-brand-800 font-serif text-sm text-white">
+            O
+          </span>
+          <span className="text-[15px] font-medium tracking-tight text-ink-900">Onerchemical</span>
+          <span className="ml-1 hidden rounded-full bg-ink-100 px-2 py-0.5 text-[11px] text-ink-500 md:inline">
+            Preservation Science
+          </span>
+        </LocalizedLink>
+
+        <nav className="hidden items-center gap-5 text-sm text-ink-700 md:flex">
+          <LocalizedLink href="/products/phenoxyethanol-supply" className="hover:text-brand-800">
+            Preservatives
+          </LocalizedLink>
+          <LocalizedLink href="/blog" className="hover:text-brand-800">
+            Research
+          </LocalizedLink>
+          <LocalizedLink href="/about" className="hover:text-brand-800">
+            About
+          </LocalizedLink>
+          <SearchButton />
+          <button
+            type="button"
+            onClick={() => openQuote()}
+            className="font-medium text-brand-800 hover:text-brand-900"
+          >
+            Request sample
+          </button>
+          <LanguageSwitcher />
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+
+
+===== FILE: src\components\blog\article-10\HexanediolPriceBenchmarkTable.tsx =====
+'use client';
+
+import { useMemo, useState } from 'react';
+
+type Tier = 'commodity' | 'trader' | 'korean-japanese' | 'branded-eu';
+type Quantity = '25' | '100' | '500' | '1000';
+
+interface PriceCell {
+  low: number;
+  high: number;
+  notes: string;
+}
+
+const TIER_LABELS: Record<Tier, string> = {
+  commodity: 'Chinese commodity (Jiangsu/Shandong direct)',
+  trader: 'Trader / repack (Dongguan, Shanghai)',
+  'korean-japanese': 'Korean / Japanese pharma-adjacent',
+  'branded-eu': 'Branded EU (Hydrolite 6, Minasolve)',
+};
+
+const QUANTITY_LABELS: Record<Quantity, string> = {
+  '25': '25 kg (single pail)',
+  '100': '100 kg (indie sweet spot)',
+  '500': '500 kg (mid-brand)',
+  '1000': '1000 kg+ (direct-plant threshold)',
+};
+
+// 2026 Q4 FOB China cosmetic-grade benchmark (USD/kg)
+const PRICE_MATRIX: Record<Tier, Record<Quantity, PriceCell>> = {
+  commodity: {
+    '25': { low: 16, high: 19, notes: 'Repack premium; traders usually source here' },
+    '100': { low: 12, high: 14, notes: 'Direct-plant minimum; 7-10 day lead time' },
+    '500': { low: 10, high: 12, notes: 'Volume break; dossier overhead begins' },
+    '1000': { low: 9, high: 11, notes: 'Direct-plant price; requires annual contract' },
+  },
+  trader: {
+    '25': { low: 18, high: 22, notes: 'Flex MOQ, warehouse stock; USD 50-80 sample charge' },
+    '100': { low: 14, high: 18, notes: 'Best indie-brand economics; ISO 22716 repack' },
+    '500': { low: 13, high: 16, notes: 'Trader margin thins; direct-plant becomes competitive' },
+    '1000': { low: 12, high: 15, notes: 'Rarely competitive vs direct at this volume' },
+  },
+  'korean-japanese': {
+    '25': { low: 24, high: 28, notes: 'Pharma-adjacent facility; 99.5% min GC assay' },
+    '100': { low: 18, high: 22, notes: 'Documented isomer separation; REACH pack included' },
+    '500': { low: 16, high: 19, notes: 'Full dossier for retailer audit; 15-20 day lead time' },
+    '1000': { low: 15, high: 18, notes: 'Annual-contract pricing; distributor network' },
+  },
+  'branded-eu': {
+    '25': { low: 55, high: 75, notes: 'Pail minimum via Symrise distributor' },
+    '100': { low: 45, high: 70, notes: 'Hydrolite 6; Ecocert/COSMOS options; brand file on retailer desks' },
+    '500': { low: 42, high: 65, notes: 'Price holds; buying brand recognition, not cheaper molecule' },
+    '1000': { low: 40, high: 62, notes: 'Direct Symrise contract; minimal further break' },
+  },
+};
+
+export default function HexanediolPriceBenchmarkTable() {
+  const [tierFilter, setTierFilter] = useState<Tier | 'all'>('all');
+  const [quantityFilter, setQuantityFilter] = useState<Quantity | 'all'>('all');
+
+  const rows = useMemo(() => {
+    const tiers: Tier[] =
+      tierFilter === 'all'
+        ? (['commodity', 'trader', 'korean-japanese', 'branded-eu'] as Tier[])
+        : [tierFilter];
+    const quantities: Quantity[] =
+      quantityFilter === 'all' ? (['25', '100', '500', '1000'] as Quantity[]) : [quantityFilter];
+
+    const out: Array<{ tier: Tier; quantity: Quantity; cell: PriceCell }> = [];
+    for (const tier of tiers) {
+      for (const quantity of quantities) {
+        out.push({ tier, quantity, cell: PRICE_MATRIX[tier][quantity] });
+      }
+    }
+    return out;
+  }, [tierFilter, quantityFilter]);
+
+  return (
+    <div className="my-8 rounded-lg border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
+            2026 Q4 1,2-Hexanediol FOB China Price Benchmark
+          </h3>
+          <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+            Cosmetic-grade only. Excludes freight &amp; import duties. Verified against supplier
+            quotes October 2026.
+          </p>
+        </div>
+      </div>
+
+      <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-1 block text-xs font-medium text-neutral-600 dark:text-neutral-400">
+            Supplier tier
+          </span>
+          <select
+            value={tierFilter}
+            onChange={(e) => setTierFilter(e.target.value as Tier | 'all')}
+            className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+          >
+            <option value="all">All tiers</option>
+            <option value="commodity">Chinese commodity (direct plant)</option>
+            <option value="trader">Trader / repack</option>
+            <option value="korean-japanese">Korean / Japanese pharma-adjacent</option>
+            <option value="branded-eu">Branded EU (Hydrolite 6)</option>
+          </select>
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-xs font-medium text-neutral-600 dark:text-neutral-400">
+            Order quantity
+          </span>
+          <select
+            value={quantityFilter}
+            onChange={(e) => setQuantityFilter(e.target.value as Quantity | 'all')}
+            className="w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+          >
+            <option value="all">All quantities</option>
+            <option value="25">25 kg</option>
+            <option value="100">100 kg (indie sweet spot)</option>
+            <option value="500">500 kg</option>
+            <option value="1000">1000 kg+</option>
+          </select>
+        </label>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-neutral-200 bg-neutral-50 text-left dark:border-neutral-800 dark:bg-neutral-900">
+              <th className="px-3 py-2 font-semibold text-neutral-700 dark:text-neutral-300">
+                Tier
+              </th>
+              <th className="px-3 py-2 font-semibold text-neutral-700 dark:text-neutral-300">
+                Quantity
+              </th>
+              <th className="px-3 py-2 font-semibold text-neutral-700 dark:text-neutral-300">
+                Price (USD/kg)
+              </th>
+              <th className="px-3 py-2 font-semibold text-neutral-700 dark:text-neutral-300">
+                Notes
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, idx) => (
+              <tr
+                key={`${row.tier}-${row.quantity}`}
+                className={
+                  idx % 2 === 0
+                    ? 'border-b border-neutral-200 dark:border-neutral-800'
+                    : 'border-b border-neutral-200 bg-neutral-50/50 dark:border-neutral-800 dark:bg-neutral-900/40'
+                }
+              >
+                <td className="px-3 py-2 align-top text-neutral-800 dark:text-neutral-200">
+                  {TIER_LABELS[row.tier]}
+                </td>
+                <td className="px-3 py-2 align-top text-neutral-700 dark:text-neutral-300">
+                  {QUANTITY_LABELS[row.quantity]}
+                </td>
+                <td className="px-3 py-2 align-top font-mono text-neutral-900 dark:text-neutral-100">
+                  USD {row.cell.low}&ndash;{row.cell.high}/kg
+                </td>
+                <td className="px-3 py-2 align-top text-xs text-neutral-600 dark:text-neutral-400">
+                  {row.cell.notes}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="mt-3 text-xs text-neutral-500 dark:text-neutral-500">
+        Price bands reflect the typical 85th-percentile range of serious cosmetic-grade quotes;
+        quotes below the band usually fail one of the seven CoA red flags described below.
+      </p>
+    </div>
+  );
+}
+
+
+
+===== FILE: src\components\blog\article-10\HexanediolSupplierTierDecisionMatrix.tsx =====
+'use client';
+
+import { useMemo, useState } from 'react';
+
+type Tier = 'commodity' | 'trader' | 'korean-japanese' | 'branded-eu';
+
+interface TierProfile {
+  key: Tier;
+  label: string;
+  short: string;
+  // Scores 1-10 across each dimension; higher is better for the buyer
+  priceScore: number; // higher = cheaper
+  certScore: number; // higher = deeper paperwork
+  leadScore: number; // higher = faster
+  traceScore: number; // higher = more defensible origin story
+  summary: string;
+}
+
+const TIERS: TierProfile[] = [
+  {
+    key: 'commodity',
+    label: 'Chinese commodity (Jiangsu/Shandong direct)',
+    short: 'Direct plant',
+    priceScore: 10,
+    certScore: 5,
+    leadScore: 7,
+    traceScore: 6,
+    summary:
+      'Cheapest unit price; thin paperwork pack; 100kg minimum; traceability depends on which specific plant you reach.',
+  },
+  {
+    key: 'trader',
+    label: 'Trader / repack (Dongguan, Shanghai)',
+    short: 'Trader repack',
+    priceScore: 8,
+    certScore: 6,
+    leadScore: 9,
+    traceScore: 7,
+    summary:
+      'Best indie-brand economics; flex MOQ 25-200kg; ISO 22716 repack layer adds documentation defense; 10-15 day lead time from warehouse stock.',
+  },
+  {
+    key: 'korean-japanese',
+    label: 'Korean / Japanese pharma-adjacent',
+    short: 'KR/JP pharma-adj',
+    priceScore: 5,
+    certScore: 9,
+    leadScore: 6,
+    traceScore: 9,
+    summary:
+      'Documented isomer separation; full REACH + non-animal pack; 99.5% minimum GC assay; 15-20 day lead time; retailer-audit friendly.',
+  },
+  {
+    key: 'branded-eu',
+    label: 'Branded EU (Hydrolite 6, Minasolve)',
+    short: 'Branded EU',
+    priceScore: 2,
+    certScore: 10,
+    leadScore: 5,
+    traceScore: 10,
+    summary:
+      'European manufacturing; Ecocert/COSMOS options; brand file pre-cleared on major clean-beauty retailer desks; 3-4x unit price; shortcut through audit gates.',
+  },
+];
+
+export default function HexanediolSupplierTierDecisionMatrix() {
+  const [priceWeight, setPriceWeight] = useState(5);
+  const [certWeight, setCertWeight] = useState(5);
+  const [leadWeight, setLeadWeight] = useState(5);
+  const [traceWeight, setTraceWeight] = useState(5);
+
+  const ranked = useMemo(() => {
+    const totalWeight = priceWeight + certWeight + leadWeight + traceWeight || 1;
+    return [...TIERS]
+      .map((t) => {
+        const raw =
+          t.priceScore * priceWeight +
+          t.certScore * certWeight +
+          t.leadScore * leadWeight +
+          t.traceScore * traceWeight;
+        const normalized = Math.round((raw / (totalWeight * 10)) * 100);
+        return { ...t, score: normalized };
+      })
+      .sort((a, b) => b.score - a.score);
+  }, [priceWeight, certWeight, leadWeight, traceWeight]);
+
+  const sliders: Array<{
+    label: string;
+    value: number;
+    setter: (n: number) => void;
+    hint: string;
+  }> = [
+    {
+      label: 'Unit price matters',
+      value: priceWeight,
+      setter: setPriceWeight,
+      hint: 'Early-stage, cash-sensitive, no retailer gate yet',
+    },
+    {
+      label: 'Certification depth matters',
+      value: certWeight,
+      setter: setCertWeight,
+      hint: 'Clean-beauty retailer audits, Ecocert / COSMOS claims, EU PIF',
+    },
+    {
+      label: 'Lead time matters',
+      value: leadWeight,
+      setter: setLeadWeight,
+      hint: 'Launch deadline close, limited runway for 20-day ocean freight',
+    },
+    {
+      label: 'Traceability matters',
+      value: traceWeight,
+      setter: setTraceWeight,
+      hint: 'Brand story depends on plant-level origin, batch-to-batch isomer consistency',
+    },
+  ];
+
+  return (
+    <div className="my-8 rounded-lg border border-neutral-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+      <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
+        Supplier Tier Decision Matrix
+      </h3>
+      <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+        Slide each priority (0 = ignore, 10 = critical). Tiers re-rank live.
+      </p>
+
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {sliders.map((s) => (
+          <div key={s.label} className="rounded-md border border-neutral-200 bg-neutral-50 p-3 dark:border-neutral-800 dark:bg-neutral-900">
+            <div className="mb-1 flex items-center justify-between">
+              <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200">
+                {s.label}
+              </label>
+              <span className="font-mono text-sm text-neutral-900 dark:text-neutral-100">
+                {s.value}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={10}
+              step={1}
+              value={s.value}
+              onChange={(e) => s.setter(Number(e.target.value))}
+              className="w-full accent-blue-600"
+              aria-label={s.label}
+            />
+            <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">{s.hint}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 space-y-3">
+        {ranked.map((t, idx) => (
+          <div
+            key={t.key}
+            className={`rounded-md border p-4 ${
+              idx === 0
+                ? 'border-blue-400 bg-blue-50 dark:border-blue-700 dark:bg-blue-950/40'
+                : 'border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950'
+            }`}
+          >
+            <div className="mb-1 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span
+                  className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
+                    idx === 0
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-neutral-200 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300'
+                  }`}
+                >
+                  {idx + 1}
+                </span>
+                <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                  {t.label}
+                </h4>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-24 overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800">
+                  <div
+                    className={idx === 0 ? 'h-full bg-blue-600' : 'h-full bg-neutral-500'}
+                    style={{ width: `${Math.max(5, t.score)}%` }}
+                  />
+                </div>
+                <span className="font-mono text-xs text-neutral-700 dark:text-neutral-300">
+                  {t.score}
+                </span>
+              </div>
+            </div>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">{t.summary}</p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-500">
+        Scores are normalized to 0-100. Ties are rare; where two tiers rank within 3 points, decide
+        on the softer factors: existing supplier relationships, your freight-forwarder&apos;s China
+        pickup capability, and whether your incoming QC can run GC in-house.
+      </p>
+    </div>
+  );
+}
+
+
+
+===== DIR: src\components\blog\article-10\ =====
+
+Name                                     Length
+----                                     ------
+HexanediolPriceBenchmarkTable.tsx          8124
+HexanediolSupplierTierDecisionMatrix.tsx   7257
+
+
+
+
+===== DIR: edit\ =====
+
+Name                                                       Length LastWriteTime        
+----                                                       ------ -------------        
+templates                                                         2026-10-22  16:23:18 
+app-layout.tsx.txt                                         2566   2026-10-19  16:46:54 
+BatchDriftTracker.tsx.txt                                  6370   2026-11-02  16:09:04 
+blog-registry-article-03-patch.txt                         1035   2026-10-21  10:52:37 
+ChallengeTestDecisionWizard.tsx.txt                        10325  2026-10-23  11:42:15 
+component-article-03-challenge-matrix.tsx.txt              6878   2026-10-21  10:52:26 
+component-article-03-compat-matrix.tsx.txt                 4291   2026-10-21  10:51:50 
+component-article-09-PhenoxyPriceBenchmarkTable.tsx.txt    8666   2026-10-28  16:54:25 
+component-article-09-SupplierTierDecisionMatrix.tsx.txt    8105   2026-10-28  16:54:25 
+component-blog-article-layout.tsx.txt                      2960   2026-10-19  16:46:54 
+component-blog-blocks-faq.tsx.txt                          1026   2026-10-19  16:46:54 
+component-blog-list-client.tsx.txt                         3858   2026-10-19  16:46:54 
+component-blog-toc.tsx.txt                                 5201   2026-10-19  16:46:54 
+component-ehg-pairing-matrix.tsx.txt                       7319   2026-10-23  10:18:32 
+component-ehg-usecase-splitter.tsx.txt                     3266   2026-10-23  10:18:32 
+component-header.tsx.txt                                   1814   2026-10-19  16:46:54 
+component-quote-modal.tsx.txt                              5533   2026-10-19  16:46:54 
+component-search-page-client.tsx.txt                       3772   2026-10-19  16:46:54 
+component-search.tsx.txt                                   10198  2026-10-19  16:46:54 
+component-ui-animations.tsx.txt                            3563   2026-10-19  16:46:54 
+deploy-06.mjs                                              4105   2026-10-23  11:42:15 
+deploy-07.mjs                                              5474   2026-10-26  17:26:39 
+deploy-09.mjs                                              4784   2026-10-28  16:54:25 
+deploy-10.mjs                                              5683   2026-10-30  15:55:12 
+deploy-11.mjs                                              2616   2026-11-02  16:09:04 
+deploy-article-02.mjs                                      2982   2026-10-20  11:37:28 
+deploy-article-03-1-2-hexanediol-tg.mjs                    3634   2026-10-21  10:53:01 
+deploy-article-04-caprylhydroxamic-acid-tg.mjs             2837   2026-10-22  16:23:01 
+deploy-article-05.mjs                                      2391   2026-10-23  10:18:32 
+deploy-phase1-ux.mjs                                       4509   2026-10-19  16:46:54 
+HexanediolPriceBenchmarkTable.tsx.txt                      8124   2026-10-30  15:55:12 
+HexanediolSupplierTierDecisionMatrix.tsx.txt               7257   2026-10-30  15:55:12 
+lib-blog-registry.ts.txt                                   3363   2026-10-19  16:46:54 
+lib-toc.ts.txt                                             756    2026-10-19  16:46:54 
+page-article-01.tsx.txt                                    10780  2026-10-19  16:46:54 
+page-article-03-1-2-hexanediol-tg.tsx.txt                  23887  2026-10-21  10:51:26 
+page-article-05-ethylhexylglycerin-technical-guide.tsx.txt 35141  2026-10-23  10:18:32 
+page-article-06-iso-11930-challenge-test-protocol.tsx.txt  40558  2026-10-23  11:42:15 
+page-article-07-emulsion-preservation.tsx.txt              32116  2026-10-26  17:26:39 
+page-article-09-phenoxyethanol-supplier-guide.tsx.txt      40076  2026-10-28  16:54:25 
+page-article-10-hexanediol-sg.tsx.txt                      30745  2026-10-30  15:55:12 
+page-article-11-preservative-coa-batch-consistency.tsx.txt 31551  2026-11-02  16:09:04 
+page-home-client.tsx.txt                                   5747   2026-10-19  16:46:54 
+page-home.tsx.txt                                          1015   2026-10-19  16:46:54 
+page-search.tsx.txt                                        579    2026-10-19  16:46:54 
+patch-phase1-isolation-v2.mjs                              4356   2026-10-20  10:09:28 
+patch-phase1-isolation-v3.mjs                              3918   2026-10-20  10:13:24 
+patch-phase1-isolation-v4.mjs                              3671   2026-10-20  10:15:37 
+patch-phase1-isolation-v5.mjs                              3888   2026-10-20  10:20:49 
+patch-phase1-isolation.mjs                                 6215   2026-10-20  10:03:05 
+README.md                                                  5914   2026-10-20  11:37:29 
+registry-entry-06.ts.txt                                   2586   2026-10-23  11:42:15 
+registry-entry-07.ts.txt                                   2082   2026-10-26  17:26:39 
+registry-entry-09.ts.txt                                   1892   2026-10-28  16:54:25 
+registry-entry-10.ts.txt                                   2060   2026-10-30  15:55:12 
+registry-entry-11.ts.txt                                   2144   2026-11-02  16:09:04 
+registry-entry.txt                                         2608   2026-10-23  10:18:32 
+registry-patch.mjs                                         5987   2026-10-23  15:29:42 
+scripts-build-search-index.mjs.txt                         3674   2026-10-19  16:46:54 
+StrainFailureMatrix.tsx.txt                                7124   2026-10-23  11:42:15 
+SupplierAuditScorecard.tsx.txt                             3339   2026-11-02  16:09:04 
+
+
+
