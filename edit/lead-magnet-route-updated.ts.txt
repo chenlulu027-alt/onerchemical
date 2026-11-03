@@ -1,0 +1,108 @@
+// Replaces: src/app/api/lead-magnet/route.ts
+// Adds `topic` parameter routing to serve different PDFs per lead-magnet source.
+// Backward compatible: missing or unknown topic defaults to the procurement checklist (Pillar #1 / #2 behaviour).
+//
+// Topic routing:
+//   topic=procurement  → procurement-readiness-checklist.pdf  (Pillar #1 selection, Pillar #2 sourcing)
+//   topic=regulatory   → 5-market-preservative-compliance-checklist.pdf  (Pillar #3)
+//
+// Albar: this preserves the existing Pillar #1/#2 behaviour exactly when topic is omitted
+// or equals "procurement". Only new behaviour is the "regulatory" branch.
+
+import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+type Topic = 'procurement' | 'regulatory';
+
+interface TopicConfig {
+  pdfFileName: string;
+  attachmentName: string;
+  subject: string;
+  bodyHeadline: string;
+  bodyIntro: string;
+  resendTag: string;
+}
+
+const TOPIC_CONFIG: Record<Topic, TopicConfig> = {
+  procurement: {
+    pdfFileName: 'onerchemical-preservative-procurement-checklist.pdf',
+    attachmentName: 'Onerchemical-Preservative-Procurement-Checklist.pdf',
+    subject: 'Your Preservative Procurement Readiness Checklist',
+    bodyHeadline: 'Preservative Procurement Readiness Checklist',
+    bodyIntro:
+      'Attached is the 14-item procurement readiness checklist. Use it before issuing an RFQ to a new preservative supplier or auditing an existing one.',
+    resendTag: 'lead-magnet-procurement',
+  },
+  regulatory: {
+    pdfFileName: 'onerchemical-5-market-preservative-compliance-checklist.pdf',
+    attachmentName: 'Onerchemical-5-Market-Preservative-Compliance-Checklist.pdf',
+    subject: 'Your 5-Market Preservative Compliance Checklist',
+    bodyHeadline: '5-Market Preservative Compliance Checklist',
+    bodyIntro:
+      'Attached is the 18-item compliance checklist covering EU, US, China, Japan, and Korea. Use it to validate preservative dossiers before cross-border submission.',
+    resendTag: 'lead-magnet-regulatory',
+  },
+};
+
+function parseTopic(input: string | null | undefined): Topic {
+  if (input === 'regulatory') return 'regulatory';
+  return 'procurement';
+}
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const email: string | undefined = body?.email;
+    const topic = parseTopic(body?.topic);
+
+    if (!email || typeof email !== 'string' || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    }
+
+    const cfg = TOPIC_CONFIG[topic];
+
+    const pdfPath = join(process.cwd(), 'public', 'downloads', cfg.pdfFileName);
+    const pdfBuffer = readFileSync(pdfPath);
+
+    const sendResult = await resend.emails.send({
+      from: 'Onerchemical <hello@onerchemical.com>',
+      to: [email],
+      subject: cfg.subject,
+      html: `<!doctype html>
+<html>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; color: #1e293b; max-width: 600px; margin: 0 auto; padding: 24px;">
+  <h2 style="color: #0F2D6B; margin-bottom: 16px;">${cfg.bodyHeadline}</h2>
+  <p>${cfg.bodyIntro}</p>
+  <p>For context on how this fits into the broader preservation sourcing playbook, our guides are at <a href="https://onerchemical.com/guide" style="color: #4f46e5;">onerchemical.com/guide</a>.</p>
+  <p>If you have questions about an active dossier or a specific preservative supplier, reply to this email directly.</p>
+  <p style="margin-top: 24px; color: #475569;">— Yang Ruosong<br/>Onerchemical</p>
+  <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0 16px;" />
+  <p style="font-size: 12px; color: #94a3b8;">
+    You received this email because you requested a resource from onerchemical.com. If you&rsquo;d prefer not to hear from us again, reply with &ldquo;unsubscribe&rdquo;.
+  </p>
+</body>
+</html>`,
+      attachments: [
+        {
+          filename: cfg.attachmentName,
+          content: pdfBuffer,
+        },
+      ],
+      tags: [{ name: 'category', value: cfg.resendTag }],
+    });
+
+    if (sendResult.error) {
+      console.error('[lead-magnet] Resend error:', sendResult.error);
+      return NextResponse.json({ error: 'Email delivery failed' }, { status: 502 });
+    }
+
+    return NextResponse.json({ ok: true, topic });
+  } catch (err) {
+    console.error('[lead-magnet] Unexpected error:', err);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}

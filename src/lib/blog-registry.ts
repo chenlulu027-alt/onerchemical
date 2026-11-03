@@ -61,6 +61,43 @@ export interface BlogArticle {
 
 export const ARTICLES: BlogArticle[] = [
   {
+    slug: 'preservation-regulations-pillar',
+    title: 'Cosmetic Preservative Regulations: A 5-Market Compliance Framework',
+    excerpt:
+      'EU Annex V, US MoCRA, China IECIC, Japan Cosmetics Standard, Korea MFDS — how preservative legality, limits, and documentation differ across the five main export markets. For compliance managers and regulatory affairs leads.',
+    cluster: 'regulatory',
+    searchKeywords: [
+      'cosmetic preservative regulations',
+      'cosmetic preservative compliance',
+      'global cosmetic regulations',
+      'EU Annex V preservatives',
+      'MoCRA preservatives',
+      'China STSC preservatives',
+      'Japan cosmetic standard preservatives',
+      'Korea MFDS preservatives',
+      '5 market preservative compliance',
+      'preservative regulatory affairs',
+    ],
+    datePublished: '2026-11-03',
+    dateModified: '2026-11-03',
+    author: 'Yang Ruosong',
+    readingMinutes: 14,
+    heroImage: '/images/pillar-03/hero.jpg',
+    toc: [
+      { id: 'rotterdam-opener', text: 'Why a single-market dossier fails cross-border audits', level: 2 },
+      { id: 'framework-overview', text: 'How the five markets regulate preservatives', level: 2 },
+      { id: 'market-comparator', text: 'Interactive: preservative × market quick-check', level: 2 },
+      { id: 'positive-vs-negative', text: 'Positive list vs negative list', level: 2 },
+      { id: 'six-doc-stack', text: 'The six-document compliance stack', level: 2 },
+      { id: 'legality-matrix', text: 'Interactive: 15 preservatives × 5 markets legality matrix', level: 2 },
+      { id: 'three-pitfalls', text: 'Three common cross-border compliance pitfalls', level: 2 },
+      { id: 'change-mgmt-sop', text: 'Regulatory change-management SOP', level: 2 },
+      { id: 'uk-brexit', text: 'UK post-Brexit divergence', level: 2 },
+      { id: 'lead-magnet', text: 'Download: 5-Market Compliance Checklist', level: 2 },
+      { id: 'faq', text: 'Frequently asked questions', level: 2 },
+    ],
+  },
+  {
       slug: 'cosmetic-preservative-supplier-sourcing',
       title: 'Cosmetic Preservative Supplier Sourcing: The 2026 Procurement Playbook',
       excerpt:
