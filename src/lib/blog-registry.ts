@@ -61,6 +61,46 @@ export interface BlogArticle {
 
 export const ARTICLES: BlogArticle[] = [
   {
+      slug: 'water-activity-measurement-protocol',
+      title: 'Cosmetic Water Activity (Aw) Measurement Protocol: The 2026 QC and Compliance Guide for Brands and Contract Manufacturers',
+      excerpt:
+        'A procurement and QC playbook for cosmetic water activity measurement — the three critical thresholds (0.60 / 0.75 / 0.85), chilled-mirror vs capacitive instruments, sample preparation SOP, in-house vs contract lab economics, Aw monitoring in stability study, and 5-market regulatory treatment of Aw as preservation-free claim substantiation.',
+      cluster: 'challenge-testing',
+      searchKeywords: [
+        'water activity measurement cosmetic',
+        'cosmetic water activity',
+        'Aw measurement protocol',
+        'cosmetic Aw threshold',
+        'anhydrous cosmetic water activity',
+        'preservative free claim substantiation',
+        'chilled mirror dewpoint cosmetic',
+        'AquaLab cosmetic measurement',
+        'NovaSina cosmetic Aw',
+        'water activity stability monitoring',
+        'self preserving cosmetic water activity',
+        'cosmetic Aw Scott threshold',
+      ],
+      datePublished: '2026-11-04',
+      dateModified: '2026-11-04',
+      author: 'Yang Ruosong',
+      readingMinutes: 15,
+      heroImage: '/images/blog/article-16/hero.jpg',
+      toc: [
+        { id: 'bordeaux-opener', text: 'A USD 8,200 Bordeaux anhydrous balm recall, one Aw never measured', level: 2 },
+        { id: 'what-aw-measures', text: 'What Aw actually measures (and why water content is the wrong proxy)', level: 2 },
+        { id: 'three-thresholds', text: 'The three critical thresholds — 0.60, 0.75, and 0.85', level: 2 },
+        { id: 'threshold-explorer', text: 'Interactive Aw threshold explorer', level: 2 },
+        { id: 'measurement-methods', text: 'Measurement methods — chilled-mirror vs capacitive sensor', level: 2 },
+        { id: 'sop-builder', text: 'Aw measurement SOP builder', level: 2 },
+        { id: 'in-house-vs-contract', text: 'In-house instrument vs contract lab economics', level: 2 },
+        { id: 'stability-protocol', text: 'Aw in the stability study — T0 through T24', level: 2 },
+        { id: 'aw-challenge-test', text: 'Aw and ISO 11930 — how water activity shifts Challenge Test design', level: 2 },
+        { id: 'regulatory-treatment', text: '5-market regulatory treatment of Aw data', level: 2 },
+        { id: 'aw-measurement-faq', text: 'Cosmetic water activity measurement FAQ', level: 2 },
+        { id: 'related-reading', text: 'Related reading', level: 2 },
+      ],
+    },
+  {
       slug: 'china-iecic-2021-preservative-compliance-guide',
       title: 'China IECIC 2021 Preservative Compliance: The 2026 Guide for Cosmetic Brands and Contract Manufacturers Exporting to China',
       excerpt:

@@ -61,6 +61,47 @@ export interface BlogArticle {
 
 export const ARTICLES: BlogArticle[] = [
   {
+      slug: 'china-iecic-2021-preservative-compliance-guide',
+      title: 'China IECIC 2021 Preservative Compliance: The 2026 Guide for Cosmetic Brands and Contract Manufacturers Exporting to China',
+      excerpt:
+        'A procurement, QC and regulatory playbook for cosmetic preservative compliance in China under CSAR 2021: how IECIC 2021 and the STSC Annex V positive list interact, the 51 permitted preservatives, CBE notification mechanics, special-cosmetic registration, Domestic Responsible Person obligations, and the 3-way EU/US/China compliance delta for multi-market brands.',
+      cluster: 'regulatory',
+      searchKeywords: [
+        'china iecic 2021 preservative compliance',
+        'china cosmetic preservative regulation',
+        'CSAR 2021 preservative',
+        'STSC annex V preservative',
+        'NMPA cosmetic notification preservative',
+        'CBE preservative filing',
+        'china domestic responsible person',
+        'china special cosmetic registration',
+        'china cosmetic preservative positive list',
+        'IECIC vs STSC Annex V',
+        'china preservative import',
+        'multi-market cosmetic preservative compliance',
+      ],
+      datePublished: '2026-11-04',
+      dateModified: '2026-11-04',
+      author: 'Yang Ruosong',
+      readingMinutes: 17,
+      heroImage: '/images/blog/article-15/hero.jpg',
+      toc: [
+        { id: 'shanghai-opener', text: 'A USD 32,000 Shanghai port CBE rejection, one mismatched IECIC field', level: 2 },
+        { id: 'iecic-structure', text: 'IECIC 2021 — structure, scope, and how to read an entry', level: 2 },
+        { id: 'iecic-lookup', text: 'Preservative lookup — IECIC 2021 and STSC Annex V cross-check', level: 2 },
+        { id: 'stsc-annex-v', text: 'STSC Annex V — the 51 permitted preservatives', level: 2 },
+        { id: 'cbe-notification', text: 'CBE notification mechanics for ordinary cosmetics', level: 2 },
+        { id: 'compliance-checklist', text: 'China regulatory checklist — product type and distribution model', level: 2 },
+        { id: 'special-cosmetic', text: 'Special-cosmetic registration — 5 categories and the 6-12 month timeline', level: 2 },
+        { id: 'domestic-responsible-person', text: 'Domestic Responsible Person — obligations, selection, and liability', level: 2 },
+        { id: 'seven-field-coa', text: 'Seven CoA fields for China-market preservative supply', level: 2 },
+        { id: 'three-way-delta', text: 'Three-way EU vs US vs China regulatory delta', level: 2 },
+        { id: 'change-management', text: 'Change-management SOP — the China version', level: 2 },
+        { id: 'china-iecic-faq', text: 'China IECIC 2021 preservative compliance FAQ', level: 2 },
+        { id: 'related-reading', text: 'Related reading', level: 2 },
+      ],
+    },
+  {
       slug: 'caprylhydroxamic-acid-supplier-guide',
       title: 'Caprylhydroxamic Acid Supplier Guide: Price Benchmarks, Monomer vs Spectrastat, and the 25-100 kg Procurement Playbook (2026)',
       excerpt:
